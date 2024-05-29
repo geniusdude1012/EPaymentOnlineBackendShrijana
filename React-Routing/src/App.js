@@ -14,6 +14,7 @@ import Admin from "./component/Admin";
 import ForgetPassword from "./component/LoginSign/ForgetPassword";
 import RecoveryPassword from "./component/LoginSign/RecoveryPassword";
 import FormComponent from "./component/FormComponent";
+import OTPVerification from "./component/OTPVerification";
 
 function App() {
   return (
@@ -31,8 +32,9 @@ function App() {
       <Route path="/ForgetPassword" element={ <ForgetPassword/> } />
       <Route path="/RecoveryPassword" element={ <RecoveryPassword/> } />
       <Route path="/WaterBillEnquiry" element={ <WaterBillEnquiry/> } />
-      <Route path="/ElectricityBillEnquiry" element={ <ElectricityBillEnquiry/> } />
+      <Route path="/Payment" element={ <Payment/> } />
       <Route path="/FormComponent" element={ <FormComponent/> } />
+      <Route path="/OTPVerification" element={ <OTPVerification/> } />
 
     </Routes>
     </>
