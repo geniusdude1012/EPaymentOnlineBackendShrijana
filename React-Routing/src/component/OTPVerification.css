@@ -1,0 +1,94 @@
+
+
+/*  */
+
+.otp-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: rgb(27, 168, 173);
+}
+
+h2 {
+    color: black;
+    margin-bottom: 10px;
+}
+
+p {
+    color: black;
+    margin-bottom: 20px;
+}
+
+.otp-inputs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.otp-inputs input {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.timer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.timer span {
+    font-weight: bold;
+    color: #333;
+}
+
+.resend-otp {
+    background: none;
+    border: none;
+    color: greenyellow;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.resend-otp:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.verify-button {
+    width: 100%;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.verify-button:hover {
+    background-color: #218838;
+}
+
+.help-text {
+    margin-top: 20px;
+    color: #666;
+}
+
+.help-text a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.help-text a:hover {
+    text-decoration: underline;
+}
