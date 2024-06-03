@@ -1,5 +1,5 @@
 import React from 'react'
-import "./../component/Dashboard.css";
+
 
 import "./../component/Home.css"
 import bulb from "./../img/bulb.png";

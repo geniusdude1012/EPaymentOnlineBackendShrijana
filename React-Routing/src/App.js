@@ -15,10 +15,12 @@ import ForgetPassword from "./component/LoginSign/ForgetPassword";
 import RecoveryPassword from "./component/LoginSign/RecoveryPassword";
 import FormComponent from "./component/FormComponent";
 import OTPVerification from "./component/OTPVerification";
+import Dashboard from "./component/Dashboard";
 
 function App() {
   return (
     <>
+    
     <Navbar />
 
     <Routes >
@@ -32,11 +34,15 @@ function App() {
       <Route path="/ForgetPassword" element={ <ForgetPassword/> } />
       <Route path="/RecoveryPassword" element={ <RecoveryPassword/> } />
       <Route path="/WaterBillEnquiry" element={ <WaterBillEnquiry/> } />
+      <Route path="/ElectricityBillEnquiry" element={ <ElectricityBillEnquiry/> } />
       <Route path="/Payment" element={ <Payment/> } />
       <Route path="/FormComponent" element={ <FormComponent/> } />
       <Route path="/OTPVerification" element={ <OTPVerification/> } />
+      <Route path="/Dashboard" element={ <Dashboard/> } />
 
     </Routes>
+
+   
     </>
   );
 }
