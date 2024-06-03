@@ -12,31 +12,28 @@ function Navbar() {
         <ul className="md:px-1 ml-auto md:flex md:space-x-1 absolute md:relative top-full left-0 right-0">
         <NavLink to={"/"}>
     <li>
-        <a href="#" className="flex md:inline-flex p-4 items-center hover:bg-gray-50">
+        <a href="#" className="flex md:inline-flex p-4 items-center hover:bg-gray-50 text-decoration-none">
             <span style={{ letterSpacing: '0.1em' }}>HOME</span>
         </a>
     </li>
 </NavLink>
-
-
-         
             <NavLink to={"/Login"}>
             <li>
-                <a href="#" className="flex md:inline-flex p-4 items-center hover:bg-gray-50">
+                <a href="#" className="flex md:inline-flex p-4 items-center hover:bg-gray-50 text-decoration-none">
                     <span style={{ letterSpacing: '0.1em' }}>LOGIN</span>
                 </a>
             </li>
             </NavLink>
             <NavLink to={"/Register"}>
             <li>
-                <a href="#" className="flex md:inline-flex p-4 items-center hover:bg-gray-50">
+                <a href="#" className="flex md:inline-flex p-4 items-center hover:bg-gray-50 text-decoration-none">
                     <span style={{ letterSpacing: '0.1em' }}>REGISTER </span>
                 </a>
             </li>
             </NavLink>
              <NavLink to={"/Payment"}>
             <li>
-                <a href="#" className="flex md:inline-flex p-4 items-center hover:bg-gray-50">
+                <a href="#" className="flex md:inline-flex p-4 items-center hover:bg-gray-50 text-decoration-none">
                     <span style={{ letterSpacing: '0.1em' }}>TEAM</span>
                 </a>
             </li>
