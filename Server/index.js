@@ -48,7 +48,7 @@ app.post("/Register", async (req, res) => {
   try {
     const check = await collection.findOne({ email: email });
     if (check) {
-      res.json("User already exist");
+      return res.json({ status: "error" });
     } else {
       console.log("User registered successfully");
       await collection.insertMany([data]);
@@ -75,9 +75,10 @@ app.post("/Login", async (req, res) => {
       return res.json({ status: "success", user: true });
     } else {
       console.log("Incorrect password");
+      return res.json({ status: "error", user: false });
     }
   } else {
-    console.log("Login failed");
-    return res.json({ status: "error", user: false });
+    console.log("User not found");
+    return res.json({ status: "invalid", user: false });
   }
 });

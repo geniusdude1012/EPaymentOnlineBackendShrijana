@@ -28,8 +28,13 @@ const Login = () => {
       const registerr = await axios
         .post("http://localhost:8000/Login", user)
         .then((response) => {
-          if (response.data.status) {
-            navigate("/Deposit");
+          if (response.data.status === "success") {
+            navigate("/Dashboard");
+            alert("Login successful");
+          } else if (response.data.status === "error") {
+            alert("Incorrect password");
+          } else {
+            alert("User not registered");
           }
         })
         .catch((error) => {
