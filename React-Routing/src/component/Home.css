@@ -52,8 +52,10 @@
 
   .works1{
     text-align: center;
-    padding: 300x;
+    padding: 800x;
     background-color: #e0f2e9;
+    width: 1000px;
+    border-radius: 60px;
   }
 
   .step1 {
@@ -89,12 +91,21 @@
 
 
   .parent-container {
-    height: 500px; /* Example height for the parent container */
-    background-color: #f0f0f0;
+    height: 600px; /* Example height for the parent container */
+    background-color:white;
     display: flex;
     justify-content: center;
     align-items: center;
   }
+  .parent-container1{
+    height: 300px; /* Example height for the parent container */
+    background-color: rgb(27, 168, 173);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 60px;
+  }
+  
   
   .child-container {
     height: 30%; /* 30% of the parent container's height */

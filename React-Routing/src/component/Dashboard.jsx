@@ -1,6 +1,4 @@
 import React from 'react'
-
-
 import "./../component/Home.css"
 import bulb from "./../img/bulb.png";
 import khanepani from "./../img/khanepani.png";
@@ -13,13 +11,14 @@ function Dashboard() {
 
     <div>
 
-<div className="parent-container">
+    <div className="parent-container">
       <div className="child-container">
         I AM DON
       </div>
     </div>
      
-
+    <div className="parent-container1">
+ 
      <div className="works1">
       <h3>Our Services</h3>
       <div className="steps">
@@ -56,6 +55,8 @@ function Dashboard() {
          
         </div>
       </div>
+    </div>
+   
     </div>
     </div>
   )
