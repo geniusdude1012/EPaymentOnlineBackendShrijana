@@ -25,12 +25,16 @@ const Register = () => {
       const registerr = await axios
         .post("http://localhost:8000/Register", user)
         .then((response) => {
-          if (response.data.status) {
+          if (response.data.status === "success") {
             navigate("/Login");
+            alert("Registration successfull");
+          } else {
+            alert("User already registered");
           }
         })
         .catch((error) => {
           console.log(error);
+          alert("Registration failed");
         });
 
       console.log(registerr.data);
