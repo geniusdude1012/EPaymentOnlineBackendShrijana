@@ -20,11 +20,8 @@ import Dashboard from "./component/Dashboard";
 function App() {
   return (
     <>
-    
-    
-    <Navbar />
-    
 
+    <Navbar />
     <Routes >
       <Route path="/" element={ <Home /> } />
       <Route path="/Login" element={ <Login /> } />
@@ -43,8 +40,6 @@ function App() {
       <Route path="/Dashboard" element={ <Dashboard/> } />
 
     </Routes>
-   
-
    
     </>
   );
