@@ -17,11 +17,15 @@ import FormComponent from "./component/FormComponent";
 import OTPVerification from "./component/OTPVerification";
 import Dashboard from "./component/Dashboard";
 
+import NoNavbar from "./component/NoNavbar/NoNavbar";
+
+
 function App() {
   return (
     <>
-
-    <Navbar />
+    <NoNavbar>
+    <Navbar/>
+    </NoNavbar>
     <Routes >
       <Route path="/" element={ <Home /> } />
       <Route path="/Login" element={ <Login /> } />
