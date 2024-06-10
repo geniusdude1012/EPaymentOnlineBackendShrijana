@@ -1,7 +1,7 @@
 const cors = require("cors");
 const express = require("express");
 const app = express();
-// const hbs = require("hbs");
+const hbs = require("hbs");
 const collection = require("./db");
 const PORT = 8000;
 const path = require("path");
@@ -15,7 +15,10 @@ app.listen(PORT, (req, res) => {
 });
 app.use(express.json());
 app.use(cors());
-// app.set("view engine", "hbs");
+// app.set("view engine", "ejs");
+app.set("view engine", "hbs");
+app.set("views", path.join(__dirname, "views"));
+hbs.registerPartials(path.join(__dirname, "views/electricity"));
 // app.set("views", templatePath);
 app.use(express.urlencoded({ extended: false }));
 app.get("/", async (req, res) => {
@@ -81,4 +84,8 @@ app.post("/Login", async (req, res) => {
     console.log("User not found");
     return res.json({ status: "invalid", user: false });
   }
+});
+app.post("/electricitybill", async (res, req) => {
+  const form = req.body;
+  return res.render("genepdf", { form });
 });
