@@ -31,7 +31,7 @@ function Navbar() {
                 </a>
             </li>
             </NavLink>
-             <NavLink to={"/Dashboard"}>
+             <NavLink to={"/Logout"}>
             <li>
                 <a href="#" className="flex md:inline-flex p-4 items-center hover:bg-gray-50 text-decoration-none">
                     <span style={{ letterSpacing: '0.1em' }}>TEAM</span>

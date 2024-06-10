@@ -17,15 +17,20 @@ import FormComponent from "./component/FormComponent";
 import OTPVerification from "./component/OTPVerification";
 import Dashboard from "./component/Dashboard";
 
+
+import NoNavbar from "./component/NoNavbar/NoNavbar";
+
+
 function App() {
   return (
     <>
-    
-    <Navbar />
-
+    <NoNavbar>
+    <Navbar/>
+    </NoNavbar>
     <Routes >
       <Route path="/" element={ <Home /> } />
       <Route path="/Login" element={ <Login /> } />
+     
       <Route path="/team" element={ <Team /> } />
       <Route path="/Register" element={ <Register /> } />
       <Route path="/Admin " element={ <Admin/> } />
@@ -39,9 +44,11 @@ function App() {
       <Route path="/FormComponent" element={ <FormComponent/> } />
       <Route path="/OTPVerification" element={ <OTPVerification/> } />
       <Route path="/Dashboard" element={ <Dashboard/> } />
+    
+
+
 
     </Routes>
-
    
     </>
   );

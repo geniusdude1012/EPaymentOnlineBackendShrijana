@@ -74,6 +74,7 @@ function Home() {
           </div>
           <h3>Create Account</h3>
           <h6>Firstly Register, get verified and login to E-payment</h6>
+          <Link to="/Register"><a>Click Here</a></Link>
         </div>
         <div className="step">
           <div className="icon">
@@ -81,6 +82,7 @@ function Home() {
           </div>
           <h3>Load Funds</h3>
           <h6>Load Money to your account</h6>
+          <Link to="/Login"><a>Click Here</a></Link>
         </div>
         <div className="step">
           <div className="icon">
@@ -88,6 +90,7 @@ function Home() {
           </div>
           <h3>Pay Bills</h3>
           <h6>You are all set to Pay, Send or Accept payments online</h6>
+          <Link to="/Login"><a>Click Here</a></Link>
         </div>
       </div>
     </div>
