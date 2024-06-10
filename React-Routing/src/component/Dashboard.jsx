@@ -1,6 +1,5 @@
 // import React from 'react'
-import React, {useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, {useEffect,useState } from 'react';
 import "./../component/Dashboard.css"
 import bulb from "./../img/bulb.png";
 import khanepani from "./../img/khanepani.png";
@@ -20,16 +19,13 @@ function Dashboard() {
 
   return (
     <div>
-
-  
-
   <div className='parent-container'>
-     <div className={`sidebar ${isOpen ? 'open' : ''}`}>
-      <button className="sidebar-toggle" onClick={toggleSidebar}>
+     <div classNameName={`sidebar ${isOpen ? 'open' : ''}`}>
+      <button classNameName="sidebar-toggle" onClick={toggleSidebar}>
         <FontAwesomeIcon icon={isOpen ? faTimes : faBars} />
       </button>
-      <div className="sidebar-content">
-        <div className="sidebar-header">
+      <div classNameName="sidebar-content">
+        <div classNameName="sidebar-header">
           <h3></h3>
         </div>
         <ul>
@@ -47,34 +43,34 @@ function Dashboard() {
      {/* // SERVICES CONTAINER? */}
     <div className="parent-container1">
  
-     <div className="works1">
+     <div classNameName="works1">
       <h3>Our Services</h3>
-      <div className="steps">
-        <div className="step1">
-          <div className="icon1">
+      <div classNameName="steps">
+        <div classNameName="step1">
+          <div classNameName="icon1">
            <Link to="/WaterBillEnquiry"><img src={khanepani} alt="Create Account" /></Link> 
           </div>
           <p>Khanepani</p>
          \
         </div>
        
-        <div className="step1">
-          <div className="icon1">
+        <div classNameName="step1">
+          <div classNameName="icon1">
             <Link to="/ElectricityBillEnquiry"><img src={bulb}alt="electricity" /></Link>
           </div>
           <p>Electricity Bill</p>
         
         </div>
-        <div className="step1">
-          <div className="icon1">
+        <div classNameName="step1">
+          <div classNameName="icon1">
           <Link to="/Deposit"><img src={load}alt="Load Money" /></Link>
 
           </div>
           <p>Load Wallet</p>
     
         </div>
-        <div className="step1">
-          <div className="icon1">
+        <div classNameName="step1">
+          <div classNameName="icon1">
           
             <Link to="/Payment"><img src={transaction} alt="TRansaction" /></Link>
           </div>
