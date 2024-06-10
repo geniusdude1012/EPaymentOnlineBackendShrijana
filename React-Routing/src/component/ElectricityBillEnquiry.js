@@ -1,35 +1,62 @@
-import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import "./../component/WaterBillEnquiry.css"
-import electricity from "./../img/electricity.png"
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./../component/WaterBillEnquiry.css";
+import electricity from "./../img/electricity.png";
+import axios from "axios";
 const ElectricityBillEnquiry = () => {
   const [form, setForm] = useState({
-    customerName: '',
-    customerId: '',
-    counterNo: 'counter 1',
-    totalMonths: '1',
-    dateOfEnquiry: ''
+    customerName: "",
+    customerId: "",
+    counterNo: "counter 1",
+    totalMonths: "1",
+    dateOfEnquiry: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({
       ...form,
-      [name]: value
+      [name]: value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(form);
     // Add form submission logic here
+    const { customerId, customerName, counterNo, totalMonths, dateOfEnquiry } =
+      form;
+    if (
+      customerId &&
+      customerName &&
+      counterNo &&
+      totalMonths &&
+      dateOfEnquiry
+    ) {
+      const submission = await axios
+        .post("http://localhost:8000/electricitybill", form)
+        .then((response) => {
+          if (response.data.status === "success") {
+            alert("Enquiry successful");
+          } else {
+            alert("Enquiry failed");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("Registration failed");
+        });
+    } else {
+      alert("Invalid entry");
+    }
   };
 
   return (
     <div className="container mt-3">
       <div className="card">
         <div className="card-header text-center text-teal-500">
-        <img src={electricity} alt="Logo" className="logo-img1" />
+          <img src={electricity} alt="Logo" className="logo-img1" />
+          {console.log(form)}
           {/* <h2>Water-Bill-Enquiry</h2> */}
         </div>
         <div className="card-body">
@@ -65,7 +92,7 @@ const ElectricityBillEnquiry = () => {
                 value={form.counterNo}
                 onChange={handleChange}
               >
-               <option value="Kathmandu">Kathmandu</option>
+                <option value="Kathmandu">Kathmandu</option>
                 <option value="Lalitpur">Lalitpur</option>
                 <option value="Bhaktapur">Bhaktapur</option>
                 <option value="Madhyapur Thimi">Madhyapur Thimi</option>
@@ -110,7 +137,9 @@ const ElectricityBillEnquiry = () => {
               />
             </div>
             <div className="d-flex justify-content-center">
-              <button type="submit" className="btn btn-primary mt-4">Submit</button>
+              <button type="submit" className="btn btn-primary mt-4">
+                Submit
+              </button>
             </div>
           </form>
         </div>
