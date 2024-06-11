@@ -102,18 +102,11 @@ const Login = () => {
                 </Link>
               </div>
               <div className="login-center-buttons ">
-<<<<<<< HEAD
               
                 <button type="submit" className="btn btn-info">
                   Log in
                 </button>
                 
-=======
-                <button type="submit" className="btn btn-info">
-                  Log in
-                </button>
-
->>>>>>> 314aa0ff76fb5732901cb17a68ce9841b08717e7
                 <p className="login-bottom-p">
                   Don't have an account?{" "}
                   <Link to="/Register">Register here</Link>

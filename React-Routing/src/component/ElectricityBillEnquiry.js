@@ -137,11 +137,10 @@ const ElectricityBillEnquiry = () => {
               />
             </div>
             <div className="d-flex justify-content-center">
-              <Link to="/Dashboard">
+             
               <button type="submit" className="btn btn-primary mt-4">
                 Submit
-              </button></Link>
-              
+              </button>
             </div>
           </form>
         </div>

@@ -20,6 +20,7 @@ const Register = () => {
   };
   const handlesubmit = async (e) => {
     e.preventDefault();
+  
     const { name, email, password, cpassword } = user;
     if (name && email && password && password === cpassword) {
       const registerr = await axios
