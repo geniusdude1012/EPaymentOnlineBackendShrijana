@@ -47,9 +47,11 @@ function App() {
       <Route path="/Dashboard" element={ <Dashboard/> } />
       <Route path="/Footer" element={ <Footer/> } />
     </Routes>
-    <Footer/>
+ 
+
+ <br/>
    
-   
+   <Footer/>
     </>
   );
 }
