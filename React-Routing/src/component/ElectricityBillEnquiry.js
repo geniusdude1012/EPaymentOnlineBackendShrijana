@@ -13,10 +13,9 @@ const ElectricityBillEnquiry = () => {
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
     setForm({
       ...form,
-      [name]: value,
+      [e.target.name]: e.target.value,
     });
   };
 
