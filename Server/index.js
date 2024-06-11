@@ -8,17 +8,32 @@ const path = require("path");
 const bcrypt = require("bcryptjs");
 const { hashSync } = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const bodyParser = require("body-parser");
+const genPDF = require("./genepdf");
+const { engine } = require("express-handlebars");
 
-const templatePath = path.join(__dirname, "../templates");
+//...
+
+app.set("view engine", "hbs");
+app.engine("hbs", engine({ extname: "hbs" }));
+
+//...
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// const templatePath = path.join(__dirname, "../templates");
 app.listen(PORT, (req, res) => {
   console.log("Port connected");
 });
 app.use(express.json());
 app.use(cors());
 // app.set("view engine", "ejs");
-app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, "views"));
-hbs.registerPartials(path.join(__dirname, "views/electricity"));
+// app.set("view engine", "hbs");
+
+// app.engine("hbs", exphbs({ extname: "hbs" }));
+// const exphbs = require("express-handlebars");
+
+// hbs.registerPartials(path.join(__dirname, "views/electricity"));
 // app.set("views", templatePath);
 app.use(express.urlencoded({ extended: false }));
 app.get("/", async (req, res) => {
@@ -85,7 +100,17 @@ app.post("/Login", async (req, res) => {
     return res.json({ status: "invalid", user: false });
   }
 });
-app.post("/electricitybill", async (res, req) => {
-  const form = req.body;
-  return res.render("genepdf", { form });
+app.post("/electricitybill", async (req, res) => {
+  const { customerId, customerName, counterNo, totalMonths, dateOfEnquiry } =
+    req.body;
+  console.log({
+    customerId,
+    customerName,
+    counterNo,
+    totalMonths,
+    dateOfEnquiry,
+  });
+
+  genPDF(customerId, customerName, counterNo, totalMonths, dateOfEnquiry);
+  return res.json({ status: "success", data: req.body });
 });
