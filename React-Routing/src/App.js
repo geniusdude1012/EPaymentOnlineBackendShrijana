@@ -16,6 +16,7 @@ import RecoveryPassword from "./component/LoginSign/RecoveryPassword";
 import FormComponent from "./component/FormComponent";
 import OTPVerification from "./component/OTPVerification";
 import Dashboard from "./component/Dashboard";
+import Footer from "./component/Footer";
 
 
 import NoNavbar from "./component/NoNavbar/NoNavbar";
@@ -44,11 +45,10 @@ function App() {
       <Route path="/FormComponent" element={ <FormComponent/> } />
       <Route path="/OTPVerification" element={ <OTPVerification/> } />
       <Route path="/Dashboard" element={ <Dashboard/> } />
-    
-
-
-
+      <Route path="/Footer" element={ <Footer/> } />
     </Routes>
+    <Footer/>
+   
    
     </>
   );

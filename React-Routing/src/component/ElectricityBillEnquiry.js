@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./../component/WaterBillEnquiry.css";
 import electricity from "./../img/electricity.png";
+import { Link } from 'react-router-dom';
 import axios from "axios";
 const ElectricityBillEnquiry = () => {
   const [form, setForm] = useState({
@@ -137,9 +138,11 @@ const ElectricityBillEnquiry = () => {
               />
             </div>
             <div className="d-flex justify-content-center">
+              <Link to="/Dashboard">
               <button type="submit" className="btn btn-primary mt-4">
                 Submit
-              </button>
+              </button></Link>
+              
             </div>
           </form>
         </div>

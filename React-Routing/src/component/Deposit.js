@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "./../component/Deposit.css"
+import { Link } from 'react-router-dom';
 
 const Deposit = () => {
     const [amount, setAmount] = useState('');
@@ -26,7 +27,10 @@ const Deposit = () => {
                     onChange={handleChange}
                     placeholder="Amount"
                 />
+                <Link to="/Dashboard">
                 <button type="submit">DEPOSIT</button>
+                </Link>
+                
             </form>
         </div>
     );

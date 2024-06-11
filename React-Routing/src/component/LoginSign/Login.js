@@ -102,10 +102,10 @@ const Login = () => {
                 </Link>
               </div>
               <div className="login-center-buttons ">
-                <Link  to="/Dashboard">
+              
                 <button type="submit" className="btn btn-info">
                   Log in
-                </button></Link>
+                </button>
                 
                 <p className="login-bottom-p">
                   Don't have an account?{" "}
