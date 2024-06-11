@@ -1,6 +1,8 @@
-/* css for parent */
+
+
+
 .parent-container {
-    height: 500px; /* Example height for the parent container */
+    height: 500px; 
     background-color:black;
     display: flex;
     justify-content: center;
@@ -70,14 +72,17 @@
   
   
 /* CSS FOR SERVICES PART */
-
+/* 
 .works1{
     text-align: center;
     padding: 800x;
     background-color: #e0f2e9;
     width: 1000px;
     border-radius: 60px;
-  }
+    
+    
+
+  } */
 
   .step1 {
     display: flex;
