@@ -1,5 +1,7 @@
 import React from 'react';
-import "./../component/Footer.css";
+import"./../Footer/Footer.css";
+import { Link } from 'react-router-dom';
+// import {Link} from "react-scroll";
 const Footer = () => {
   return (
     <footer className="footer">
@@ -21,11 +23,11 @@ const Footer = () => {
       </div>
       <div className="footer-section">
         <h3>Policy</h3>
-        <p>Privacy Policies</p>
-        <p>Terms and Security Policies</p>
+        <Link to="/AboutLeadG2" ><p>About Us</p></Link>
        
+        <Link to="/Home"><p>Privacy Policies</p></Link>
+         <Link to="/Home"><p>Terms and Security Policies</p></Link>
       </div>
-     
       <div className="footer-bottom">
         <h6>© 2024 E-Payment Private Limited. All Rights Reserved</h6>
       </div>

@@ -57,7 +57,7 @@ app.get("/", async (req, res) => {
 // app.get("/signup", (req, res) => {
 //   res.render("signup");
 // });
-F
+
 //acquire data from register
 app.post("/Register", async (req, res) => {
   const { name, email, password } = req.body;
