@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './../component/Admin.css';
+import back1 from "./assets/back1.avif"
 
 const Admin = () => {
     const [username, setUsername] = useState('');
@@ -24,7 +25,7 @@ const Admin = () => {
     };
 
     return (
-        <div className="admin-container">
+        <div className="admin-container"  style={{  backgroundImage: `url(${back1})`, backgroundSize: 'cover' }}>
             <form className="admin-form" onSubmit={handleSubmit}>
                 <h2>ADMIN</h2>
                 <label htmlFor="username">Username</label>

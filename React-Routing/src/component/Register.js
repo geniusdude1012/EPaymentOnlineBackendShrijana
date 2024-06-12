@@ -3,6 +3,7 @@ import "./../component/Register.css";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import back1 from "./../component/assets/back1.avif";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -45,9 +46,10 @@ const Register = () => {
   };
 
   return (
-    <div class="flex flex-col justify-between max-w-xl px-4 mx-auto lg:pt-16 lg:flex-row md:px-8 lg:max-w-screen-xl">
-      <div class="pt-16 mb-16 lg:mb-0 lg:pt-32 lg:max-w-lg lg:pr-5">
-        <div class="max-w-xl mb-6">
+    
+    <div className="flex flex-col justify-between max-w-xl px-4 mx-auto lg:pt-16 lg:flex-row md:px-8 lg:max-w-screen-xl" style={{  backgroundImage: `url(${back1})`, backgroundSize: 'cover' }} >
+      <div className="pt-16 mb-16 lg:mb-0 lg:pt-32 lg:max-w-lg lg:pr-5">
+        <div className="max-w-xl mb-6">
           {/* <h2 class="max-w-lg mb-2 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-2xl sm:leading-none">
         Register US
       </h2> */}
@@ -56,7 +58,7 @@ const Register = () => {
             <h1>Simple & Fast Payment</h1>
           </p>
         </div>
-        <div class="flex items-center">
+        <div className="flex items-center">
           <div class="btn-group">
             <a href="/Register" class="btn btn-dark active" aria-current="page">
               Register Now
