@@ -10,6 +10,7 @@ const ElectricityBillEnquiry = () => {
     customerName: "",
     customerId: "",
     counterNo: "counter 1",
+    customerUnit: "100",
     totalMonths: "1",
     dateOfEnquiry: "",
   });
@@ -25,12 +26,13 @@ const ElectricityBillEnquiry = () => {
     e.preventDefault();
     console.log(form);
     // Add form submission logic here
-    const { customerId, customerName, counterNo, totalMonths, dateOfEnquiry } =
+    const { customerId, customerName, counterNo, totalMonths, dateOfEnquiry, customerUnit} =
       form;
     if (
       customerId &&
       customerName &&
       counterNo &&
+      customerUnit &&
       totalMonths &&
       dateOfEnquiry
     ) {
@@ -53,7 +55,7 @@ const ElectricityBillEnquiry = () => {
   };
 
   return (
-    <div className="container mt-3"  style={{  backgroundImage: `url(${back1})`, backgroundSize: 'cover' }}>
+    <div className="container mt-3 no-margin"  style={{  backgroundImage: `url(${back1})`, backgroundSize: 'cover' }}>
       <div className="card">
         <div className="card-header text-center text-teal-500">
           <img src={electricity} alt="Logo" className="logo-img1" />
@@ -103,6 +105,18 @@ const ElectricityBillEnquiry = () => {
                 <option value="Tokha">Tokha</option>
               </select>
             </div>
+            <div className="form-group mt-3">
+              <label htmlFor="customerUnit">Total Units:</label>
+              <input
+                type="number"
+                className="form-control small-input"
+                id="customerUnit"
+                name="customerUnit"
+                value={form.customerUnit}
+                onChange={handleChange}
+              />
+            </div>
+           
             <div className="form-group mt-1">
               <label htmlFor="totalMonths">Total Months:</label>
               <select
