@@ -9,12 +9,13 @@ import "./../component/Home.css"
 import head from './../img/head.webp';
 import fund from './../img/fund.png';
 import bill from './../img/bill.png';
+import back1 from "./assets/back5.jpg"
 
 
 
 function Home() {
   return (
-<section className="pt-24 bg-white">
+<section className="pt-24 bg-white" style={{  backgroundImage: `url(${back1})`, backgroundSize: 'cover' }}>
     <div className="px-12 mx-auto max-w-7xl">
         
         <div className="w-full mx-auto text-left md:w-11/12 xl:w-9/12 md:text-center">

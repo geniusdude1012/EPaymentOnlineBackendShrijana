@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./../component/WaterBillEnquiry.css";
 import electricity from "./../img/electricity.png";
+import back1 from "./assets/back3.avif";
 import { Link } from 'react-router-dom';
 import axios from "axios";
 const ElectricityBillEnquiry = () => {
@@ -52,7 +53,7 @@ const ElectricityBillEnquiry = () => {
   };
 
   return (
-    <div className="container mt-3">
+    <div className="container mt-3"  style={{  backgroundImage: `url(${back1})`, backgroundSize: 'cover' }}>
       <div className="card">
         <div className="card-header text-center text-teal-500">
           <img src={electricity} alt="Logo" className="logo-img1" />

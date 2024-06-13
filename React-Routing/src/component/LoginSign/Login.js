@@ -4,6 +4,8 @@ import Logo from "../assets/logo.png";
 import Image1 from "../assets/second.jpg";
 import GoogleSvg from "../assets/icons8-google.svg";
 import { FaEye } from "react-icons/fa6";
+// import back1 from "./../component/assets/back3.avif";
+import back1 from "./../assets/back3.avif";
 import { FaEyeSlash } from "react-icons/fa6";
 import "../LoginSign/index2.css";
 import { useNavigate, Link } from "react-router-dom";
@@ -46,8 +48,8 @@ const Login = () => {
   }
 
   return (
-    <div className="login-main">
-      <div className="login-left">
+    <div className="login-main" >
+      <div className="login-left" style={{  backgroundImage: `url(${back1})`, backgroundSize: 'cover' }}>
         <img src={Image1} alt="" />
       </div>
       {console.log(user)}

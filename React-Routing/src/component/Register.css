@@ -1,12 +1,14 @@
 
   .register-container {
-    /* background-image: url('path_to_your_background_image.jpg'); Replace with your image path */
+    /* background-image: url(back1);  */
     /* background-size: cover; */
+     /* Example color, change to desired color */
+     /* background-color: black;  */
     background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 10000px;
     height: 100%;
   }
   

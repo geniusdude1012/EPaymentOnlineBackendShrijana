@@ -1,18 +1,20 @@
 import React from 'react';
 import "./../Footer/AboutLeadG2.css";
+import back1 from "./../assets/back3.avif"
+import { Link } from 'react-router-dom';
 
 const AboutLeadG2 = () => {
     return (
-        <div className="about-container" id="hero">
+        <div className="about-container"  style={{  backgroundImage: `url(${back1})`, backgroundSize: 'cover' }}>
             <div className="about-header">
                 <h1>About E-Pay</h1>
             </div>
-            <div className="about-content">
+            <div className="about-content" >
                 <section className="who-we-are">
                     <h2>Who We Are??</h2>
                     <p>
                        
-E-payment systems offer numerous advantages that enhance convenience and efficiency for both consumers and businesses, which align perfectly with our website's concept. Our platform is designed to streamline the user experience, making transactions not only quick and effortless but also secure. One of the most significant benefits of integrating online payments into our website is the ease and speed of transactions; users can complete their purchases or service payments anytime and anywhere with just a few clicks, eliminating the need for physical visits to banks or payment centers. 
+E-payment systems offer numerous advantages that enhance convenience and efficiency for both consumers and businesses, which align perfectly with our website's concept. Our platform is designed to streamline the user experience, making transactions not only quick and effortless but also secure. One of the most significant benefits of integrating online payments into our website is the ease and speed of transactions.
                     </p>
                 </section>
                 <section className="different">
@@ -35,7 +37,7 @@ E-payment systems offer numerous advantages that enhance convenience and efficie
                     
                 </section>
                 <div className="about-buttons">
-                    <button className="btn">Explore</button>
+                    <Link to="/Register"><button className="btn">Explore</button></Link>
                 </div>
             </div>
         </div>

@@ -13,7 +13,7 @@ const Footer = () => {
         <p>Whatsapp: +977 9864463468</p>
         <p>Viber:+977 9864463468</p>
         <p>Phone:01-5581224</p>
-        <p>Email: epay@gmail.com</p>
+        <p>Email: epayment2423@gmail.com</p>
     
       </div>
       <div className="footer-section">
@@ -25,7 +25,7 @@ const Footer = () => {
         <h3>Policy</h3>
         <Link to="/AboutLeadG2" ><p>About Us</p></Link>
        
-        <Link to="/Home"><p>Privacy Policies</p></Link>
+        <Link to="/Privacy"><p>Privacy Policies</p></Link>
          <Link to="/Home"><p>Terms and Security Policies</p></Link>
       </div>
       <div className="footer-bottom">

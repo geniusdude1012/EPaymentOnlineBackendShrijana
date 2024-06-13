@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./../component/WaterBillEnquiry.css"
 import water from "./../img/water.png"
 import { Link } from 'react-router-dom';
+import back1 from "./assets/back3.avif";
 const WaterBillEnquiry = () => {
   const [form, setForm] = useState({
     customerName: '',
@@ -27,7 +28,7 @@ const WaterBillEnquiry = () => {
   };
 
   return (
-    <div className="container mt-3">
+    <div className="container mt-100" style={{  backgroundImage: `url(${back1})`, backgroundSize: 'cover' }}>
       <div className="card">
         <div className="card-header text-center text-teal-500">
         <img src={water} alt="Logo" className="logo-img" />
