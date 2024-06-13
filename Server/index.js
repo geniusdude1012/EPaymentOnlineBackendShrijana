@@ -87,7 +87,7 @@ app.post("/Register", async (req, res) => {
       //token generation
       const token = jwt.sign({ id: user.id, email }, "something");
       user.token = token;
-      user, (password = undefined);
+      user.password = undefined;
 
       return res.json({ status: "success" });
     }
