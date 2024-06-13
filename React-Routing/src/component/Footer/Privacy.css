@@ -1,21 +1,24 @@
 .about-container {
-    background-color: white;
-    /* border-radius: 8px; */
-    max-width: 600px;
+    background-color: black;
+    border-radius: 8px;
+    max-width: 1000px;
     /* margin: 5px auto right; */
     /* box-shadow: 0 4px 8px rgba(0,0,0,0.1); */
 }
-
+.different h5{
+    font-weight: 500;
+}
 .about-header h1 {
-    text-align: center;
-    color: black;
+    text-align: left;
+    color: black ;
     font-size: 36px;
     margin-bottom: 20px;
 }
 
 .about-content {
     background: white;
-    padding: 40px;
+    padding-right: 10px;
+    padding-left: 10px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }

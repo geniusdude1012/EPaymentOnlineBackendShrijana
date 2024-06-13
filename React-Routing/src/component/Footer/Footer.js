@@ -25,7 +25,7 @@ const Footer = () => {
         <h3>Policy</h3>
         <Link to="/AboutLeadG2" ><p>About Us</p></Link>
        
-        <Link to="/Home"><p>Privacy Policies</p></Link>
+        <Link to="/Privacy"><p>Privacy Policies</p></Link>
          <Link to="/Home"><p>Terms and Security Policies</p></Link>
       </div>
       <div className="footer-bottom">

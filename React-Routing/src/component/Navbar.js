@@ -1,10 +1,11 @@
 import React from 'react'
+// import back1 from "./assets/back1.avif"
 import { NavLink } from 'react-router-dom'
 
 function Navbar() {
   return (
 
-    <nav className="flex px-1 border-b md:shadow-lg items-center relative">
+    <nav className="flex px-1 border-b md:shadow-lg items-center relative" >
         <div className="text-lg font-bold md:py-0 py-8 px-3 ">
         <h2><b></b><span  className="badge bg-teal-500 text-Dark fs-8">E-pay</span></h2>
         

@@ -9,7 +9,7 @@ import "./../component/Home.css"
 import head from './../img/head.webp';
 import fund from './../img/fund.png';
 import bill from './../img/bill.png';
-import back1 from "./assets/back1.avif"
+import back1 from "./assets/back5.jpg"
 
 
 
