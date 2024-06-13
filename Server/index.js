@@ -11,7 +11,8 @@ const jwt = require("jsonwebtoken");
 const bodyParser = require("body-parser");
 const genPDF = require("./genepdf");
 const { engine } = require("express-handlebars");
-
+const secret = "epayment123";
+const Cookieparser = require("cookie-parser");
 //...
 
 app.set("view engine", "hbs");
@@ -20,6 +21,7 @@ app.engine("hbs", engine({ extname: "hbs" }));
 //...
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(Cookieparser());
 
 // const templatePath = path.join(__dirname, "../templates");
 app.listen(PORT, (req, res) => {
@@ -27,14 +29,25 @@ app.listen(PORT, (req, res) => {
 });
 app.use(express.json());
 app.use(cors());
-// app.set("view engine", "ejs");
-// app.set("view engine", "hbs");
 
-// app.engine("hbs", exphbs({ extname: "hbs" }));
-// const exphbs = require("express-handlebars");
+//user authentication
 
-// hbs.registerPartials(path.join(__dirname, "views/electricity"));
-// app.set("views", templatePath);
+function setUser(user) {
+  return jwt.sign(
+    {
+      email: user.email,
+    },
+    secret
+  );
+}
+
+function getUser(token) {
+  if (!token) return null;
+  return jwt.verify(token, secret);
+}
+
+//////////////////
+
 app.use(express.urlencoded({ extended: false }));
 app.get("/", async (req, res) => {
   const { email, password } = req.body;
@@ -70,6 +83,12 @@ app.post("/Register", async (req, res) => {
     } else {
       console.log("User registered successfully");
       await collection.insertMany([data]);
+
+      //token generation
+      const token = jwt.sign({ id: user.id, email }, "something");
+      user.token = token;
+      user, (password = undefined);
+
       return res.json({ status: "success" });
     }
   } catch (err) {
@@ -90,6 +109,22 @@ app.post("/Login", async (req, res) => {
     );
     if (validpassword) {
       console.log("Login successful");
+
+      ///token validation
+      const token = jwt.sign({ id: user.id, email: user.email }, "something");
+      user.token = token;
+      user, (password = undefined);
+
+      const options = {
+        expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+        // httpOnly: true,
+      };
+      res.status(200).cookie("token", token, options).json({
+        success: true,
+        token,
+        user,
+      });
+
       return res.json({ status: "success", user: true });
     } else {
       console.log("Incorrect password");
