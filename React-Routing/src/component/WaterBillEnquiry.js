@@ -11,6 +11,7 @@ const WaterBillEnquiry = () => {
     counterNo: 'counter 1',
     totalMonths: '1',
     dateOfEnquiry: ''
+    // customerUnit
   });
 
   const handleChange = (e) => {
@@ -76,6 +77,17 @@ const WaterBillEnquiry = () => {
                 <option value="Budhanilkantha">Budhanilkantha</option>
                 <option value="Tokha">Tokha</option>
               </select>
+            </div>
+            <div className="form-group mt-3">
+              <label htmlFor="customerUnit">Customer Unit:</label>
+              <input
+                type="number"
+                className="form-control small-input"
+                id="customerUnit"
+                name="customerUnit"
+                value={form.customerUnit}
+                onChange={handleChange}
+              />
             </div>
             <div className="form-group mt-1">
               <label htmlFor="totalMonths">Total Months:</label>
