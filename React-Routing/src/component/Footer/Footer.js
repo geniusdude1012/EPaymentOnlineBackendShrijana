@@ -13,7 +13,8 @@ const Footer = () => {
         <p>Whatsapp: +977 9864463468</p>
         <p>Viber:+977 9864463468</p>
         <p>Phone:01-5581224</p>
-        <p>Email: epayment2423@gmail.com</p>
+        <Link to="/ContactUs"><p>Email: epayment2423@gmail.com</p></Link>
+        
     
       </div>
       <div className="footer-section">

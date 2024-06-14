@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "./../component/OTPVerification.css";
+// import back1 from "./assets/back6.jpg"
 
 const OTPVerification = () => {
     const [otp, setOtp] = useState(Array(6).fill(""));
@@ -31,7 +32,7 @@ const OTPVerification = () => {
     }, [timer]);
 
     return (
-        <div className="container1">
+        <div className="container1" >
         <div className="otp-container">
             <h2>OTP Verification</h2>
             <p>Enter the 6 digit verification code received on your Email ID</p>

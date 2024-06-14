@@ -58,7 +58,7 @@ const Register = () => {
       </h2> */}
           {console.log(user)}
           <p class="text-base text-gray-700 md:text-lg">
-            <h1>Simple & Fast Payment</h1>
+            <h1>Simple & Fast Payment.</h1>
           </p>
         </div>
         <div className="flex items-center">

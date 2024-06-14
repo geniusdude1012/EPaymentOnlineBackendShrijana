@@ -1,0 +1,92 @@
+/* Container for centering the form */
+.form-container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* background: url('./background.jpg') no-repeat center center fixed; */
+    background-size: cover;
+  }
+  .photo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 30vh;
+    background-size: cover;
+    color: white;
+    text-align: center;
+  }
+/*   
+  .photo{
+    height: 200px;
+  } */
+  .form-header{
+    padding: 2rem;
+  }
+
+  .form-content {
+    background: white;
+    /* padding: 2em; */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  /* Heading and paragraph styling */
+  .form-content h2 {
+    margin-bottom: 0.5em;
+    font-size: 24px;
+    color: black;
+  }
+  
+  .form-content p {
+    margin-bottom: 2em;
+    color: black;
+  }
+  
+  /* Style the form elements */
+  .contact-form label {
+    display: block;
+    text-align: left;
+    margin-bottom: 0.5em;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .contact-form input[type="text"],
+  .contact-form input[type="email"],
+  .contact-form input[type="tel"],
+  .contact-form textarea {
+    width: 100%;
+    padding: 0.75em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  
+  .contact-form textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .contact-form input[type="submit"] {
+    background-color: black;
+    color: white;
+    padding: 0.75em 1.5em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .contact-form input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
