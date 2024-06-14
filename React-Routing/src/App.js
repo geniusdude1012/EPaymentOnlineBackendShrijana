@@ -19,6 +19,8 @@ import Dashboard from "./component/Dashboard";
 import Footer from "./component/Footer/Footer";
 import AboutLeadG2 from "./component/Footer/AboutLeadG2";
 import Privacy from "./component/Footer/Privacy";
+import { ContactUs } from "./component/Footer/ContactUs";
+
 
 
 import NoNavbar from "./component/NoNavbar/NoNavbar";
@@ -48,7 +50,10 @@ function App() {
       <Route path="/Dashboard" element={ <Dashboard/> } />
       <Route path="/Footer" element={ <Footer/> } />
       <Route path="/AboutLeadG2" element={ <AboutLeadG2/> } />
-      <Route path="/Privacy" element={ <Privacy/> } />+
+      
+      <Route path="/ContactUs" element={ <ContactUs/> } />
+      <Route path="/Privacy" element={ <Privacy/> } />
+      
     </Routes>
  
 
