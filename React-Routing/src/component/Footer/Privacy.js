@@ -13,28 +13,33 @@ const Privacy = () => {
                     <h5>What information do we collect?</h5>
                     <p>
                        
-E-payment systems offer numerous advantages that enhance convenience and efficiency for both consumers and businesses, which align perfectly with our website's concept. Our platform is designed to streamline the user experience, making transactions not only quick and effortless but also secure. One of the most significant benefits of integrating online payments into our website is the ease and speed of transactions; users can complete their purchases or service payments anytime and anywhere with just a few clicks, eliminating the need for physical visits to banks or payment centers. 
+                    When you register on our website or complete a form, we collect information from you. You may be required to provide the following information when placing a purchase or registering on our website: name, email address.
                     </p>
                 </section>
+                <br></br>
                 <section className="different">
                     <h5>What do we use your information for?</h5>
                     <p>
-                    The mission of our E-online payment methods is to provide a seamless, secure, and efficient transaction experience that empowers users and businesses globally. These systems enhance convenience by allowing transactions to be completed anytime and anywhere, removing the constraints of traditional banking. 
+                    Any of the information we collect from you may be used in one of the following ways:To improve customer service (your information helps us to more effectively respond to your customer service requests and support needs), To process transactions,
                     </p>
                 </section>
+                <br></br>
                 <section className="different">
                     <h5>Do we disclose any information to outside parties?
                     </h5>
                     <p>
-                    The vision is to build a connected world where financial interactions are frictionless, inclusive, and driven by trust and efficiency.
+                    We don't exchange or give your personally identifiable information to unaffiliated third parties. This excludes dependable outside parties who help us run our website, manage our business, or provide you with services, provided that they also promise to protect the privacy of this information. 
+
+
                     </p>
                     
                 </section>
+                <br></br>
                 <section className="different">
                     <h5>Your Consent
                     </h5>
                     <p>
-                    The vision is to build a connected world where financial interactions are frictionless, inclusive, and driven by trust and efficiency.
+                    By accessing this website, you agree to our online privacy statement.
                     </p>
                     
                 </section>

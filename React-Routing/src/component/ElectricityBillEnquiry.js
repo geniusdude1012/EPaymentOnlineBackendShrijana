@@ -12,6 +12,7 @@ const ElectricityBillEnquiry = () => {
     customerName: "",
     customerId: "",
     counterNo: "counter 1",
+    customerUnit: "100",
     totalMonths: "1",
     dateOfEnquiry: "",
   });
@@ -27,12 +28,19 @@ const ElectricityBillEnquiry = () => {
     e.preventDefault();
     console.log(form);
     // Add form submission logic here
-    const { customerId, customerName, counterNo, totalMonths, dateOfEnquiry } =
-      form;
+    const {
+      customerId,
+      customerName,
+      counterNo,
+      totalMonths,
+      dateOfEnquiry,
+      customerUnit,
+    } = form;
     if (
       customerId &&
       customerName &&
       counterNo &&
+      customerUnit &&
       totalMonths &&
       dateOfEnquiry
     ) {
@@ -116,6 +124,18 @@ const ElectricityBillEnquiry = () => {
                 <option value="Tokha">Tokha</option>
               </select>
             </div>
+            <div className="form-group mt-3">
+              <label htmlFor="customerUnit">Total Units:</label>
+              <input
+                type="number"
+                className="form-control small-input"
+                id="customerUnit"
+                name="customerUnit"
+                value={form.customerUnit}
+                onChange={handleChange}
+              />
+            </div>
+
             <div className="form-group mt-1">
               <label htmlFor="totalMonths">Total Months:</label>
               <select
