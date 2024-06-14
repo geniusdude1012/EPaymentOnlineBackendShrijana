@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "./../component/Deposit.css"
 import { Link } from 'react-router-dom';
+import back1 from "./assets/back1.avif"
 
 const Deposit = () => {
     const [amount, setAmount] = useState('');
@@ -15,7 +16,7 @@ const Deposit = () => {
     };
 
     return (
-        <div className="deposit-container">
+        <div className="deposit-container"  style={{  backgroundImage: `url(${back1})`, backgroundSize: 'cover' }}>
             <form className="deposit-form" onSubmit={handleSubmit}>
                 <h2>Load Money</h2>
                 <label htmlFor="amount">Enter amount to deposit:</label>
