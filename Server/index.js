@@ -9,10 +9,11 @@ const bcrypt = require("bcryptjs");
 const { hashSync } = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const bodyParser = require("body-parser");
-const genPDF = require("./genepdf");
+const { genPDFE, genPDFW } = require("./genepdf");
 const { engine } = require("express-handlebars");
 const secret = "epayment123";
 const Cookieparser = require("cookie-parser");
+const { BADFLAGS } = require("dns");
 //...
 
 app.set("view engine", "hbs");
@@ -28,23 +29,15 @@ app.listen(PORT, (req, res) => {
   console.log("Port connected");
 });
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+  })
+);
 
 //user authentication
 
-function setUser(user) {
-  return jwt.sign(
-    {
-      email: user.email,
-    },
-    secret
-  );
-}
-
-function getUser(token) {
-  if (!token) return null;
-  return jwt.verify(token, secret);
-}
+//
 
 //////////////////
 
@@ -75,21 +68,25 @@ app.get("/", async (req, res) => {
 app.post("/Register", async (req, res) => {
   const { name, email, password } = req.body;
   const hashpassword = await hashSync(req.body.password, 10);
-  const data = { name: name, email: email, password: hashpassword };
+  const data = {
+    name: name,
+    email: email,
+    password: hashpassword,
+    token: "token",
+    Balance: 0,
+  };
   try {
-    const check = await collection.findOne({ email: email });
-    if (check) {
+    const user = await collection.findOne({ email: email });
+    if (user) {
       return res.json({ status: "error" });
     } else {
       console.log("User registered successfully");
       await collection.insertMany([data]);
 
       //token generation
-      const token = jwt.sign({ id: user.id, email }, "something");
-      user.token = token;
-      user.password = undefined;
-
-      return res.json({ status: "success" });
+      const token = jwt.sign({ email: email }, secret);
+      console.log(token);
+      return res.status(201).json({ status: "success", user: data });
     }
   } catch (err) {
     res.status(500).json({ error: err });
@@ -111,21 +108,21 @@ app.post("/Login", async (req, res) => {
       console.log("Login successful");
 
       ///token validation
-      const token = jwt.sign({ id: user.id, email: user.email }, "something");
-      user.token = token;
-      user, (password = undefined);
+      const token = jwt.sign({ email: user.email }, secret, {
+        expiresIn: "3d",
+      });
+      console.log(token);
+      // user.password = undefined;
 
       const options = {
         expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-        // httpOnly: true,
+        httpOnly: true,
+        sameSite: "Lax",
       };
-      res.status(200).cookie("token", token, options).json({
-        success: true,
-        token,
-        user,
-      });
 
-      return res.json({ status: "success", user: true });
+      return res.cookie("token", token, options).status(200).json({
+        status: "success",
+      });
     } else {
       console.log("Incorrect password");
       return res.json({ status: "error", user: false });
@@ -146,6 +143,20 @@ app.post("/electricitybill", async (req, res) => {
     dateOfEnquiry,
   });
 
-  genPDF(customerId, customerName, counterNo, totalMonths, dateOfEnquiry);
+  genPDFE(customerId, customerName, counterNo, totalMonths, dateOfEnquiry);
+  return res.json({ status: "success", data: req.body });
+});
+app.post("/waterbill", async (req, res) => {
+  const { customerId, customerName, counterNo, totalMonths, dateOfEnquiry } =
+    req.body;
+  console.log({
+    customerId,
+    customerName,
+    counterNo,
+    totalMonths,
+    dateOfEnquiry,
+  });
+
+  genPDFW(customerId, customerName, counterNo, totalMonths, dateOfEnquiry);
   return res.json({ status: "success", data: req.body });
 });

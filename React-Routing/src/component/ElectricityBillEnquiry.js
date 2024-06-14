@@ -3,9 +3,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./../component/WaterBillEnquiry.css";
 import electricity from "./../img/electricity.png";
 import back1 from "./assets/back3.avif";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
+
 import axios from "axios";
 const ElectricityBillEnquiry = () => {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     customerName: "",
     customerId: "",
@@ -26,8 +28,14 @@ const ElectricityBillEnquiry = () => {
     e.preventDefault();
     console.log(form);
     // Add form submission logic here
-    const { customerId, customerName, counterNo, totalMonths, dateOfEnquiry, customerUnit} =
-      form;
+    const {
+      customerId,
+      customerName,
+      counterNo,
+      totalMonths,
+      dateOfEnquiry,
+      customerUnit,
+    } = form;
     if (
       customerId &&
       customerName &&
@@ -41,13 +49,21 @@ const ElectricityBillEnquiry = () => {
         .then((response) => {
           if (response.data.status === "success") {
             alert("Enquiry successful");
+            function openPDF() {
+              const pdfUrl =
+                "file:///C:/Users/shres/OneDrive/Desktop/naya%20folder/EPaymentOnlineBackendShrijana/Server/pdfs/electricity.pdf"; // Replace with the path to your PDF file
+              window.open(pdfUrl, "_blank");
+            }
+
+            // Example usage
+            openPDF();
           } else {
             alert("Enquiry failed");
           }
         })
         .catch((error) => {
           console.log(error);
-          alert("Registration failed");
+          alert("Enquiry failed");
         });
     } else {
       alert("Invalid entry");
@@ -55,7 +71,10 @@ const ElectricityBillEnquiry = () => {
   };
 
   return (
-    <div className="container mt-3 no-margin"  style={{  backgroundImage: `url(${back1})`, backgroundSize: 'cover' }}>
+    <div
+      className="container mt-3"
+      style={{ backgroundImage: `url(${back1})`, backgroundSize: "cover" }}
+    >
       <div className="card">
         <div className="card-header text-center text-teal-500">
           <img src={electricity} alt="Logo" className="logo-img1" />
@@ -116,7 +135,7 @@ const ElectricityBillEnquiry = () => {
                 onChange={handleChange}
               />
             </div>
-           
+
             <div className="form-group mt-1">
               <label htmlFor="totalMonths">Total Months:</label>
               <select
@@ -152,7 +171,6 @@ const ElectricityBillEnquiry = () => {
               />
             </div>
             <div className="d-flex justify-content-center">
-             
               <button type="submit" className="btn btn-primary mt-4">
                 Submit
               </button>
