@@ -21,6 +21,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  Balance: {
+    type: Number,
+    default: 0,
+  },
+  token: {
+    type: String,
+    default: null,
+  },
 });
 const collection = new mongoose.model("collection1", userSchema);
 module.exports = collection;

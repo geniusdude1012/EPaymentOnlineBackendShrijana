@@ -1,37 +1,69 @@
-import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import "./../component/WaterBillEnquiry.css"
-import water from "./../img/water.png"
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./../component/WaterBillEnquiry.css";
+import water from "./../img/water.png";
+import { Link, useNavigate } from "react-router-dom";
 import back1 from "./assets/back3.avif";
+import axios from "axios";
 const WaterBillEnquiry = () => {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
-    customerName: '',
-    customerId: '',
-    counterNo: 'counter 1',
-    totalMonths: '1',
-    dateOfEnquiry: ''
+    customerName: "",
+    customerId: "",
+    counterNo: "counter 1",
+    totalMonths: "1",
+    dateOfEnquiry: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({
       ...form,
-      [name]: value
+      [name]: value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(form);
     // Add form submission logic here
+    const { customerId, customerName, counterNo, totalMonths, dateOfEnquiry } =
+      form;
+    if (
+      customerId &&
+      customerName &&
+      counterNo &&
+      totalMonths &&
+      dateOfEnquiry
+    ) {
+      const submission = await axios
+        .post("http://localhost:8000/waterbill", form)
+        .then((response) => {
+          if (response.data.status === "success") {
+            alert("Enquiry successful");
+          } else {
+            alert("Enquiry failed");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("Enquiry failed");
+        });
+    } else {
+      alert("Invalid entry");
+    }
   };
 
+  // Add form submission logic here
+
   return (
-    <div className="container mt-100" style={{  backgroundImage: `url(${back1})`, backgroundSize: 'cover' }}>
+    <div
+      className="container mt-100"
+      style={{ backgroundImage: `url(${back1})`, backgroundSize: "cover" }}
+    >
       <div className="card">
         <div className="card-header text-center text-teal-500">
-        <img src={water} alt="Logo" className="logo-img" />
+          <img src={water} alt="Logo" className="logo-img" />
           {/* <h2>Water-Bill-Enquiry</h2> */}
         </div>
         <div className="card-body">
@@ -67,7 +99,7 @@ const WaterBillEnquiry = () => {
                 value={form.counterNo}
                 onChange={handleChange}
               >
-               <option value="Kathmandu">Kathmandu</option>
+                <option value="Kathmandu">Kathmandu</option>
                 <option value="Lalitpur">Lalitpur</option>
                 <option value="Bhaktapur">Bhaktapur</option>
                 <option value="Madhyapur Thimi">Madhyapur Thimi</option>
@@ -112,14 +144,14 @@ const WaterBillEnquiry = () => {
               />
             </div>
             <div className="d-flex justify-content-center">
-              <Link to="/Dashboard">
-              <button type="submit" className="btn btn-primary mt-4">Submit</button>
-              </Link>
+              <button type="submit" className="btn btn-primary mt-4">
+                Submit
+              </button>
             </div>
           </form>
         </div>
       </div>
-    </div>  
+    </div>
   );
 };
 

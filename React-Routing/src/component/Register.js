@@ -12,6 +12,7 @@ const Register = () => {
     email: "",
     password: "",
     cpassword: "",
+    token: "",
   });
   const handleChange = (e) => {
     setUser({
@@ -21,7 +22,7 @@ const Register = () => {
   };
   const handlesubmit = async (e) => {
     e.preventDefault();
-  
+
     const { name, email, password, cpassword } = user;
     if (name && email && password && password === cpassword) {
       const registerr = await axios
@@ -46,9 +47,10 @@ const Register = () => {
   };
 
   return (
-    
-    <div className="flex flex-col justify-between max-w-2xl px-4 lg:pt-16 lg:flex-row md:px-8 lg:max-w-full" style={{  backgroundImage: `url(${back1})`, backgroundSize: 'cover' }} >
-
+    <div
+      className="flex flex-col justify-between max-w-2xl px-4 lg:pt-16 lg:flex-row md:px-8 lg:max-w-full"
+      style={{ backgroundImage: `url(${back1})`, backgroundSize: "cover" }}
+    >
       <div className="pt-16 mb-16 lg:mb-0 lg:pt-32 lg:max-w-lg lg:pr-5">
         <div className="max-w-xl mb-6">
           {/* <h2 class="max-w-lg mb-2 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-2xl sm:leading-none">
