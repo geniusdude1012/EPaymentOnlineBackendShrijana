@@ -25,7 +25,7 @@ const Register = () => {
 
     const { name, email, password, cpassword } = user;
     if (name && email && password && password === cpassword) {
-      const registerr = await axios
+      const register = await axios
         .post("http://localhost:8000/Register", user)
         .then((response) => {
           if (response.data.status === "success") {
@@ -40,7 +40,7 @@ const Register = () => {
           alert("Registration failed");
         });
 
-      console.log(registerr.data);
+    
     } else {
       alert("Invalid entry");
     }

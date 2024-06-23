@@ -1,5 +1,14 @@
+.pcontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+    background: black;
+    font-family: Arial, sans-serif;
+}
+
 .payment-container {
-    max-width: 400px;
+    width: 500px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;

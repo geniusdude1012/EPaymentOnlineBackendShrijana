@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "./../component/FormComponent.css"
+import back1 from "./assets/back1.avif"
 
 const FormComponent = () => {
   const [formData, setFormData] = useState({
@@ -23,7 +24,7 @@ const FormComponent = () => {
 
   return (
     
-    <div className="form-container">
+    <div className="form-container" style={{  backgroundImage: `url(${back1})`, backgroundSize: 'cover' }}>
       <form onSubmit={handleSubmit}>
         <h2>Send Money</h2>
         <div className="form-group">

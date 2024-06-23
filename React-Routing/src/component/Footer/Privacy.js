@@ -1,6 +1,6 @@
 import React from 'react';
 import "./../Footer/Privacy.css";
-import back1 from "./../assets/back2.avif";
+import back1 from "./../assets/black3.avif";
 
 const Privacy = () => {
     return (

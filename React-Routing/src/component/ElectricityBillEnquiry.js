@@ -5,6 +5,7 @@ import electricity from "./../img/electricity.png";
 import back1 from "./assets/back3.avif";
 import { Link, useNavigate } from "react-router-dom";
 
+
 import axios from "axios";
 const ElectricityBillEnquiry = () => {
   const navigate = useNavigate();
@@ -49,16 +50,13 @@ const ElectricityBillEnquiry = () => {
         .then((response) => {
           if (response.data.status === "success") {
             alert("Enquiry successful");
-            function openPDF() {
-              const pdfUrl =
-                "file:///C:/Users/shres/OneDrive/Desktop/naya%20folder/EPaymentOnlineBackendShrijana/Server/pdfs/electricity.pdf"; // Replace with the path to your PDF file
-              window.open(pdfUrl, "_blank");
-            }
+            window.location.href = "electricity.pdf";
+            
 
             // Example usage
-            openPDF();
           } else {
             alert("Enquiry failed");
+            
           }
         })
         .catch((error) => {
@@ -72,8 +70,8 @@ const ElectricityBillEnquiry = () => {
 
   return (
     <div
-      className="container mt-3"
-      style={{ backgroundImage: `url(${back1})`, backgroundSize: "cover" }}
+      className="container" style={{  backgroundImage: `url(${back1})`, backgroundSize: 'cover' }}
+      
     >
       <div className="card">
         <div className="card-header text-center text-teal-500">

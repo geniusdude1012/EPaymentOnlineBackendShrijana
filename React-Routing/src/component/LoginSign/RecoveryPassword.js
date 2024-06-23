@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import "./../LoginSign/RecoveryPassword.css";
 import { Link } from 'react-router-dom';
+import back1 from "./../assets/black3.avif"
 
 const RecoveryPassword = () => {
   const [resetCode, setResetCode] = useState('');
@@ -29,7 +30,7 @@ const RecoveryPassword = () => {
   };
 
   return (
-    <div className="recovery-password-container">
+    <div className="recovery-password-container" style={{  backgroundImage: `url(${back1})`, backgroundSize: 'cover' }}>
       
       <form onSubmit={handleSubmit}>
       <h4>Create New Password</h4>
