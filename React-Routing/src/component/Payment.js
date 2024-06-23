@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "./../component/Payment.css"
 import { Link } from 'react-router-dom';
+import back1 from "./assets/back1.avif"
 
 const Payment = () => {
     const [amount, setAmount] = useState(1000);
@@ -8,6 +9,7 @@ const Payment = () => {
     const netPayable = amount + fee;
 
     return (
+        <div className='pcontainer'  style={{  backgroundImage: `url(${back1})`, backgroundSize: 'cover' }}>
         <div className="payment-container">
             <h2>Money Transfer</h2>
             <div className="form-group">
@@ -43,6 +45,7 @@ const Payment = () => {
             <div className="all-updates">
                <Link to="/"><a href="#">Cancel</a></Link> 
             </div>
+        </div>
         </div>
     );
 };

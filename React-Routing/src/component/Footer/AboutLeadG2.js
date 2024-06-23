@@ -1,6 +1,6 @@
 import React from 'react';
 import "./../Footer/AboutLeadG2.css";
-import back1 from "./../assets/back3.avif"
+import back1 from "./../assets/black3.avif"
 import { Link } from 'react-router-dom';
 
 const AboutLeadG2 = () => {

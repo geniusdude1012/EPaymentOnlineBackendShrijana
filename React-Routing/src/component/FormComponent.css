@@ -1,9 +1,9 @@
 .form-container {
-    max-width: 100%;
+    max-width: 35%;
     margin: 50px auto;
     height: 100%;
     padding: 20px;
-    background-color:  rgb(27, 168, 173);
+    /* background-color:  rgb(27, 168, 173); */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
   }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./../component/OTPVerification.css";
-// import back1 from "./assets/back6.jpg"
+// import back1 from "./assets/black.avif"
 
 const OTPVerification = () => {
     const [otp, setOtp] = useState(Array(6).fill(""));
