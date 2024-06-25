@@ -22,25 +22,23 @@ const Register = () => {
   };
   const handlesubmit = async (e) => {
     e.preventDefault();
-
     const { name, email, password, cpassword } = user;
     if (name && email && password && password === cpassword) {
-      const registerr = await axios
+      const register = await axios
         .post("http://localhost:8000/Register", user)
         .then((response) => {
           if (response.data.status === "success") {
             navigate("/Login");
             alert("Registration successfull");
+            alert("Please check your email for verification");
           } else {
             alert("User already registered");
           }
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.message);
           alert("Registration failed");
         });
-
-      console.log(registerr.data);
     } else {
       alert("Invalid entry");
     }
@@ -51,7 +49,14 @@ const Register = () => {
       className="flex flex-col justify-between max-w-2xl px-4 lg:pt-16 lg:flex-row md:px-8 lg:max-w-full"
       style={{ backgroundImage: `url(${back1})`, backgroundSize: "cover" }}
     >
-      <div className="pt-16 mb-16 lg:mb-0 lg:pt-32 lg:max-w-lg lg:pr-5">
+      <div
+        className="pt-16 mb-16 lg:mb-0 lg:pt-32 lg:max-w-lg lg:pr-5"
+        style={{
+          boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+          padding: "20px",
+          margin: "20px",
+        }}
+      >
         <div className="max-w-xl mb-6">
           {/* <h2 class="max-w-lg mb-2 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-2xl sm:leading-none">
         Register US
