@@ -11,9 +11,11 @@ const jwt = require("jsonwebtoken");
 const bodyParser = require("body-parser");
 const { genPDFE, genPDFW } = require("./genepdf");
 const { engine } = require("express-handlebars");
-const secret = "epayment123";
+const secret = "epayment123forncitproject2ndinsemestersixth1234455";
 const Cookieparser = require("cookie-parser");
 const { BADFLAGS } = require("dns");
+const sendEmail = require("./mails/mailer");
+const randomstring = require("randomstring");
 //...
 
 app.set("view engine", "hbs");
@@ -64,6 +66,11 @@ app.get("/", async (req, res) => {
 //   res.render("signup");
 // });
 
+//generateotp
+function generateotp() {
+  return randomstring.generate({ length: 4, charset: "numeric" });
+}
+
 //acquire data from register
 app.post("/Register", async (req, res) => {
   const { name, email, password } = req.body;
@@ -76,6 +83,11 @@ app.post("/Register", async (req, res) => {
     Balance: 0,
   };
   try {
+    //request otp
+    const otp = generateotp();
+    console.log(otp);
+    // sendOTP(email, otp);
+    // app.post("/otpverify, ");
     const user = await collection.findOne({ email: email });
     if (user) {
       return res.json({ status: "error" });
@@ -86,7 +98,23 @@ app.post("/Register", async (req, res) => {
       //token generation
       const token = jwt.sign({ email: email }, secret);
       console.log(token);
-      return res.status(201).json({ status: "success", user: data });
+
+      //sending email notification
+      // function sendOTP(email, otp) {
+      const msg =
+        "<p> Hi " +
+        data.name +
+        ", Please verify your email.<br> Your OTP for verification is " +
+        otp +
+        "</p>";
+      sendEmail(email, "Email verification", msg);
+      if (sendEmail) {
+        console.log("Email sent successfully");
+      } else {
+        console.log("Email not sent successfully");
+      }
+      return res.status(201).json({ status: "success", user: false });
+      // }
     }
   } catch (err) {
     res.status(500).json({ error: err });
@@ -108,7 +136,7 @@ app.post("/Login", async (req, res) => {
       console.log("Login successful");
 
       ///token validation
-      const token = jwt.sign({ email: user.email }, secret, {
+      const token = await jwt.sign({ email: user.email }, secret, {
         expiresIn: "3d",
       });
       console.log(token);
@@ -119,8 +147,8 @@ app.post("/Login", async (req, res) => {
         httpOnly: true,
         sameSite: "Lax",
       };
-
-      return res.cookie("token", token, options).status(200).json({
+      res.cookie("jwt", token);
+      return res.status(200).json({
         status: "success",
       });
     } else {
