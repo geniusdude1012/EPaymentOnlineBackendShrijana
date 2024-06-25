@@ -68,14 +68,20 @@ app.get("/", async (req, res) => {
 
 //generateotp
 function generateotp() {
-  return randomstring.generate({ length: 4, charset: "numeric" });
+  return randomstring.generate({ length: 6, charset: "numeric" });
 }
 
+let geneotp = 0;
+let data = {};
+
+function checkotp(a) {
+  return a;
+}
 //acquire data from register
 app.post("/Register", async (req, res) => {
   const { name, email, password } = req.body;
   const hashpassword = await hashSync(req.body.password, 10);
-  const data = {
+  data = {
     name: name,
     email: email,
     password: hashpassword,
@@ -85,37 +91,26 @@ app.post("/Register", async (req, res) => {
   try {
     //request otp
     const otp = generateotp();
-    console.log(otp);
+    geneotp = otp;
+    //sending email notification
+    // function sendOTP(email, otp) {
+    const msg =
+      "<p> Hi " +
+      data.name +
+      ", Please verify your email.<br> Your OTP for verification is " +
+      otp +
+      "</p>";
+    sendEmail(email, "Email verification", msg);
+    if (sendEmail) {
+      console.log("Email sent successfully");
+    } else {
+      console.log("Email not sent successfully");
+    }
+
     // sendOTP(email, otp);
     // app.post("/otpverify, ");
-    const user = await collection.findOne({ email: email });
-    if (user) {
-      return res.json({ status: "error" });
-    } else {
-      console.log("User registered successfully");
-      await collection.insertMany([data]);
 
-      //token generation
-      const token = jwt.sign({ email: email }, secret);
-      console.log(token);
-
-      //sending email notification
-      // function sendOTP(email, otp) {
-      const msg =
-        "<p> Hi " +
-        data.name +
-        ", Please verify your email.<br> Your OTP for verification is " +
-        otp +
-        "</p>";
-      sendEmail(email, "Email verification", msg);
-      if (sendEmail) {
-        console.log("Email sent successfully");
-      } else {
-        console.log("Email not sent successfully");
-      }
-      return res.status(201).json({ status: "success", user: false });
-      // }
-    }
+    return res.status(201).json({ status: "success", user: false });
   } catch (err) {
     res.status(500).json({ error: err });
   }
@@ -187,4 +182,30 @@ app.post("/waterbill", async (req, res) => {
 
   genPDFW(customerId, customerName, counterNo, totalMonths, dateOfEnquiry);
   return res.json({ status: "success", data: req.body });
+});
+
+app.post("/verifyotp", async (req, res) => {
+  const userotp = req.body.otp;
+  console.log(userotp);
+  console.log(geneotp);
+  if (userotp == geneotp) {
+    checkotp(1);
+    const user = await collection.findOne({ email: data.email });
+    if (user) {
+      return res.json({ status: "error" });
+    } else {
+      console.log("User registered successfully");
+      await collection.insertMany([data]);
+
+      //token generation
+      const token = jwt.sign({ email: data.email }, secret);
+      console.log(token);
+
+      //otpverification--------------------
+      return res.status(201).json({ status: "success", user: false });
+    }
+  } else {
+    checkotp(0);
+    res.status(501).json({ status: "error" });
+  }
 });
