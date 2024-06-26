@@ -90,27 +90,32 @@ app.post("/Register", async (req, res) => {
   };
   try {
     //request otp
-    const otp = generateotp();
-    geneotp = otp;
-    //sending email notification
-    // function sendOTP(email, otp) {
-    const msg =
-      "<p> Hi " +
-      data.name +
-      ", Please verify your email.<br> Your OTP for verification is " +
-      otp +
-      "</p>";
-    sendEmail(email, "Email verification", msg);
-    if (sendEmail) {
-      console.log("Email sent successfully");
+    const check = await collection.findOne({ email: data.email });
+    if (check) {
+      res.json("User already exist");
     } else {
-      console.log("Email not sent successfully");
+      const otp = generateotp();
+      geneotp = otp;
+      //sending email notification
+      // function sendOTP(email, otp) {
+      const msg =
+        "<p> Hi " +
+        data.name +
+        ", Please verify your email.<br> Your OTP for verification is " +
+        otp +
+        "</p>";
+      sendEmail(email, "Email verification", msg);
+      if (sendEmail) {
+        console.log("Email sent successfully");
+      } else {
+        console.log("Email not sent successfully");
+      }
+
+      // sendOTP(email, otp);
+      // app.post("/otpverify, ");
+
+      return res.status(201).json({ status: "success", user: false });
     }
-
-    // sendOTP(email, otp);
-    // app.post("/otpverify, ");
-
-    return res.status(201).json({ status: "success", user: false });
   } catch (err) {
     res.status(500).json({ error: err });
   }

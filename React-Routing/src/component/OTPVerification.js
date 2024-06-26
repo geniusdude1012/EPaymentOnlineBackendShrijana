@@ -43,6 +43,8 @@ const OTPVerification = () => {
       .then((response) => {
         if (response.data.status === "success") {
           alert("OTP Verification Successfull");
+          alert("User registered Successfully");
+
           navigate("/Login");
         } else {
           alert("Incorrect OTP");
