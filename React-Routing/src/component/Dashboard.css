@@ -1,144 +1,78 @@
+/* src/Profile.css */
+.profile-container {
+  /* width: 100%; */
+  max-width: 800px;
+  margin: 20px auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
 
+.profile-header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
 
+.profile-picture {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 20px;
+  object-fit: cover;
+}
 
-.parent-container {
-    height: 500px; 
-    background-color:black;
-    display: flex;
-    justify-content: center;
-    /* align-items: center; */
-  }
+.profile-details {
+  flex: 1;  /* Make the profile details take up the remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
 
-.sidebar {
-    position: fixed;
-    left: -250px;
-    width: 250px;
-    height: 50%;
-    background-color: black;
-    transition: left 0.3s ease;
-  }
-  
-  .sidebar.open {
-    left: 0;
-  }
-  
-  .sidebar-toggle {
-    position: absolute;
-    top: 20px;
-    right: -50px;
-    width: 40px;
-    height: 40px;
-    background-color:rgb(27, 168, 173);
-    border: none;
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 60%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.6s ease;
-  }
-  
-  .sidebar-toggle:hover {
-    transform: scale(1.1);
-  }
-  
-  .sidebar-content {
-    padding: 20px;
-  }
-  
-  .sidebar-header h3 {
-    color: white;
-  }
-  
-  .sidebar ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .sidebar ul li {
-    margin: 20px 0;
-  }
-  
-  .sidebar ul li a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  .sidebar ul li a:hover {
-    text-decoration: underline;
-  }
-  
-  
-/* CSS FOR SERVICES PART */
-/* 
-.works1{
-    text-align: center;
-    padding: 800x;
-    background-color: #e0f2e9;
-    width: 1000px;
-    border-radius: 60px;
-    
-    
+.profile-details h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+}
 
-  } */
+.profile-details .email {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #666;
+}
 
-  .step1 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-   
+.profile-details .user-id {
+  font-size: 14px;
+  color: #999;
+}
 
-  }
-  
-  .icon1 {
-    width: 50px; /* You can adjust this size */
-    height: 50px; /* Ensure the height and width are equal */
-    border-radius: 40%; /* Makes the div a circle */
-    overflow: hidden; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color:white
-  }
-  
-  .icon1 img {
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover;
-  }
-  
-  h4 {
-    margin-top: 10px; /* Adjust as necessary */
-    text-align: center;
-  }
+.profile-info {
+  padding: 20px;
+}
 
-  .parent-container1{
-    height: 300px; /* Example height for the parent container */
-    background-color: rgb(27, 168, 173);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* border-radius: 60px; */
-  }
-  
-  
-  .child-container {
-    height: 30%; /* 30% of the parent container's height */
-    width: 100%; /* Example width for the child container */
-    background-color: #4caf50;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .step .icon1{
-    width: 100px;
-    height: 80px;
-    margin-bottom: 10px;
-  }
+.info-section {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.info-section:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-size: 14px;
+  color: #999;
+}
+
+.value {
+  font-size: 14px;
+  color: #333;
+}
