@@ -28,8 +28,7 @@ const Register = () => {
         .post("http://localhost:8000/Register", user)
         .then((response) => {
           if (response.data.status === "success") {
-            navigate("/Login");
-            alert("Registration successfull");
+            navigate("/OTPVerification");
             alert("Please check your email for verification");
           } else {
             alert("User already registered");
