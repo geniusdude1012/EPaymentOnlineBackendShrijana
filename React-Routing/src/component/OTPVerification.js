@@ -1,17 +1,13 @@
 import React, { useState } from "react";
 import "./../component/OTPVerification.css";
-<<<<<<< HEAD
-// import back1 from "./assets/black.avif"
-=======
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// import back1 from "./assets/back6.jpg"
->>>>>>> 72694576ee0d1b36cad761455d04cde801a84388
+// import back1 from "./assets/black.avif"
 
 const OTPVerification = () => {
   const navigate = useNavigate();
   const [otp, setOtp] = useState(Array(6).fill(""));
-  const [timer, setTimer] = useState(60); // 3 minutes timer
+  const [timer, setTimer] = useState(60); // 1 minutes timer
 
   const handleChange = (element, index) => {
     if (isNaN(element.value)) return false;

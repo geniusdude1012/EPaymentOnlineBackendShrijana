@@ -74,6 +74,14 @@ function generateotp() {
 let geneotp = 0;
 let data = {};
 
+//function for expired otp
+const resetotp = () => {
+  otp = generateotp();
+  geneotp = otp;
+  console.log("OTP is expired");
+  console.log(otp);
+};
+
 function checkotp(a) {
   return a;
 }
@@ -114,6 +122,7 @@ app.post("/Register", async (req, res) => {
       // sendOTP(email, otp);
       // app.post("/otpverify, ");
 
+      const timer = setTimeout(resetotp, 62000);
       return res.status(201).json({ status: "success", user: false });
     }
   } catch (err) {
@@ -193,7 +202,7 @@ app.post("/verifyotp", async (req, res) => {
   const userotp = req.body.otp;
   console.log(userotp);
   console.log(geneotp);
-  if (userotp == geneotp) {
+  if (userotp === geneotp) {
     checkotp(1);
     const user = await collection.findOne({ email: data.email });
     if (user) {
@@ -210,7 +219,7 @@ app.post("/verifyotp", async (req, res) => {
       return res.status(201).json({ status: "success", user: false });
     }
   } else {
-    checkotp(0);
-    res.status(501).json({ status: "error" });
+    console.log("OTP didnt matched");
+    res.json({ status: "error" });
   }
 });
