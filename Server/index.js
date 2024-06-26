@@ -82,6 +82,26 @@ const resetotp = () => {
   console.log(otp);
 };
 
+//sending otp to mail
+const emailsender = async () => {
+  const otp = generateotp();
+  geneotp = otp;
+  //sending email notification
+  // function sendOTP(email, otp) {
+  const msg =
+    "<p> Hi " +
+    data.name +
+    ", Please verify your email.<br> Your OTP for verification is " +
+    otp +
+    "</p>";
+  sendEmail(data.email, "Email verification", msg);
+  if (sendEmail) {
+    console.log("Email sent successfully");
+  } else {
+    console.log("Email not sent successfully");
+  }
+};
+
 function checkotp(a) {
   return a;
 }
@@ -102,23 +122,7 @@ app.post("/Register", async (req, res) => {
     if (check) {
       res.json("User already exist");
     } else {
-      const otp = generateotp();
-      geneotp = otp;
-      //sending email notification
-      // function sendOTP(email, otp) {
-      const msg =
-        "<p> Hi " +
-        data.name +
-        ", Please verify your email.<br> Your OTP for verification is " +
-        otp +
-        "</p>";
-      sendEmail(email, "Email verification", msg);
-      if (sendEmail) {
-        console.log("Email sent successfully");
-      } else {
-        console.log("Email not sent successfully");
-      }
-
+      emailsender();
       // sendOTP(email, otp);
       // app.post("/otpverify, ");
 
@@ -222,4 +226,10 @@ app.post("/verifyotp", async (req, res) => {
     console.log("OTP didnt matched");
     res.json({ status: "error" });
   }
+});
+
+//Resend otp
+app.post("/resendotp", async (req, res) => {
+  emailsender();
+  res.status(201).json({ status: "success" });
 });
