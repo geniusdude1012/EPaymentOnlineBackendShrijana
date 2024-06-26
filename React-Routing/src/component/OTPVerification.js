@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import "./../component/OTPVerification.css";
+<<<<<<< HEAD
+// import back1 from "./assets/black.avif"
+=======
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 // import back1 from "./assets/back6.jpg"
+>>>>>>> 72694576ee0d1b36cad761455d04cde801a84388
 
 const OTPVerification = () => {
   const navigate = useNavigate();
