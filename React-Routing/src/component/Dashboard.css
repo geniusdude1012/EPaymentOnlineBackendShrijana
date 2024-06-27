@@ -1,7 +1,17 @@
 /* src/Profile.css */
+
+
+.parent-container {
+  height: 500px; 
+  background-color:black;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
 .profile-container {
-  /* width: 100%; */
-  max-width: 800px;
+  width: 100%;
+  /* max-width: 800px; */
+  height: 355px;
   margin: 20px auto;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
@@ -10,6 +20,7 @@
   background-color: #fff;
   display: flex;
   align-items: center;
+  justify-content: space-around;
 }
 
 .profile-header {
@@ -53,16 +64,22 @@
 }
 
 .profile-info {
-  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 442px;
 }
 
 .info-section {
   display: flex;
-  justify-content: space-between;
+  justify-content: revert-layer;
   padding: 10px 0;
-  border-bottom: 1px solid #e0e0e0;
+  height: 100px;
+  /* border-bottom: 1px solid #e0e0e0; */
 }
-
+/* .info1{
+  height: 20px;
+} */
 .info-section:last-child {
   border-bottom: none;
 }

@@ -12,49 +12,51 @@ function Dashboard() {
   return (
     <div>
   
-
-
-
-
-
-
-
       <div className="parent-container">
       <div className="profile-container">
+ 
       <div className="profile-header">
         <img src={load}  alt="Dinish Chugtai" className="profile-picture" />
         <div className="profile-details">
-          <h2>Dinish Chugtai</h2>
+          <h2>Shrijana Maharjan</h2>
           <p className="email">dinesh@fusionauth.io</p>
-          <p className="user-id">User Id: 00000000-0000-0000-0000-000000000004</p>
+          <p className="user-id">User Id: Shrijana2099</p>
         </div>
       </div>
       <div className="profile-info">
+        <div className="info1">
         <div className="info-section">
-          <p className="label">Mobile Phone</p>
-          <p className="value">-</p>
+          <p className="label">Mobile Phone:   </p> 
+          <p className="value">986446543</p>
         </div>
         <div className="info-section">
-          <p className="label">Birthdate</p>
-          <p className="value">-</p>
+          <p className="label">Preferred languages:   </p><br/>
+          <p className="value">Nepali</p>
         </div>
         <div className="info-section">
-          <p className="label">Username</p>
-          <p className="value">-</p>
+          <p className="label">Birthdate:   </p>
+          <p className="value">203/2/3</p>
         </div>
-        <div className="info-section">
-          <p className="label">Preferred languages</p>
-          <p className="value">-</p>
         </div>
+
+
+        <div className="info2">
         <div className="info-section">
-          <p className="label">Created</p>
+          <p className="label">Username:</p>
+          <p className="value">Maharjan</p>
+        </div>
+       
+        <div className="info-section">
+          <p className="label">Created:  </p>
           <p className="value">10/5/2020 12:21 PM MDT</p>
         </div>
         <div className="info-section">
-          <p className="label">Last login</p>
+          <p className="label">Last login:  </p>
           <p className="value">11/6/2020 02:04 PM MST</p>
         </div>
       </div>
+      </div>
+    
     </div>
        
       </div>
