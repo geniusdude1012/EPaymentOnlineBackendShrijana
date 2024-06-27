@@ -74,6 +74,34 @@ function generateotp() {
 let geneotp = 0;
 let data = {};
 
+//function for expired otp
+const resetotp = () => {
+  otp = generateotp();
+  geneotp = otp;
+  console.log("OTP is expired");
+  console.log(otp);
+};
+
+//sending otp to mail
+const emailsender = async () => {
+  const otp = generateotp();
+  geneotp = otp;
+  //sending email notification
+  // function sendOTP(email, otp) {
+  const msg =
+    "<p> Hi " +
+    data.name +
+    ", Please verify your email.<br> Your OTP for verification is " +
+    otp +
+    "</p>";
+  sendEmail(data.email, "Email verification", msg);
+  if (sendEmail) {
+    console.log("Email sent successfully");
+  } else {
+    console.log("Email not sent successfully");
+  }
+};
+
 function checkotp(a) {
   return a;
 }
@@ -90,27 +118,17 @@ app.post("/Register", async (req, res) => {
   };
   try {
     //request otp
-    const otp = generateotp();
-    geneotp = otp;
-    //sending email notification
-    // function sendOTP(email, otp) {
-    const msg =
-      "<p> Hi " +
-      data.name +
-      ", Please verify your email.<br> Your OTP for verification is " +
-      otp +
-      "</p>";
-    sendEmail(email, "Email verification", msg);
-    if (sendEmail) {
-      console.log("Email sent successfully");
+    const check = await collection.findOne({ email: data.email });
+    if (check) {
+      res.json("User already exist");
     } else {
-      console.log("Email not sent successfully");
+      emailsender();
+      // sendOTP(email, otp);
+      // app.post("/otpverify, ");
+
+      const timer = setTimeout(resetotp, 62000);
+      return res.status(201).json({ status: "success", user: false });
     }
-
-    // sendOTP(email, otp);
-    // app.post("/otpverify, ");
-
-    return res.status(201).json({ status: "success", user: false });
   } catch (err) {
     res.status(500).json({ error: err });
   }
@@ -188,7 +206,7 @@ app.post("/verifyotp", async (req, res) => {
   const userotp = req.body.otp;
   console.log(userotp);
   console.log(geneotp);
-  if (userotp == geneotp) {
+  if (userotp === geneotp) {
     checkotp(1);
     const user = await collection.findOne({ email: data.email });
     if (user) {
@@ -205,7 +223,13 @@ app.post("/verifyotp", async (req, res) => {
       return res.status(201).json({ status: "success", user: false });
     }
   } else {
-    checkotp(0);
-    res.status(501).json({ status: "error" });
+    console.log("OTP didnt matched");
+    res.json({ status: "error" });
   }
+});
+
+//Resend otp
+app.post("/resendotp", async (req, res) => {
+  emailsender();
+  res.status(201).json({ status: "success" });
 });
