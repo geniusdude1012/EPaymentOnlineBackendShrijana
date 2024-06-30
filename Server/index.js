@@ -16,6 +16,7 @@ const Cookieparser = require("cookie-parser");
 const { BADFLAGS } = require("dns");
 const sendEmail = require("./mails/mailer");
 const randomstring = require("randomstring");
+const tokenauth = require("./middleware/auth");
 //...
 
 app.set("view engine", "hbs");
@@ -33,7 +34,9 @@ app.listen(PORT, (req, res) => {
 app.use(express.json());
 app.use(
   cors({
+    origin: ["http://localhost:8000", "http://localhost:3000"],
     credentials: true,
+    methods: ["GET", "POST"],
   })
 );
 
@@ -127,7 +130,7 @@ app.post("/Register", async (req, res) => {
       // app.post("/otpverify, ");
 
       const timer = setTimeout(resetotp, 62000);
-      return res.status(201).json({ status: "success", user: false });
+      return res.status(201).json({ status: "success", user: data });
     }
   } catch (err) {
     res.status(500).json({ error: err });
@@ -220,7 +223,9 @@ app.post("/verifyotp", async (req, res) => {
       console.log(token);
 
       //otpverification--------------------
-      return res.status(201).json({ status: "success", user: false });
+      return res
+        .status(201)
+        .json({ status: "success", user: user, token: token });
     }
   } else {
     console.log("OTP didnt matched");
