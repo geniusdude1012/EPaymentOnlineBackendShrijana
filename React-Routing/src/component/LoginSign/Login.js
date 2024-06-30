@@ -14,6 +14,7 @@ import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
+  axios.defaults.withCredentials = true;
   const [showPassword, setShowPassword] = useState(false);
   const [user, setUser] = useState({
     email: "",
@@ -48,8 +49,11 @@ const Login = () => {
   }
 
   return (
-    <div className="login-main" >
-      <div className="login-left" style={{  backgroundImage: `url(${back1})`, backgroundSize: 'cover' }}>
+    <div className="login-main">
+      <div
+        className="login-left"
+        style={{ backgroundImage: `url(${back1})`, backgroundSize: "cover" }}
+      >
         <img src={Image1} alt="" />
       </div>
       {console.log(user)}
@@ -104,11 +108,10 @@ const Login = () => {
                 </Link>
               </div>
               <div className="login-center-buttons ">
-              
                 <button type="submit" className="btn btn-info">
                   Log in
                 </button>
-                
+
                 <p className="login-bottom-p">
                   Don't have an account?{" "}
                   <Link to="/Register">Register here</Link>
