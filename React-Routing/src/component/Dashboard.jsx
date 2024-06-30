@@ -10,16 +10,17 @@ import load from "./../img/load.png";
 // import profile from "./../img/profile.jpg";
 import profile from "./assets/profile.jpg";
 import { Link } from "react-router-dom";
+import back2 from "./../component/assets/back6.avif"
 // ITS CSS IS IN HOME.JSX
 function Dashboard() {
   return (
     <div>
 {/* Navbar section? */}
 <nav className="flex px-1 border-b md:shadow-lg items-center relative" >
-        <div className="text-lg font-bold md:py-0 py-8 px-3 ">
-        <h2><b></b><span  className="badge bg-teal-500 text-Dark fs-8">E-pay</span></h2>
         
-        </div>
+          <img src={profile} className="imageprofile"></img>
+          <h4 className="user">Welcome,User</h4>
+       
         <ul className="md:px-1 ml-auto md:flex md:space-x-1 absolute md:relative top-full left-0 right-0">
         <NavLink to={"/"}>
     <li>
@@ -44,7 +45,7 @@ function Dashboard() {
     </nav>
 
   {/* //main */}
-      <div className="parent-container">
+      <div className="parent-container"  style={{  backgroundImage: `url(${back2})`, backgroundSize: 'cover' }}>
       <div className="profile-container">
  
       <div className="profile-header">
@@ -93,45 +94,50 @@ function Dashboard() {
        
       </div>
 
-{/* SERVICES PART */}
-      <div className="works1">
-        <h3>Our Services</h3>
-        <div className="steps">
-          <div className="step1">
-            <div className="icon1">
-              <Link to="/WaterBillEnquiry">
-                <img src={khanepani} alt="Create Account" />
-              </Link>
-            </div>
-            <p>Khanepani</p>\
-          </div>
 
-          <div className="step1">
-            <div className="icon1">
-              <Link to="/ElectricityBillEnquiry">
-                <img src={bulb} alt="electricity" />
-              </Link>
-            </div>
-            <p>Electricity Bill</p>
-          </div>
-          <div className="step1">
-            <div className="icon1">
-              <Link to="/Deposit">
-                <img src={load} alt="Load Money" />
-              </Link>
-            </div>
-            <p>Load Wallet</p>
-          </div>
-          <div className="step1">
-            <div className="icon1">
-              <Link to="/Payment">
-                <img src={transaction} alt="TRansaction" />
-              </Link>
-            </div>
-            <p>Transaction</p>
-          </div>
+      {/* SERVICES PART */}
+      <div class="feat">
+        <div class="ser" id="service">
+            <h3>Our Services</h3>
         </div>
-      </div>
+        <div class="container2">
+            <div class="box3">
+                <div class="img3">
+                    <a href="deposit.html"><button class="butt1"><img src={load}/></button></a>
+                </div>
+                <div>
+                    <span>Load Wallet</span>
+                </div>
+            </div>
+            <div class="box3">
+                <div class="img3">
+                    <a href="electricity.html"> <button class="butt1"><img src={bulb}/></button></a>
+                </div>
+                <div class="element">
+                    <span>Electricity-Bill</span>
+                </div>
+            </div>
+            <div class="box3">
+                <div class="img3">
+                    <a href="water.html"><button class="butt1"><img src={transaction}/></button></a>
+                </div>
+                <div>
+                    <span>Transation</span>
+                </div>
+            </div>
+            <div class="box3">
+                <div class="img3">
+                    <a href="water.html"><button class="butt1"><img src={khanepani}/></button></a>
+                </div>
+                <div>
+                    <span>Khanepani</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+     
     </div>
   );
 }
