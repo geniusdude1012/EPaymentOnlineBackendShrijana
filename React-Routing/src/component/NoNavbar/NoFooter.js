@@ -2,7 +2,7 @@
 import React, { useEffect,useState } from 'react';
 import { useLocation } from 'react-router-dom';
 //DISPLAYING NAVBAR FOR SOME CERTAIN PAGES  ONLY
-function NoNavbar({children}) {
+function NoFooter({children}) {
 const location = useLocation();
 const[showNavbar,setShowNavbar] = useState(false);
 useEffect(() => {
@@ -10,11 +10,8 @@ useEffect(() => {
 
 
     const pathsToHideNavbar = [
-      '/Dashboard',
-      '/ElectricityBillEnquiry',
-      '/Deposit',
-      '/WaterBillEnquiry',
-      '/Logout'
+      '/Logout',
+      
     ];
     if (pathsToHideNavbar.includes(location.pathname)) {
       setShowNavbar(false);
@@ -31,7 +28,7 @@ useEffect(() => {
   )
 }
 
-export default NoNavbar
+export default NoFooter
 
 
 
