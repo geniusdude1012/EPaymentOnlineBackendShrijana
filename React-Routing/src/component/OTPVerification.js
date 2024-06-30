@@ -2,16 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./../component/OTPVerification.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-<<<<<<< HEAD
-// import back1 from "./assets/back6.jpg"
-
-=======
 // import back1 from "./assets/black.avif"
 let otptimer = 0;
 const otpnotify = () => {
   otptimer = 1;
 };
->>>>>>> 0cde4873aced103911dc5cb4304e0457122c4960
 const OTPVerification = () => {
   useEffect(() => {
     const countdown = setInterval(() => {

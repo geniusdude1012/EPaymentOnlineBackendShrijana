@@ -39,7 +39,7 @@ const Register = () => {
           alert("Registration failed");
         });
     } else {
-      alert("Invalid entry");
+      alert("Email has been registered already");
     }
   };
 
