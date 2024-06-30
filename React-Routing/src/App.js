@@ -20,11 +20,12 @@ import Footer from "./component/Footer/Footer";
 import AboutLeadG2 from "./component/Footer/AboutLeadG2";
 import Privacy from "./component/Footer/Privacy";
 import { ContactUs } from "./component/Footer/ContactUs";
-
+import Logout from "./component/LoginSign/Logout";
 
 
 
 import NoNavbar from "./component/NoNavbar/NoNavbar";
+import NoFooter from "./component/NoNavbar/NoFooter";
 
 
 function App() {
@@ -54,13 +55,16 @@ function App() {
       
       <Route path="/ContactUs" element={ <ContactUs/> } />
       <Route path="/Privacy" element={ <Privacy/> } />
+      <Route path="/Logout" element={ <Logout/> } />
       
     </Routes>
  
 
  <br/>
-   
+   <NoFooter>
    <Footer/>
+   </NoFooter>
+ 
     </>
   );
 }
