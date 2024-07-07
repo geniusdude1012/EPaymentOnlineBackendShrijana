@@ -103,7 +103,8 @@ function Dashboard() {
         <div class="container2">
             <div class="box3">
                 <div class="img3">
-                    <a href="deposit.html"><button class="butt1"><img src={load}/></button></a>
+                   
+                      <Link to="/Deposit"><button class="butt1"><img src={load}/></button></Link>
                 </div>
                 <div>
                     <span>Load Wallet</span>
@@ -111,7 +112,7 @@ function Dashboard() {
             </div>
             <div class="box3">
                 <div class="img3">
-                    <a href="electricity.html"> <button class="butt1"><img src={bulb}/></button></a>
+                  <Link to="/ElectricityBillEnquiry"><button class="butt1"><img src={bulb}/></button></Link>  
                 </div>
                 <div class="element">
                     <span>Electricity-Bill</span>
@@ -119,7 +120,8 @@ function Dashboard() {
             </div>
             <div class="box3">
                 <div class="img3">
-                    <a href="water.html"><button class="butt1"><img src={transaction}/></button></a>
+                <Link to="/Payment"><button class="butt1"><img src={transaction}/></button></Link>  
+               
                 </div>
                 <div>
                     <span>Transation</span>
@@ -127,7 +129,8 @@ function Dashboard() {
             </div>
             <div class="box3">
                 <div class="img3">
-                    <a href="water.html"><button class="butt1"><img src={khanepani}/></button></a>
+                <Link to="/WaterBillEnquiry"><button class="butt1"><img src={khanepani}/></button></Link>  
+              
                 </div>
                 <div>
                     <span>Khanepani</span>
