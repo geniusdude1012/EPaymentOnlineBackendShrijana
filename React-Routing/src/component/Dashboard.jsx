@@ -1,8 +1,9 @@
-// import React from 'react'
 import React, { useState } from "react";
 import { NavLink } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 import "./../component/Dashboard.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import bulb from "./../img/bulb.png";
 import khanepani from "./../img/khanepani.png";
 import transaction from "./../img/transaction.png";
@@ -13,8 +14,14 @@ import { Link } from "react-router-dom";
 import back2 from "./../component/assets/back6.avif"
 // ITS CSS IS IN HOME.JSX
 function Dashboard() {
+  const[isBalanceVisible, setIsBalanceVisible] = useState(true);
+
+  const toggleBalanceVisibility = () => {
+    setIsBalanceVisible(!isBalanceVisible);
+  };
   return (
     <div>
+
 {/* Navbar section? */}
 <nav className="flex px-1 border-b md:shadow-lg items-center relative" >
         
@@ -46,90 +53,76 @@ function Dashboard() {
 
   {/* //main */}
       <div className="parent-container"  style={{  backgroundImage: `url(${back2})`, backgroundSize: 'cover' }}>
-      <div className="profile-container">
+      <div className="profile-container" style={{  backgroundImage: `url(${back2})`, backgroundSize: 'cover' }}>
  
       <div className="profile-header">
-        <img src={profile}  alt="Dinish Chugtai" className="profile-picture" />
+        {/* <div className="profile-pic">
+          <img src={profile}  alt="Dinish Chugtai" className="profile-picture" />
+        </div> */}
         <div className="profile-details">
-          <h2>Shrijana Maharjan</h2>
-          <p className="email">dinesh@fusionauth.io</p>
-          <p className="user-id">User Id: Shrijana2099</p>
+          <h1>Shrijana Maharjan</h1>
+          <h2 className="email">Email Id: shrezaana2067@gmail.com</h2>
+          <h2 className="user-id">User Id: Shrijana2099</h2>
         </div>
       </div>
+
+      {/* //BALANCE SHOW? */}
       <div className="profile-info">
-        <div className="info1">
-        <div className="info-section">
-          <p className="label">Mobile Phone:   </p> 
-          <p className="value">986446543</p>
-        </div>
-        <div className="info-section">
-          <p className="label">Preferred languages:   </p><br/>
-          <p className="value">Nepali</p>
-        </div>
-        <div className="info-section">
-          <p className="label">Birthdate:   </p>
-          <p className="value">203/2/3</p>
-        </div>
-        </div>
-
-
-        <div className="info2">
-        <div className="info-section">
-          <p className="label">Username:</p>
-          <p className="value">Maharjan</p>
-        </div>
-       
-        <div className="info-section">
-          <p className="label">Created:  </p>
-          <p className="value">10/5/2020 12:21 PM MDT</p>
-        </div>
-        <div className="info-section">
-          <p className="label">Last login:  </p>
-          <p className="value">11/6/2020 02:04 PM MST</p>
+      <div className="info1">
+        <div className="container">
+          <div className="balance">Current Balance</div>
+          
+          <div className="balance-details">
+            {isBalanceVisible ? 'Total Balance= 0011.0' : 'Total Balance=******'}
+          </div>
+          {/* <div className="icon"> */}
+            <button className="toggle-button" onClick={toggleBalanceVisibility}>
+                <i className={isBalanceVisible ? 'fas fa-eye-slash' : 'fas fa-eye'}></i>
+                {isBalanceVisible ? ' HIDE' : ' SHOW'}
+              </button>
+           
         </div>
       </div>
-      </div>
-    
     </div>
        
       </div>
-
+</div>
 
       {/* SERVICES PART */}
-      <div class="feat">
-        <div class="ser" id="service">
+      <div className="feat"  style={{  backgroundImage: `url(${back2})`, backgroundSize: 'cover' }}>
+        <div className="ser" id="service">
             <h3>Our Services</h3>
         </div>
-        <div class="container2">
-            <div class="box3">
-                <div class="img3">
+        <div className="container2">
+            <div className="box3">
+                <div className="img3">
                    
-                      <Link to="/Deposit"><button class="butt1"><img src={load}/></button></Link>
+                      <Link to="/Deposit"><button className="butt1"><img src={load}/></button></Link>
                 </div>
                 <div>
                     <span>Load Wallet</span>
                 </div>
             </div>
-            <div class="box3">
-                <div class="img3">
-                  <Link to="/ElectricityBillEnquiry"><button class="butt1"><img src={bulb}/></button></Link>  
+            <div className="box3">
+                <div className="img3">
+                  <Link to="/ElectricityBillEnquiry"><button className="butt1"><img src={bulb}/></button></Link>  
                 </div>
-                <div class="element">
+                <div className="element">
                     <span>Electricity-Bill</span>
                 </div>
             </div>
-            <div class="box3">
-                <div class="img3">
-                <Link to="/Payment"><button class="butt1"><img src={transaction}/></button></Link>  
+            <div className="box3">
+                <div className="img3">
+                <Link to="/Payment"><button className="butt1"><img src={transaction}/></button></Link>  
                
                 </div>
                 <div>
                     <span>Transation</span>
                 </div>
             </div>
-            <div class="box3">
-                <div class="img3">
-                <Link to="/WaterBillEnquiry"><button class="butt1"><img src={khanepani}/></button></Link>  
+            <div className="box3">
+                <div className="img3">
+                <Link to="/WaterBillEnquiry"><button className="butt1"><img src={khanepani}/></button></Link>  
               
                 </div>
                 <div>
@@ -140,8 +133,12 @@ function Dashboard() {
     </div>
 
 
+    
+
+
      
     </div>
+    
   );
 }
 
