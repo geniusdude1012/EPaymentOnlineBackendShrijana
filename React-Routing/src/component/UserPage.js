@@ -1,0 +1,50 @@
+import React from 'react';
+import "./../component/UserPage.css";
+import { Link } from 'react-router-dom';
+import back2 from "./../component/assets/back6.avif"
+import profile from "./assets/profile.jpg";
+
+const UserPage = () => {
+  return (
+    <div className="containerUser">
+      <aside className="sidebar"  >
+        <div className="profile">
+          <div className="avatar1">
+            <img src={profile} alt="User Avatar" className='avatar'/>
+          </div>
+          <h3>User Name Display</h3>
+        </div>
+        <nav>
+          <ul>
+
+            <Link to='/'><li>Home</li></Link>
+            <Link to='/Dashboard'><li>Dashboard</li></Link>
+            
+           
+          </ul>
+        </nav>
+      </aside>
+      <main className="main-content"  style={{  backgroundImage: `url(${back2})`, backgroundSize: 'cover' }}>
+        <section className="about">
+          <h1>Profile Information</h1>
+          <div className="info">
+            <p><strong className='name'>Full Name</strong> User Name</p>
+            <p><strong className='name'>Email</strong> abc@gmail.com</p>
+            <p><strong className='name'>Phone</strong> 9999999999999999</p>
+            <p><strong className='name'>Address</strong>Balkumari,Lalitpur</p>
+          </div>
+        </section>
+        {/* <section className="recent-projects">
+          <h3>Recent Projects</h3>
+          <div className="projects">
+            <div className="project">
+              <p><strong>Project Name:</strong> Project Description</p>
+            </div>
+          </div>
+        </section> */}
+      </main>
+    </div>
+  );
+};
+
+export default UserPage;
