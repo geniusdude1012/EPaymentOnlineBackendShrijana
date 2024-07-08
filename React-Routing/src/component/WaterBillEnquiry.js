@@ -165,5 +165,4 @@ const WaterBillEnquiry = () => {
     </div>
   );
 };
-
 export default WaterBillEnquiry;
