@@ -24,7 +24,7 @@ function Dashboard() {
         },
         withCredentials: true,
       });
-      const data = await res.json();
+      const data = res.data;
       if (!res.status === 200) {
         const error = new Error(res.error);
         throw error;
