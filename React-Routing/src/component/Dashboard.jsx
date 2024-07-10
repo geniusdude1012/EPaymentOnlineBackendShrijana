@@ -1,8 +1,10 @@
 // import React from 'react'
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./../component/Dashboard.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import bulb from "./../img/bulb.png";
 import khanepani from "./../img/khanepani.png";
 import transaction from "./../img/transaction.png";
@@ -14,30 +16,6 @@ import back2 from "./../component/assets/back6.avif";
 import axios from "axios";
 // ITS CSS IS IN HOME.JSX
 function Dashboard() {
-  const navigate = useNavigate();
-  const calldashboard = async () => {
-    try {
-      const res = await axios.get("http://localhost:8000/dashboard", {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        withCredentials: true,
-      });
-      const data = res.data;
-      if (!res.status === 200) {
-        const error = new Error(res.error);
-        throw error;
-      }
-    } catch (error) {
-      console.error("Error:", error);
-
-      navigate("/login");
-    }
-  };
-  useEffect(() => {
-    calldashboard();
-  }, []);
   return (
     <div>
       {/* Navbar section? */}

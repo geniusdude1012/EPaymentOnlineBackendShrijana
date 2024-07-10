@@ -13,7 +13,7 @@
 
 
 .parent-container {
-  height: 500px; 
+  height: 417px; 
   background-color:black;
   display: flex;
   justify-content: center;
@@ -35,7 +35,7 @@
 }
 
 .profile-header {
-  display: flex;
+  display: block;
   align-items: center;
   padding: 20px;
   border-bottom: 1px solid #e0e0e0;
@@ -55,6 +55,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  padding-top: 12px;
 }
 
 .profile-details h2 {
@@ -65,21 +66,16 @@
 
 .profile-details .email {
   margin: 5px 0;
-  font-size: 16px;
+  font-size: 20px;
   color: #666;
 }
 
 .profile-details .user-id {
-  font-size: 14px;
+  font-size: 20px;
   color: #999;
 }
 
-.profile-info {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 442px;
-}
+
 
 .info-section {
   display: flex;
@@ -112,7 +108,7 @@
 	width: 1289px;
     border: 2px solid wheat;
     height: 278px;
-    margin: 52px auto;
+    margin: 0px auto;
     background-color: rgb(165 143 143);
     border-radius: 12px;
 	box-shadow:  0 0 15px rgba(0, 0, 0,0.7);
@@ -159,4 +155,61 @@
 {
 	display: flex;
 	justify-content: center;
+}
+
+/* BALANC CHECK?? */
+.container {
+  padding: 10px;
+}
+.profile-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 317px;
+  border: 1px solid black;
+  border-radius: 335px;
+}
+.balance {
+  font-size: 20px;
+  margin: 20px auto;
+}
+.account-type {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+.balance-details {
+  font-size: 20px;
+  margin: 10px 0;
+}
+.icons {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+.icon {
+  margin: 0 15px;
+}
+.icon img {
+  width: 50px;
+  height: 50px;
+}
+
+.toggle-button {
+  background-color: #f96f6f96;
+  color: #2a4a22;
+  border: none;
+  padding: 6px 11px;
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 45px;
+  display: flex;
+  align-items: center;
+}
+
+.toggle-button i {
+  margin-right: 8px;
+}
+
+.toggle-button:hover {
+  background-color: #ddd;
 }
