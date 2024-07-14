@@ -59,7 +59,6 @@ function App() {
         <Route path="/Logout" element={<Logout />} />
         <Route path="/UserPage" element={<UserPage />} />
       </Routes>
-
       <br />
       <NoFooter>
         <Footer />
