@@ -76,6 +76,7 @@ function generateotp() {
 
 let geneotp = 0;
 let data = {};
+let checktoken = 0;
 
 //function for expired otp
 const resetotp = () => {
@@ -157,6 +158,7 @@ app.post("/Login", async (req, res) => {
       });
       console.log(token);
       // user.password = undefined;
+      const result = await collection.updateOne({ $set: { token: token } });
 
       const options = {
         expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
@@ -237,4 +239,8 @@ app.post("/verifyotp", async (req, res) => {
 app.post("/resendotp", async (req, res) => {
   emailsender();
   res.status(201).json({ status: "success" });
+});
+app.get("/dashboard", tokenauth, (req, res) => {
+  console.log("HELLO");
+  res.send(req.rootuser);
 });
