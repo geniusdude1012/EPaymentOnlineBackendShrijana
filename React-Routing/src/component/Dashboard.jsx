@@ -1,5 +1,5 @@
 // import React from 'react'
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./../component/Dashboard.css";
@@ -16,6 +16,29 @@ import back2 from "./../component/assets/back6.avif";
 import axios from "axios";
 // ITS CSS IS IN HOME.JSX
 function Dashboard() {
+  const navigate = useNavigate();
+  const callAboutPage = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/dashboard", {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      });
+      const data = response.data;
+      console.log(data);
+      if (response.status !== 200) {
+        throw new Error("Request failed");
+      }
+    } catch (error) {
+      console.error(error);
+      navigate("/Login");
+    }
+  };
+  useEffect(() => {
+    callAboutPage();
+  });
   return (
     <div>
       {/* Navbar section? */}
