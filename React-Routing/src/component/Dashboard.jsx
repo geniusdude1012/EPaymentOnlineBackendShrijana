@@ -15,7 +15,9 @@ import profile from "./assets/profile.jpg";
 import back2 from "./../component/assets/back6.avif";
 import axios from "axios";
 // ITS CSS IS IN HOME.JSX
-function Dashboard() {
+const Dashboard = () => {
+  const [userdata, setuserdata] = useState({});
+
   const navigate = useNavigate();
   const callAboutPage = async () => {
     try {
@@ -26,8 +28,9 @@ function Dashboard() {
         },
         withCredentials: true,
       });
-      const data = response.data;
+      const data = await response.data;
       console.log(data);
+      setuserdata(data);
       if (response.status !== 200) {
         throw new Error("Request failed");
       }
@@ -38,7 +41,7 @@ function Dashboard() {
   };
   useEffect(() => {
     callAboutPage();
-  });
+  }, []);
   return (
     <div>
       {/* Navbar section? */}
@@ -78,7 +81,10 @@ function Dashboard() {
           </svg>
         </div>
       </nav>
-
+      <div>
+        <p>Username :{userdata.name} </p>
+        <p>Email : {userdata.email}</p>
+      </div>
       {/* //main */}
       <div
         className="parent-container"
@@ -192,6 +198,6 @@ function Dashboard() {
       </div>
     </div>
   );
-}
+};
 
 export default Dashboard;
