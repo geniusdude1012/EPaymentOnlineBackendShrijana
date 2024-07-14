@@ -14,7 +14,8 @@ useEffect(() => {
       '/ElectricityBillEnquiry',
       '/Deposit',
       '/WaterBillEnquiry',
-      '/Logout'
+      '/Logout',
+      '/UserPage'
     ];
     if (pathsToHideNavbar.includes(location.pathname)) {
       setShowNavbar(false);
