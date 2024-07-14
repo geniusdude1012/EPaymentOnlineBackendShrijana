@@ -22,7 +22,7 @@ import Privacy from "./component/Footer/Privacy";
 import { ContactUs } from "./component/Footer/ContactUs";
 import Logout from "./component/LoginSign/Logout";
 
-
+import UserPage from "./component/UserPage";
 
 import NoNavbar from "./component/NoNavbar/NoNavbar";
 import NoFooter from "./component/NoNavbar/NoFooter";
@@ -56,6 +56,7 @@ function App() {
       <Route path="/ContactUs" element={ <ContactUs/> } />
       <Route path="/Privacy" element={ <Privacy/> } />
       <Route path="/Logout" element={ <Logout/> } />
+      <Route path="/UserPage" element={ <UserPage/> } />
       
     </Routes>
  
