@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const hbs = require("hbs");
 const collection = require("./db");
+// const number = require("./db");
 const PORT = 8000;
 const path = require("path");
 const bcrypt = require("bcryptjs");
@@ -17,6 +18,7 @@ const { BADFLAGS } = require("dns");
 const sendEmail = require("./mails/mailer");
 const randomstring = require("randomstring");
 const tokenauth = require("./middleware/auth");
+
 //...
 
 app.set("view engine", "hbs");
@@ -77,6 +79,7 @@ function generateotp() {
 let geneotp = 0;
 let data = {};
 let checktoken = 0;
+let num = 0;
 
 //function for expired otp
 const resetotp = () => {
@@ -105,6 +108,7 @@ const emailsender = async () => {
     console.log("Email not sent successfully");
   }
 };
+//for account number
 
 function checkotp(a) {
   return a;
@@ -112,6 +116,15 @@ function checkotp(a) {
 //acquire data from register
 app.post("/Register", async (req, res) => {
   const { name, email, password } = req.body;
+  function generateaccno() {
+    return randomstring.generate({ length: 4, charset: "numeric" });
+  }
+  const randomizenum = generateaccno();
+  var accountnum = 1600500000000000;
+  accountnum = accountnum + Number(randomizenum);
+  console.log(accountnum);
+  num = num + 1;
+  console.log(num);
   const hashpassword = await hashSync(req.body.password, 10);
   data = {
     name: name,
@@ -119,7 +132,9 @@ app.post("/Register", async (req, res) => {
     password: hashpassword,
     token: "token",
     Balance: 0,
+    accountno: accountnum,
   };
+
   try {
     //request otp
     const check = await collection.findOne({ email: data.email });
@@ -129,8 +144,15 @@ app.post("/Register", async (req, res) => {
       emailsender();
       // sendOTP(email, otp);
       // app.post("/otpverify, ");
-
+      function generateaccno() {
+        return randomstring.generate({ length: 6, charset: "numeric" });
+      }
+      const randomizenum = generateaccno();
       const timer = setTimeout(resetotp, 62000);
+
+      const accno12 = await collection.updateOne({
+        $set: { accountno: accountnum },
+      });
       return res.status(201).json({ status: "success", user: data });
     }
   } catch (err) {
@@ -242,5 +264,11 @@ app.post("/resendotp", async (req, res) => {
 });
 app.get("/dashboard", tokenauth, (req, res) => {
   console.log("HELLO");
+  // console.log(number);
   res.send(req.rootuser);
+});
+
+app.get("/logout", async (req, res) => {
+  res.clearCookie("jwt");
+  res.status(200).send("Logged out");
 });
