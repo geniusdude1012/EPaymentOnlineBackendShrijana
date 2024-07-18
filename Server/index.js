@@ -88,7 +88,26 @@ const resetotp = () => {
   console.log("OTP is expired");
   console.log(otp);
 };
+async function generateUniqueAccountNumber(baseNumber, suffixLength) {
+  let unique = false;
+  let accountNumber;
 
+  while (!unique) {
+    const suffix = randomstring.generate({
+      length: suffixLength,
+      charset: "numeric",
+    });
+    accountNumber = baseNumber + Number(suffix);
+
+    // Check if the account number already exists in the database
+    const existingUser = await collection.findOne({ accountno: accountNumber });
+    if (!existingUser) {
+      unique = true;
+    }
+  }
+
+  return accountNumber;
+}
 //sending otp to mail
 const emailsender = async () => {
   const otp = generateotp();
@@ -116,15 +135,13 @@ function checkotp(a) {
 //acquire data from register
 app.post("/Register", async (req, res) => {
   const { name, email, password } = req.body;
-  function generateaccno() {
-    return randomstring.generate({ length: 4, charset: "numeric" });
-  }
-  const randomizenum = generateaccno();
-  var accountnum = 1600500000000000;
-  accountnum = accountnum + Number(randomizenum);
-  console.log(accountnum);
-  num = num + 1;
-  console.log(num);
+  const baseAccountNumber = 1600500000000000;
+  const suffixLength = 4;
+
+  const accountnum1 = await generateUniqueAccountNumber(
+    baseAccountNumber,
+    suffixLength
+  );
   const hashpassword = await hashSync(req.body.password, 10);
   data = {
     name: name,
@@ -132,7 +149,7 @@ app.post("/Register", async (req, res) => {
     password: hashpassword,
     token: "token",
     Balance: 0,
-    accountno: accountnum,
+    accountno: accountnum1,
   };
 
   try {
@@ -150,9 +167,6 @@ app.post("/Register", async (req, res) => {
       const randomizenum = generateaccno();
       const timer = setTimeout(resetotp, 62000);
 
-      const accno12 = await collection.updateOne({
-        $set: { accountno: accountnum },
-      });
       return res.status(201).json({ status: "success", user: data });
     }
   } catch (err) {
