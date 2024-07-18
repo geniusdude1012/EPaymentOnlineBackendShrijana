@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const hbs = require("hbs");
 const collection = require("./db");
+// const number = require("./db");
 const PORT = 8000;
 const path = require("path");
 const bcrypt = require("bcryptjs");
@@ -17,6 +18,7 @@ const { BADFLAGS } = require("dns");
 const sendEmail = require("./mails/mailer");
 const randomstring = require("randomstring");
 const tokenauth = require("./middleware/auth");
+
 //...
 
 app.set("view engine", "hbs");
@@ -77,6 +79,7 @@ function generateotp() {
 let geneotp = 0;
 let data = {};
 let checktoken = 0;
+let num = 0;
 
 //function for expired otp
 const resetotp = () => {
@@ -85,7 +88,26 @@ const resetotp = () => {
   console.log("OTP is expired");
   console.log(otp);
 };
+async function generateUniqueAccountNumber(baseNumber, suffixLength) {
+  let unique = false;
+  let accountNumber;
 
+  while (!unique) {
+    const suffix = randomstring.generate({
+      length: suffixLength,
+      charset: "numeric",
+    });
+    accountNumber = baseNumber + Number(suffix);
+
+    // Check if the account number already exists in the database
+    const existingUser = await collection.findOne({ accountno: accountNumber });
+    if (!existingUser) {
+      unique = true;
+    }
+  }
+
+  return accountNumber;
+}
 //sending otp to mail
 const emailsender = async () => {
   const otp = generateotp();
@@ -105,6 +127,7 @@ const emailsender = async () => {
     console.log("Email not sent successfully");
   }
 };
+//for account number
 
 function checkotp(a) {
   return a;
@@ -112,6 +135,13 @@ function checkotp(a) {
 //acquire data from register
 app.post("/Register", async (req, res) => {
   const { name, email, password } = req.body;
+  const baseAccountNumber = 1600500000000000;
+  const suffixLength = 4;
+
+  const accountnum1 = await generateUniqueAccountNumber(
+    baseAccountNumber,
+    suffixLength
+  );
   const hashpassword = await hashSync(req.body.password, 10);
   data = {
     name: name,
@@ -119,7 +149,9 @@ app.post("/Register", async (req, res) => {
     password: hashpassword,
     token: "token",
     Balance: 0,
+    accountno: accountnum1,
   };
+
   try {
     //request otp
     const check = await collection.findOne({ email: data.email });
@@ -129,8 +161,12 @@ app.post("/Register", async (req, res) => {
       emailsender();
       // sendOTP(email, otp);
       // app.post("/otpverify, ");
-
+      function generateaccno() {
+        return randomstring.generate({ length: 6, charset: "numeric" });
+      }
+      const randomizenum = generateaccno();
       const timer = setTimeout(resetotp, 62000);
+
       return res.status(201).json({ status: "success", user: data });
     }
   } catch (err) {
@@ -242,5 +278,11 @@ app.post("/resendotp", async (req, res) => {
 });
 app.get("/dashboard", tokenauth, (req, res) => {
   console.log("HELLO");
+  // console.log(number);
   res.send(req.rootuser);
+});
+
+app.get("/logout", async (req, res) => {
+  res.clearCookie("jwt");
+  res.status(200).send("Logged out");
 });

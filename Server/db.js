@@ -8,6 +8,10 @@ mongoose
     console.log(err);
   });
 const userSchema = new mongoose.Schema({
+  accountno: {
+    type: Number,
+    default: null,
+  },
   name: {
     type: String,
     required: true,
@@ -31,4 +35,5 @@ const userSchema = new mongoose.Schema({
   },
 });
 const collection = new mongoose.model("collection1", userSchema);
+
 module.exports = collection;
