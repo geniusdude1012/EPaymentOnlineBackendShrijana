@@ -22,8 +22,15 @@ const Register = () => {
   };
   const handlesubmit = async (e) => {
     e.preventDefault();
-    const { name, email, password, cpassword } = user;
-    if (name && email && password && password === cpassword) {
+    const { name, email, password, cpassword, contactno, address } = user;
+    if (
+      name &&
+      email &&
+      password &&
+      contactno &&
+      address &&
+      password === cpassword
+    ) {
       const register = await axios
         .post("http://localhost:8000/Register", user)
         .then((response) => {
@@ -106,6 +113,22 @@ const Register = () => {
               name="cpassword"
               value={user.cpassword}
               placeholder="Confirm password"
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="number"
+              name="contactno"
+              value={user.contactno}
+              placeholder="Phone number"
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="text"
+              name="address"
+              value={user.address}
+              placeholder="Enter address"
               onChange={handleChange}
               required
             />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import "./../component/Dashboard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -52,7 +52,9 @@ const Dashboard = () => {
     <div>
       {/* Navbar section? */}
       <nav className="flex px-1 border-b md:shadow-lg items-center relative">
-        <img src={profile} className="imageprofile"></img>
+        <Link to="/UserPage">
+          <img src={profile} className="imageprofile"></img>
+        </Link>
         <h4 className="user">Welcome, {userdata.name}</h4>
 
         <ul className="md:px-1 ml-auto md:flex md:space-x-1 absolute md:relative top-full left-0 right-0">
