@@ -1,7 +1,7 @@
-// import React from 'react'
+
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
+
 import "./../component/Dashboard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -42,6 +42,14 @@ const Dashboard = () => {
   useEffect(() => {
     callAboutPage();
   }, []);
+
+
+  //FOR HIDE BALANCE
+  const[isBalanceVisible, setIsBalanceVisible] = useState(true);
+
+  const toggleBalanceVisibility = () => {
+    setIsBalanceVisible(!isBalanceVisible);
+  };
   return (
     <div>
       {/* Navbar section? */}
@@ -81,66 +89,48 @@ const Dashboard = () => {
           </svg>
         </div>
       </nav>
-      {/* <div>
-        <p>Username :{userdata.name} </p>
-        <p>Email : {userdata.email}</p>
-        <p>Balance : {userdata.Balance}</p>
-      </div> */}
+     
       {/* //main */}
       <div
         className="parent-container"
         style={{ backgroundImage: `url(${back2})`, backgroundSize: "cover" }}
       >
-        <div className="profile-container">
+        <div className="profile-container"  style={{  backgroundImage: `url(${back2})`, backgroundSize: 'cover' }}>
           <div className="profile-header">
-            <img
-              src={profile}
-              alt=""
-              className="profile-picture"
-            />
+          
             <div className="profile-details">
-              <p className="email">{userdata.email}</p>
-              <p className="user-id">User Id: {userdata.name}</p>
+              <h1>{userdata.name}</h1>
+            <h1 className="email">Email Id: {userdata.email}</h1>
+          <h2 className="user-id">User Id: {userdata.name}</h2>
+          
             </div>
           </div>
-          {/* <div className="profile-info">
-            <div className="info1">
-              <div className="info-section">
-                <p className="label">Mobile Phone: </p>
-                <p className="value">986446543</p>
-              </div>
-              <div className="info-section">
-                <p className="label">Preferred languages: </p>
-                <br />
-                <p className="value">Nepali</p>
-              </div>
-              <div className="info-section">
-                <p className="label">Birthdate: </p>
-                <p className="value">203/2/3</p>
-              </div>
-            </div>
+{/* BALANCE SHOW */}
+          <div className="profile-info">
+      <div className="info1">
+        <div className="container">
+          <div className="balance">Current Balance</div>
+          
+          <div className="balance-details">
+  {isBalanceVisible ? `Total Balance: ${userdata.Balance}` : 'Total Balance=******'}
+</div>
 
-            <div className="info2">
-              <div className="info-section">
-                <p className="label">Username:</p>
-                <p className="value">Maharjan</p>
-              </div>
-
-              <div className="info-section">
-                <p className="label">Created: </p>
-                <p className="value">10/5/2020 12:21 PM MDT</p>
-              </div>
-              <div className="info-section">
-                <p className="label">Last login: </p>
-                <p className="value">11/6/2020 02:04 PM MST</p>
-              </div>
-            </div>
-          </div> */}
+          {/* <div className="icon"> */}
+            <button className="toggle-button" onClick={toggleBalanceVisibility}>
+                <i className={isBalanceVisible ? 'fas fa-eye-slash' : 'fas fa-eye'}></i>
+                {isBalanceVisible ? ' HIDE' : ' SHOW'}
+              </button>
+           
+        </div>
+      </div>
+    </div>
+          
+          
         </div>
       </div>
 
       {/* SERVICES PART */}
-      <div class="feat">
+      <div class="feat" style={{  backgroundImage: `url(${back2})`, backgroundSize: 'cover' }}>
         <div class="ser" id="service">
           <h3>Our Services</h3>
         </div>
