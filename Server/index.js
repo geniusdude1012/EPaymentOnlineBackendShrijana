@@ -308,3 +308,8 @@ app.get("/deposit", async (req, res) => {
     res.status(404).json({ status: "error", message: "User not found" });
   }
 });
+
+//for syncing forked repo
+// git fetch upstream
+// git checkout main
+// git merge upstream/main

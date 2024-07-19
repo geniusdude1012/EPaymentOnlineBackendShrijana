@@ -21,6 +21,7 @@ const tokenauth = async (req, res, next) => {
     req.rootuser = rootuser;
     req.name = rootuser.name;
     req.Balance = rootuser.Balance;
+    req.accountno = rootuser.accountno;
     next();
   } catch (err) {
     console.error(err);

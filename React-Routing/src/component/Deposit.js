@@ -51,7 +51,10 @@ const Deposit = () => {
     const email = userdata.email;
 
     try {
-      const response = await axios.post("http://localhost:8000/deposit");
+      const response = await axios.post("http://localhost:8000/deposit", {
+        amount,
+        email,
+      });
 
       if (response.data.status === "success") {
         alert("Deposit successful");
