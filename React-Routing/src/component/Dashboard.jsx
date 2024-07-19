@@ -47,7 +47,7 @@ const Dashboard = () => {
       {/* Navbar section? */}
       <nav className="flex px-1 border-b md:shadow-lg items-center relative">
         <img src={profile} className="imageprofile"></img>
-        <h4 className="user">Welcome,User</h4>
+        <h4 className="user">Welcome, {userdata.name}</h4>
 
         <ul className="md:px-1 ml-auto md:flex md:space-x-1 absolute md:relative top-full left-0 right-0">
           <NavLink to={"/"}>
@@ -81,11 +81,11 @@ const Dashboard = () => {
           </svg>
         </div>
       </nav>
-      <div>
+      {/* <div>
         <p>Username :{userdata.name} </p>
         <p>Email : {userdata.email}</p>
         <p>Balance : {userdata.Balance}</p>
-      </div>
+      </div> */}
       {/* //main */}
       <div
         className="parent-container"
@@ -95,7 +95,7 @@ const Dashboard = () => {
           <div className="profile-header">
             <img
               src={profile}
-              alt="Dinish Chugtai"
+              alt=""
               className="profile-picture"
             />
             <div className="profile-details">
@@ -103,7 +103,7 @@ const Dashboard = () => {
               <p className="user-id">User Id: {userdata.name}</p>
             </div>
           </div>
-          <div className="profile-info">
+          {/* <div className="profile-info">
             <div className="info1">
               <div className="info-section">
                 <p className="label">Mobile Phone: </p>
@@ -135,7 +135,7 @@ const Dashboard = () => {
                 <p className="value">11/6/2020 02:04 PM MST</p>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
