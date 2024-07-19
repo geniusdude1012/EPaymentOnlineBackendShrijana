@@ -134,7 +134,7 @@ function checkotp(a) {
 }
 //acquire data from register
 app.post("/Register", async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, contactno, address } = req.body;
   const baseAccountNumber = 1600500000000000;
   const suffixLength = 4;
 
@@ -147,6 +147,8 @@ app.post("/Register", async (req, res) => {
     name: name,
     email: email,
     password: hashpassword,
+    address: address,
+    contactno: contactno,
     token: "token",
     Balance: 0,
     accountno: accountnum1,
@@ -308,3 +310,8 @@ app.get("/deposit", async (req, res) => {
     res.status(404).json({ status: "error", message: "User not found" });
   }
 });
+
+//for syncing forked repo
+// git fetch upstream
+// git checkout main
+// git merge upstream/main
