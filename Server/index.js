@@ -281,8 +281,30 @@ app.get("/dashboard", tokenauth, (req, res) => {
   // console.log(number);
   res.send(req.rootuser);
 });
+app.get("/deposit", tokenauth, (req, res) => {});
 
 app.get("/logout", async (req, res) => {
   res.clearCookie("jwt");
   res.status(200).send("Logged out");
+});
+app.get("/deposit", async (req, res) => {
+  const user = await collection.findOne({
+    email: req.body.email,
+  });
+
+  if (user) {
+    const { amount } = req.body.amount;
+    if (!amount || !email) {
+      return res
+        .status(400)
+        .json({ status: "error", message: "Missing amount or email" });
+    }
+    const updatedBalance = user.Balance + amount;
+
+    await collection.updateOne({ $set: { Balance: updatedBalance } });
+
+    res.status(200).json({ status: "success", updatedBalance });
+  } else {
+    res.status(404).json({ status: "error", message: "User not found" });
+  }
 });

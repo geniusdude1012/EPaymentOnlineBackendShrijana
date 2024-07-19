@@ -20,6 +20,7 @@ const tokenauth = async (req, res, next) => {
     req.token = token;
     req.rootuser = rootuser;
     req.name = rootuser.name;
+    req.Balance = rootuser.Balance;
     next();
   } catch (err) {
     console.error(err);

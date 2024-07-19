@@ -1,7 +1,7 @@
 // import React from 'react'
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import "./../component/Dashboard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -84,6 +84,7 @@ const Dashboard = () => {
       <div>
         <p>Username :{userdata.name} </p>
         <p>Email : {userdata.email}</p>
+        <p>Balance : {userdata.Balance}</p>
       </div>
       {/* //main */}
       <div
@@ -98,9 +99,8 @@ const Dashboard = () => {
               className="profile-picture"
             />
             <div className="profile-details">
-              <h2>Shrijana Maharjan</h2>
-              <p className="email">dinesh@fusionauth.io</p>
-              <p className="user-id">User Id: Shrijana2099</p>
+              <p className="email">{userdata.email}</p>
+              <p className="user-id">User Id: {userdata.name}</p>
             </div>
           </div>
           <div className="profile-info">
@@ -147,7 +147,7 @@ const Dashboard = () => {
         <div class="container2">
           <div class="box3">
             <div class="img3">
-              <a href="deposit.html">
+              <a href="Deposit">
                 <button class="butt1">
                   <img src={load} />
                 </button>
@@ -159,7 +159,7 @@ const Dashboard = () => {
           </div>
           <div class="box3">
             <div class="img3">
-              <a href="electricity.html">
+              <a href="ElectricityBillEnquiry">
                 {" "}
                 <button class="butt1">
                   <img src={bulb} />
@@ -172,7 +172,7 @@ const Dashboard = () => {
           </div>
           <div class="box3">
             <div class="img3">
-              <a href="water.html">
+              <a href="payment">
                 <button class="butt1">
                   <img src={transaction} />
                 </button>
@@ -184,7 +184,7 @@ const Dashboard = () => {
           </div>
           <div class="box3">
             <div class="img3">
-              <a href="water.html">
+              <a href="waterBillEnquiry">
                 <button class="butt1">
                   <img src={khanepani} />
                 </button>
