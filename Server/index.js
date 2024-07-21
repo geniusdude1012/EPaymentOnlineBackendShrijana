@@ -343,6 +343,48 @@ app.post("/transaction", async (req, res) => {
           { email: receiveremail },
           { $set: { Balance: updatedBalancer } }
         );
+        app.post("/transaction", async (req, res) => {
+          const { name, receiveremail, amount, email } = req.body;
+          if (!receiveremail) {
+            return res
+              .status(400)
+              .json({ status: "error", message: "Missing receiveremail" });
+          }
+          console.log(receiveremail);
+          console.log(email);
+          if (receiveremail !== email) {
+            const userR = await collection.findOne({
+              email: receiveremail,
+            });
+            const userS = await collection.findOne({
+              email: email,
+            });
+            if (userS && userS.Balance <= 0) {
+              return res.status(200).json({
+                status: "insufficient",
+                message: "Insufficient balance",
+              });
+            } else if (userS) {
+              const updatedBalancer = Number(userR.Balance) + Number(amount);
+              const updatedBalances = Number(userS.Balance) - Number(amount);
+              await collection.updateOne(
+                { email: receiveremail },
+                { $set: { Balance: updatedBalancer } }
+              );
+              await collection.updateOne(
+                { email: email },
+                { $set: { Balance: updatedBalances } }
+              );
+              res.status(200).json({ status: "success" });
+            } else {
+              res
+                .status(404)
+                .json({ status: "error", message: "User not found" });
+            }
+          } else {
+            res.status(200).json({ status: "same account" });
+          }
+        });
         await collection.updateOne(
           { email: email },
           { $set: { Balance: updatedBalances } }
