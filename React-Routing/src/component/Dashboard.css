@@ -160,14 +160,17 @@
 /* BALANC CHECK?? */
 .container {
   padding: 10px;
+  height: 256px;
+  width: 250px;
 }
 .profile-info {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 317px;
+  width: 281px;
   border: 1px solid black;
-  border-radius: 335px;
+  height: 203px;
+  border-radius: 53px;
 }
 .balance {
   font-size: 20px;

@@ -115,12 +115,12 @@ const Dashboard = () => {
                 <div className="balance-details">
                   {isBalanceVisible
                     ? `Account_no: ${userdata.accountno}`
-                    : "Account_no=******"}
+                    : "Account_no=XXXXXXX"}
                 </div>
                 <div className="balance-details">
                   {isBalanceVisible
                     ? `Total Balance: ${userdata.Balance}`
-                    : "Total Balance=******"}
+                    : "Total Balance=XXXXX"}
                 </div>
 
                 {/* <div className="icon"> */}

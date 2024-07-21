@@ -40,7 +40,7 @@ const Payment = () => {
     username: "",
     receiveremail: "",
     amount: "",
-    accountno: "",
+    accountno: "1234567890", // Default account number
     purpose: "",
   });
 
@@ -57,31 +57,30 @@ const Payment = () => {
     const email = userdata.email;
 
     if (username && receiveremail) {
-      const response = await axios
-        .post("http://localhost:8000/transaction", {
+      try {
+        const response = await axios.post("http://localhost:8000/transaction", {
           receiveremail,
           amount,
           email,
           username,
           accountno,
           purpose,
-        })
-        .then((response) => {
-          if (response.data.status === "success") {
-            alert("Transaction successful");
-            navigate("/Payment");
-          } else if (response.data.status === "same account") {
-            alert("enter other account");
-          } else if (response.data.status === "insufficient") {
-            alert("Insufficient Balance");
-          } else {
-            alert("Invalid entry");
-          }
-        })
-        .catch((error) => {
-          console.log(error.message);
-          alert("Transection failed");
         });
+
+        if (response.data.status === "success") {
+          alert("Transaction successful");
+          navigate("/Payment");
+        } else if (response.data.status === "same account") {
+          alert("Enter another account");
+        } else if (response.data.status === "insufficient") {
+          alert("Insufficient Balance");
+        } else {
+          alert("Invalid entry");
+        }
+      } catch (error) {
+        console.error(error.message);
+        alert("Transaction failed");
+      }
     } else {
       alert("No entry found");
     }

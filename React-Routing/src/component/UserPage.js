@@ -38,7 +38,7 @@ const UserPage = () => {
           <div className="avatar1">
             <img src={profile} alt="User Avatar" className="avatar" />
           </div>
-          <h3>User Name Display</h3>
+          <h3>{userdata.name}</h3>
         </div>
         <nav>
           <ul>
