@@ -58,6 +58,7 @@ const Deposit = () => {
 
       if (response.data.status === "success") {
         alert("Deposit successful");
+        navigate("/Deposit");
       } else {
         alert("Deposit failed");
       }
