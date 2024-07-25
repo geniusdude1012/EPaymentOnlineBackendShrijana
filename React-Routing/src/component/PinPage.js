@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import back2 from "./../component/assets/back6.avif";
 import './../component/PinPage.css';
 
 const PinPage = () => {
@@ -6,53 +7,49 @@ const PinPage = () => {
 
   const handleChange = (e, index) => {
     const value = e.target.value;
-    if (/^\d?$/.test(value)) {
+    if (value.length <= 1 && /^[0-9]*$/.test(value)) {
       const newPin = [...pin];
       newPin[index] = value;
       setPin(newPin);
-
-      if (value && index < 3) {
-        document.getElementById(`pin${index + 1}`).focus();
+      if (value !== '' && index < 3) {
+        document.getElementById(`pin-${index + 1}`).focus();
       }
     }
   };
 
+  const handleSubmit = () => {
+    // Handle PIN submission
+    console.log('Entered PIN:', pin.join(''));
+  };
+
   return (
-    <div className="works">
-      <h2>Enter your transaction PIN</h2>
-      <p>Enter a 4-digit pin code different from your previous pin code.</p>
-      <div className="steps">
-        {pin.map((value, index) => (
+    <div className="heropin">
+            <div className="pin-container"style={{ backgroundImage: `url(${back2})`, backgroundSize: "cover" }}>
+        <div className="pin-header">
+          <h5>Enter Current 4 digits PIN
+          </h5>
+    
+      </div>
+     
+      <div className="pin-inputs">
+        {pin.map((digit, index) => (
           <input
             key={index}
-            id={`pin${index}`}
+            id={`pin-${index}`}
             type="text"
-            className="pin-input"
             maxLength="1"
-            value={value}
+            value={digit}
             onChange={(e) => handleChange(e, index)}
-            style={{
-              width: '40px',
-              height: '40px',
-              margin: '0 10px',
-              textAlign: 'center',
-              fontSize: '24px',
-            }}
+            className="pin-input"
           />
         ))}
       </div>
-      <button
-        className="btn"
-        style={{
-          marginTop: '20px',
-          padding: '10px 20px',
-          fontSize: '16px',
-        }}
-        disabled={pin.some((num) => num === '')}
-      >
+      <button className="continue-button" onClick={handleSubmit}>
         Continue
       </button>
     </div>
+    </div>
+    
   );
 };
 

@@ -28,6 +28,8 @@ import NoNavbar from "./component/NoNavbar/NoNavbar";
 import NoFooter from "./component/NoNavbar/NoFooter";
 import AdminPage from "./component/AdminPage";
 import TransactionHistory from "./component/TransactionHistory";
+import Pinpage from "./component/PinPage";
+import PinPage from "./component/PinPage";
 
 function App() {
   return (
@@ -62,6 +64,7 @@ function App() {
         <Route path="/AdminPage" element={<AdminPage />} />
         <Route path="/TransactionHistory" element={<TransactionHistory />} />
         <Route path="/PaymentReceipt" element={<PaymentReceipt />} />
+        <Route path="/PinPage" element={<PinPage />} />
       </Routes>
       </NoNavbar>
       <br />

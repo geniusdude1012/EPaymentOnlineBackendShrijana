@@ -9,6 +9,7 @@ function NoNavbar({ children, navbar }) {
     console.log("Current location:", location.pathname);
 
     const pathsToHideNavbar = [
+      '/PinPage',
       '/dashboard',
       '/deposit',
       '/userpage',
@@ -20,7 +21,8 @@ function NoNavbar({ children, navbar }) {
       '/admin',
       '/electricitybillenquiry',
       '/waterbillenquiry',
-      '/logout'
+      '/logout',
+      
     ];
 
     const path = location.pathname.toLowerCase();

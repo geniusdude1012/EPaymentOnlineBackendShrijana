@@ -12,7 +12,8 @@ function NoFooter({ children }) {
       "/transactionhistory",
       "/logout",
       "/waterbillenquiry",
-      "/electricitybillenquiry"
+      "/electricitybillenquiry",
+      "/PinPage"
     ];
 
     // Normalize the current path to lowercase and remove leading/trailing slashes
