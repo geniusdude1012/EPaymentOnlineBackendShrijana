@@ -217,17 +217,55 @@ app.post("/Login", async (req, res) => {
   }
 });
 app.post("/electricitybill", async (req, res) => {
-  const { customerId, customerName, counterNo, totalMonths, dateOfEnquiry } =
-    req.body;
+  const {
+    customerId,
+    customerName,
+    counterNo,
+    totalMonths,
+    dateOfEnquiry,
+    unit,
+  } = req.body;
+  function unitcalculate() {
+    let sum = 0;
+    let tax = 0;
+    let total = 0;
+    let ser = 150;
+
+    if (unit <= 100) {
+      sum = unit * 5;
+    } else if (unit <= 200) {
+      sum = 100 * 1 + (unit - 100) * 6;
+    } else if (unit <= 300) {
+      sum = 100 * 1 + 100 * 2 + (unit - 200) * 7;
+    } else if (unit > 300) {
+      sum = 100 * 1 + 100 * 2 + 100 * 3 + (unit - 300) * 8;
+    }
+
+    tax = (sum * 13) / 100;
+    total = sum + ser + tax;
+
+    return total;
+  }
+  const total = unitcalculate();
   console.log({
     customerId,
     customerName,
     counterNo,
     totalMonths,
     dateOfEnquiry,
+    unit,
+    total,
   });
 
-  genPDFE(customerId, customerName, counterNo, totalMonths, dateOfEnquiry);
+  genPDFE(
+    customerId,
+    customerName,
+    counterNo,
+    totalMonths,
+    dateOfEnquiry,
+    unit,
+    total
+  );
   return res.json({ status: "success", data: req.body });
 });
 app.post("/waterbill", async (req, res) => {

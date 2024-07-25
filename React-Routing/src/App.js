@@ -63,12 +63,7 @@ function App() {
         <Route path="/UserPage" element={<UserPage />} />
         <Route path="/AdminPage" element={<AdminPage />} />
         <Route path="/TransactionHistory" element={<TransactionHistory />} />
-<<<<<<< HEAD
-=======
         <Route path="/PaymentReceipt" element={<PaymentReceipt />} />
->>>>>>> upstream/main
-        
-
       </Routes>
       <br />
       <NoFooter>
