@@ -81,12 +81,13 @@ const Deposit = () => {
         <h2>Load Money</h2>
         <label htmlFor="amount">Enter amount to deposit:</label>
         <input
-          type="number"
+          type="value"
           id="amount"
           name="amount"
           value={user.amount}
           onChange={handleChange}
           placeholder="Amount"
+          min='0'
         />
         <button type="submit" className="btn btn-info">
           Deposit
