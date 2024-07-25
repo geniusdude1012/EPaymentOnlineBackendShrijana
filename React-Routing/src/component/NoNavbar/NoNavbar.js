@@ -1,13 +1,12 @@
 // import React from 'react';
-import React, { useEffect,useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 //DISPLAYING NAVBAR FOR SOME CERTAIN PAGES  ONLY
-function NoNavbar({children}) {
-const location = useLocation();
-const[showNavbar,setShowNavbar] = useState(false);
-useEffect(() => {
-  console.log('this is location: ', location.pathname);
-
+function NoNavbar({ children }) {
+  const location = useLocation();
+  const [showNavbar, setShowNavbar] = useState(false);
+  useEffect(() => {
+    console.log("this is location: ", location.pathname);
 
     const pathsToHideNavbar = [
       '/Dashboard',
@@ -24,20 +23,12 @@ useEffect(() => {
     ];
     if (pathsToHideNavbar.includes(location.pathname)) {
       setShowNavbar(false);
+    } else {
+      setShowNavbar(true);
     }
-    else{
-        setShowNavbar(true);
-    }
+  }, [location]);
 
-    
-},[location]);
-
-  return (
-    <div>{showNavbar && children}</div>
-  )
+  return <div>{showNavbar && children}</div>;
 }
 
-export default NoNavbar
-
-
-
+export default NoNavbar;

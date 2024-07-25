@@ -52,7 +52,9 @@ const Dashboard = () => {
     <div>
       {/* Navbar section? */}
       <nav className="flex px-1 border-b md:shadow-lg items-center relative">
-      
+        <Link to="/UserPage">
+          <img src={profile} className="imageprofile"></img>
+        </Link>
         <h4 className="user">Welcome, {userdata.name}</h4>
 
         <ul className="md:px-1 ml-auto md:flex md:space-x-1 absolute md:relative top-full left-0 right-0">
@@ -76,9 +78,6 @@ const Dashboard = () => {
               </a>
             </li>
           </NavLink>
-          <Link to="/UserPage">
-          <img src={profile} className="imageprofile"></img>
-        </Link>
         </ul>
         <div className="ml-auto md:hidden text-gray-500 cursor-pointer">
           <svg

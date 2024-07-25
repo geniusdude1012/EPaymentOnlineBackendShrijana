@@ -5,7 +5,6 @@ import electricity from "./../img/electricity.png";
 import back1 from "./assets/back3.avif";
 import { Link, useNavigate } from "react-router-dom";
 
-
 import axios from "axios";
 const ElectricityBillEnquiry = () => {
   const navigate = useNavigate();
@@ -13,9 +12,9 @@ const ElectricityBillEnquiry = () => {
     customerName: "",
     customerId: "",
     counterNo: "counter 1",
-    customerUnit: "100",
     totalMonths: "1",
     dateOfEnquiry: "",
+    unit: "",
   });
 
   const handleChange = (e) => {
@@ -35,28 +34,26 @@ const ElectricityBillEnquiry = () => {
       counterNo,
       totalMonths,
       dateOfEnquiry,
-      customerUnit,
+      unit,
     } = form;
     if (
       customerId &&
       customerName &&
       counterNo &&
-      customerUnit &&
       totalMonths &&
-      dateOfEnquiry
+      dateOfEnquiry &&
+      unit
     ) {
       const submission = await axios
         .post("http://localhost:8000/electricitybill", form)
         .then((response) => {
           if (response.data.status === "success") {
             alert("Enquiry successful");
-            window.location.href = "electricity.pdf";
-            
+            navigate("/PaymentReceipt");
 
             // Example usage
           } else {
             alert("Enquiry failed");
-            
           }
         })
         .catch((error) => {
@@ -70,8 +67,8 @@ const ElectricityBillEnquiry = () => {
 
   return (
     <div
-      className="container" style={{  backgroundImage: `url(${back1})`, backgroundSize: 'cover' }}
-      
+      className="container"
+      style={{ backgroundImage: `url(${back1})`, backgroundSize: "cover" }}
     >
       <div className="card">
         <div className="card-header text-center text-teal-500">
@@ -128,8 +125,8 @@ const ElectricityBillEnquiry = () => {
                 type="number"
                 className="form-control small-input"
                 id="customerUnit"
-                name="customerUnit"
-                value={form.customerUnit}
+                name="unit"
+                value={form.unit}
                 onChange={handleChange}
               />
             </div>
