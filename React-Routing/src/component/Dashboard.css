@@ -1,11 +1,19 @@
+<<<<<<< HEAD
 .imageprofile {
   height: 97px;
   width: 140px;
+=======
+
+.imageprofile{
+  height: 99px;
+  width: 97px;
+>>>>>>> upstream/main
 }
 
 .user {
   color: blue;
   font-size: xx-large;
+  margin-left: 41px;
 }
 
 /* src/Profile.css */

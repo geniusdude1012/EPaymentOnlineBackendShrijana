@@ -7,6 +7,10 @@
     border-radius: 8px;
     margin-top: 106px;
     height: 537px;
+<<<<<<< HEAD
+=======
+    box-shadow: 0 0 10px  burlywood;
+>>>>>>> upstream/main
   }
   
   .header {
@@ -29,10 +33,19 @@
   }
   
   .title {
+<<<<<<< HEAD
     font-size: 20px;
     margin-bottom: 10px;
     color: #333;
     text-align: center;
+=======
+    font-size: 25px;
+    margin-bottom: 50px;
+    font-weight: bold;
+    color: rgb(166, 63, 63);
+    text-align: center;
+    margin-top: 20px;
+>>>>>>> upstream/main
   }
   
   .transaction-table {

@@ -18,7 +18,11 @@ const TransactionHistory = () => {
         <h1>e-pay</h1>
         <button className="menu-button">☰</button>
       </header>
+<<<<<<< HEAD
       <h2 className="title">Transaction History</h2>
+=======
+      <h2 className="title"> Your Transaction History</h2>
+>>>>>>> upstream/main
       <table className="transaction-table">
         <thead>
           <tr>
