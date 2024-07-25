@@ -189,11 +189,11 @@ const Dashboard = () => {
           </div>
           <div class="box3">
             <div class="img3">
-              <a href="waterBillEnquiry">
+              <Link to="/ElectricityBillEnquiry">
                 <button class="butt1">
                   <img src={khanepani} />
                 </button>
-              </a>
+              </Link>
             </div>
             <div>
               <span>Khanepani</span>

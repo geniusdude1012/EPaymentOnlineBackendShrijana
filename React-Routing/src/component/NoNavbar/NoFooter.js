@@ -8,7 +8,9 @@ function NoFooter({ children }) {
   useEffect(() => {
     console.log("this is location: ", location.pathname);
 
-    const pathsToHideNavbar = ["/Logout"];
+    const pathsToHideNavbar = ["/Logout",
+      '/TransactionHistory'
+    ];
     if (pathsToHideNavbar.includes(location.pathname)) {
       setShowNavbar(false);
     } else {

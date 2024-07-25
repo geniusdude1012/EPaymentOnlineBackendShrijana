@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect } from "react";
 import "./../component/UserPage.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -5,7 +7,7 @@ import back2 from "./../component/assets/back6.avif";
 import profile from "./assets/profile.jpg";
 import axios from "axios";
 
-const UserPage = () => {
+const AdminPage = () => {
   const [userdata, setuserdata] = useState({});
   const navigate = useNavigate();
   const callAboutPage = async () => {
@@ -45,12 +47,7 @@ const UserPage = () => {
             <Link to="/">
               <li>Home</li>
             </Link>
-            <Link to="/Dashboard">
-              <li>Dashboard</li>
-            </Link>
-            <Link to="/TransactionHistory">
-              <li>TransactionHistory</li>
-            </Link>
+            
           </ul>
         </nav>
       </aside>
@@ -59,7 +56,7 @@ const UserPage = () => {
         style={{ backgroundImage: `url(${back2})`, backgroundSize: "cover" }}
       >
         <section className="about">
-          <h1>Profile Information</h1>
+          <h1>Admin Profile Information</h1>
           <div className="info">
             <p>
               <strong className="name">Full Name</strong> {userdata.name}
@@ -77,17 +74,10 @@ const UserPage = () => {
             </p>
           </div>
         </section>
-        {/* <section className="recent-projects">
-          <h3>Recent Projects</h3>
-          <div className="projects">
-            <div className="project">
-              <p><strong>Project Name:</strong> Project Description</p>
-            </div>
-          </div>
-        </section> */}
+     
       </main>
     </div>
   );
 };
 
-export default UserPage;
+export default AdminPage;

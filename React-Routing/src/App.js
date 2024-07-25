@@ -25,6 +25,8 @@ import Logout from "./component/LoginSign/Logout";
 import UserPage from "./component/UserPage";
 import NoNavbar from "./component/NoNavbar/NoNavbar";
 import NoFooter from "./component/NoNavbar/NoFooter";
+import AdminPage from "./component/AdminPage";
+import TransactionHistory from "./component/TransactionHistory";
 
 function App() {
   return (
@@ -58,6 +60,10 @@ function App() {
         <Route path="/Privacy" element={<Privacy />} />
         <Route path="/Logout" element={<Logout />} />
         <Route path="/UserPage" element={<UserPage />} />
+        <Route path="/AdminPage" element={<AdminPage />} />
+        <Route path="/TransactionHistory" element={<TransactionHistory />} />
+        
+
       </Routes>
       <br />
       <NoFooter>
