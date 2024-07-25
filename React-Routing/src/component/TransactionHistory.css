@@ -1,72 +1,69 @@
 .transaction-history-container {
-    font-family: Arial, sans-serif;
-    max-width: 932px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin-top: 106px;
-    height: 537px;
-    box-shadow: 0 0 10px  burlywood;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .header h1 {
-    font-size: 24px;
-    color: #333;
-  }
-  
-  .menu-button {
-    font-size: 24px;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .title {
-    font-size: 25px;
-    margin-bottom: 50px;
-    font-weight: bold;
-    color: rgb(166, 63, 63);
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .transaction-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .transaction-table th, .transaction-table td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .transaction-table th {
-    background-color: #f4f4f4;
-  }
-  
-  .red-text {
-    color: red;
-  }
-  
-  .print-receipt-button {
-    background-color: #007bff;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .print-receipt-button:hover {
-    background-color: #0056b3;
-  }
-  
+  font-family: Arial, sans-serif;
+  max-width: 932px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-top: 106px;
+  height: 537px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 24px;
+  color: #333;
+}
+
+.menu-button {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.title {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+  text-align: center;
+}
+
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.transaction-table th,
+.transaction-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.transaction-table th {
+  background-color: #f4f4f4;
+}
+
+.red-text {
+  color: red;
+}
+
+.print-receipt-button {
+  background-color: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.print-receipt-button:hover {
+  background-color: #0056b3;
+}

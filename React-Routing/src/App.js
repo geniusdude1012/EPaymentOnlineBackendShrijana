@@ -64,8 +64,6 @@ function App() {
         <Route path="/AdminPage" element={<AdminPage />} />
         <Route path="/TransactionHistory" element={<TransactionHistory />} />
         <Route path="/PaymentReceipt" element={<PaymentReceipt />} />
-        
-
       </Routes>
       <br />
       <NoFooter>

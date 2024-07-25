@@ -217,17 +217,55 @@ app.post("/Login", async (req, res) => {
   }
 });
 app.post("/electricitybill", async (req, res) => {
-  const { customerId, customerName, counterNo, totalMonths, dateOfEnquiry } =
-    req.body;
+  const {
+    customerId,
+    customerName,
+    counterNo,
+    totalMonths,
+    dateOfEnquiry,
+    unit,
+  } = req.body;
+  function unitcalculate() {
+    let sum = 0;
+    let tax = 0;
+    let total = 0;
+    let ser = 150;
+
+    if (unit <= 100) {
+      sum = unit * 5;
+    } else if (unit <= 200) {
+      sum = 100 * 1 + (unit - 100) * 6;
+    } else if (unit <= 300) {
+      sum = 100 * 1 + 100 * 2 + (unit - 200) * 7;
+    } else if (unit > 300) {
+      sum = 100 * 1 + 100 * 2 + 100 * 3 + (unit - 300) * 8;
+    }
+
+    tax = (sum * 13) / 100;
+    total = sum + ser + tax;
+
+    return total;
+  }
+  const total = unitcalculate();
   console.log({
     customerId,
     customerName,
     counterNo,
     totalMonths,
     dateOfEnquiry,
+    unit,
+    total,
   });
 
-  genPDFE(customerId, customerName, counterNo, totalMonths, dateOfEnquiry);
+  genPDFE(
+    customerId,
+    customerName,
+    counterNo,
+    totalMonths,
+    dateOfEnquiry,
+    unit,
+    total
+  );
   return res.json({ status: "success", data: req.body });
 });
 app.post("/waterbill", async (req, res) => {
@@ -331,6 +369,10 @@ app.post("/transaction", async (req, res) => {
     const userS = await collection.findOne({
       email: email,
     });
+    if (userR && userR.Balance == "null") {
+      userR.Balance = 0;
+    }
+    console.log(userR.Balance);
     if (userS.Balance <= 0) {
       return res
         .status(200)
@@ -338,53 +380,11 @@ app.post("/transaction", async (req, res) => {
     } else {
       const updatedBalancer = Number(userR.Balance) + Number(amount);
       const updatedBalances = Number(userS.Balance) - Number(amount);
-      if (userR && userS) {
+      if (userS) {
         await collection.updateOne(
           { email: receiveremail },
           { $set: { Balance: updatedBalancer } }
         );
-        app.post("/transaction", async (req, res) => {
-          const { name, receiveremail, amount, email } = req.body;
-          if (!receiveremail) {
-            return res
-              .status(400)
-              .json({ status: "error", message: "Missing receiveremail" });
-          }
-          console.log(receiveremail);
-          console.log(email);
-          if (receiveremail !== email) {
-            const userR = await collection.findOne({
-              email: receiveremail,
-            });
-            const userS = await collection.findOne({
-              email: email,
-            });
-            if (userS && userS.Balance <= 0) {
-              return res.status(200).json({
-                status: "insufficient",
-                message: "Insufficient balance",
-              });
-            } else if (userS) {
-              const updatedBalancer = Number(userR.Balance) + Number(amount);
-              const updatedBalances = Number(userS.Balance) - Number(amount);
-              await collection.updateOne(
-                { email: receiveremail },
-                { $set: { Balance: updatedBalancer } }
-              );
-              await collection.updateOne(
-                { email: email },
-                { $set: { Balance: updatedBalances } }
-              );
-              res.status(200).json({ status: "success" });
-            } else {
-              res
-                .status(404)
-                .json({ status: "error", message: "User not found" });
-            }
-          } else {
-            res.status(200).json({ status: "same account" });
-          }
-        });
         await collection.updateOne(
           { email: email },
           { $set: { Balance: updatedBalances } }
@@ -402,3 +402,4 @@ app.post("/transaction", async (req, res) => {
 // git fetch upstream
 // git checkout main
 // git merge upstream/main
+//git push origin main

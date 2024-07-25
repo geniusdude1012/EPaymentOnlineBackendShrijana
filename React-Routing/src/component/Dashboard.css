@@ -1,10 +1,9 @@
-
-.imageprofile{
-  height: 99px;
-  width: 97px;
+.imageprofile {
+  height: 97px;
+  width: 140px;
 }
 
-.user{
+.user {
   color: blue;
   font-size: xx-large;
   margin-left: 41px;
@@ -12,10 +11,9 @@
 
 /* src/Profile.css */
 
-
 .parent-container {
-  height: 417px; 
-  background-color:black;
+  height: 417px;
+  background-color: black;
   display: flex;
   justify-content: center;
   /* align-items: center; */
@@ -51,7 +49,7 @@
 }
 
 .profile-details {
-  flex: 1;  /* Make the profile details take up the remaining space */
+  flex: 1; /* Make the profile details take up the remaining space */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -75,8 +73,6 @@
   font-size: 20px;
   color: #999;
 }
-
-
 
 .info-section {
   display: flex;
@@ -102,76 +98,67 @@
   color: #333;
 }
 
-
 /* ///SERVICES// */
-.feat
-{
-	width: 1289px;
-    border: 2px solid wheat;
-    height: 278px;
-    margin: 0px auto;
-    background-color: rgb(165 143 143);
-    border-radius: 12px;
-	box-shadow:  0 0 15px rgba(0, 0, 0,0.7);
+.feat {
+  width: 1289px;
+  border: 2px solid wheat;
+  height: 278px;
+  margin: 0px auto;
+  background-color: rgb(165 143 143);
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
 }
 
-
-.ser
-{
-	display: flex;
-	justify-content: center;
-	width: 100%;
-	height: 30px;
-	margin: 12px;
+.ser {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 30px;
+  margin: 12px;
 }
-.butt1
-{
-	height: 62px;
-    width: 63px;
-	padding: 13px;
-	margin: 12px;
-	border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0,0.7);
-	background-color: rgb(201, 197, 197);
-	cursor: pointer;
+.butt1 {
+  height: 62px;
+  width: 63px;
+  padding: 13px;
+  margin: 12px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+  background-color: rgb(201, 197, 197);
+  cursor: pointer;
 }
-.butt1:hover
-{
-	background-color: rgb(155, 155, 155);
+.butt1:hover {
+  background-color: rgb(155, 155, 155);
 }
 
-.box3
-{
-	display: flex;
-	margin: 25px;
-	flex-direction: column;
+.box3 {
+  display: flex;
+  margin: 25px;
+  flex-direction: column;
 }
-.container2
-{
-	display: flex;
-	justify-content: space-evenly;
+.container2 {
+  display: flex;
+  justify-content: space-evenly;
   align-items: center;
 }
-.img3
-{
-	display: flex;
-	justify-content: center;
+.img3 {
+  display: flex;
+  justify-content: center;
 }
 
 /* BALANC CHECK?? */
 .container {
-  padding: 10px;
-  height: 256px;
-  width: 250px;
+  padding: 13px;
+  height: 269px;
+  width: 274px;
 }
 .profile-info {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 281px;
+  width: 351px;
   border: 1px solid black;
-  height: 203px;
-  border-radius: 53px;
+  height: 229px;
+  border-radius: 23px;
 }
 .balance {
   font-size: 20px;

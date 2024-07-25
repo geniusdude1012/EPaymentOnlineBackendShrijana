@@ -8,7 +8,9 @@ function genPDFE(
   customerName,
   counterNo,
   totalMonths,
-  dateOfEnquiry
+  dateOfEnquiry,
+  unit,
+  total
 ) {
   var html = fs.readFileSync("./views/electricity.hbs", "utf8");
 
@@ -37,6 +39,8 @@ function genPDFE(
     counterNo: counterNo,
     totalMonths: totalMonths,
     dateOfEnquiry: dateOfEnquiry,
+    unit: unit,
+    total: total, // customerunit
     // customerId, customerName, counterNo, totalMonths, dateOfEnquiry
   };
 
@@ -119,23 +123,19 @@ function genPDFW(
       console.log(err);
     });
 }
-// function unitcalculate(unit){
-//   sum = 0;
-// tax = 0;
-// total = 0;
-// ser=150;
-// if (units <= 100)
-//     sum = units * 5;
-// else if ($units <= 200)
-//     sum = 100 * 1 + ($units - 100) * 6;
-// else if ($units <= 300)
-//     sum = 100 * 1 + 100 * 2 + (units - 200) * 7;
-// else if ($units > 300)
-//     sum = 100 * 1 + 100 * 2 + 100 * 3 + ( units - 300) * 8;
-// tax = sum * 13 / 100;
-// total=sum+ser+tax;
-// return total
-// }
+function unitcalculate(unit) {
+  sum = 0;
+  tax = 0;
+  total = 0;
+  ser = 150;
+  if (units <= 100) sum = units * 5;
+  else if ($units <= 200) sum = 100 * 1 + ($units - 100) * 6;
+  else if ($units <= 300) sum = 100 * 1 + 100 * 2 + (units - 200) * 7;
+  else if ($units > 300) sum = 100 * 1 + 100 * 2 + 100 * 3 + (units - 300) * 8;
+  tax = (sum * 13) / 100;
+  total = sum + ser + tax;
+  return total;
+}
 
 module.exports = {
   genPDFE,
