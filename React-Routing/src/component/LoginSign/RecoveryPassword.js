@@ -37,7 +37,7 @@ const RecoveryPassword = () => {
       <p>               </p>
         <input
           type="text"
-          placeholder="Enter 4 Digit Code"
+          placeholder="Enter Current Password"
           value={resetCode}
           onChange={handleResetCodeChange}
           required

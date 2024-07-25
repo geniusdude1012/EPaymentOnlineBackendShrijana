@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "./../component/Deposit.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import back1 from "./assets/back1.avif";
 import axios from "axios";
 
 const Deposit = () => {
   const [userdata, setuserdata] = useState({});
   const [user, setUser] = useState({
-    Balance: "",
+    amount: "",
+   
   });
-
-  const [amount, setAmount] = useState("");
   const navigate = useNavigate();
+
   const callAboutPage = async () => {
     try {
       const response = await axios.get("http://localhost:8000/dashboard", {
@@ -21,7 +21,7 @@ const Deposit = () => {
         },
         withCredentials: true,
       });
-      const data = await response.data;
+      const data = response.data;
       console.log(data);
       setuserdata(data);
       if (response.status !== 200) {
@@ -32,6 +32,7 @@ const Deposit = () => {
       navigate("/Login");
     }
   };
+
   useEffect(() => {
     callAboutPage();
   }, []);
@@ -42,13 +43,16 @@ const Deposit = () => {
       [e.target.name]: e.target.value,
     });
   };
-  const email = userdata.email;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const { amount } = user;
     const email = userdata.email;
+    if (parseFloat(amount) <= 0) {
+      alert("Amount must be a positive number.");
+      return;
+    }
 
     try {
       const response = await axios.post("http://localhost:8000/deposit", {
@@ -58,7 +62,7 @@ const Deposit = () => {
 
       if (response.data.status === "success") {
         alert("Deposit successful");
-        navigate("/Deposit");
+        navigate("/Dashboard");  // Navigate to the Dashboard after successful deposit
       } else {
         alert("Deposit failed");
       }
@@ -67,6 +71,7 @@ const Deposit = () => {
       alert("An error occurred during the deposit.");
     }
   };
+
   return (
     <div
       className="deposit-container"
@@ -75,22 +80,18 @@ const Deposit = () => {
       <form className="deposit-form" onSubmit={handleSubmit}>
         <h2>Load Money</h2>
         <label htmlFor="amount">Enter amount to deposit:</label>
-
         <input
-          type="number"
+          type="value"
           id="amount"
           name="amount"
           value={user.amount}
           onChange={handleChange}
           placeholder="Amount"
+          min='0'
         />
         <button type="submit" className="btn btn-info">
-          deposit
+          Deposit
         </button>
-        {/* <Link to="/Dashboard">
-                <button type="submit">DEPOSIT</button>
-                </Link>
-                 */}
       </form>
     </div>
   );

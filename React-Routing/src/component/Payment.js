@@ -51,6 +51,7 @@ const Payment = () => {
     });
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { username, receiveremail, amount, accountno, purpose } = user;
@@ -69,7 +70,7 @@ const Payment = () => {
 
         if (response.data.status === "success") {
           alert("Transaction successful");
-          navigate("/Payment");
+          navigate("/Dashboard");
         } else if (response.data.status === "same account") {
           alert("Enter another account");
         } else if (response.data.status === "insufficient") {
@@ -138,9 +139,7 @@ const Payment = () => {
             />
           </div>
           <div className="summary">
-            <div>
-              Net Payable(₹): <span>{netPayable.toFixed(2)}</span>
-            </div>
+            
           </div>
           <div className="form-group">
             <label>Remarks</label>
