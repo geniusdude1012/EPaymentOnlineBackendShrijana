@@ -33,7 +33,7 @@ function App() {
   return (
     <>
       <NoNavbar navbar={<Navbar />}>
-
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Login" element={<Login />} />

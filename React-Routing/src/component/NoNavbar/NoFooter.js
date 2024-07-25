@@ -1,22 +1,33 @@
-// import React from 'react';
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-//DISPLAYING NAVBAR FOR SOME CERTAIN PAGES  ONLY
+
 function NoFooter({ children }) {
   const location = useLocation();
-  const [showNavbar, setShowNavbar] = useState(false);
-  useEffect(() => {
-    console.log("this is location: ", location.pathname);
+  const [showFooter, setShowFooter] = useState(true);
 
-    const pathsToHideNavbar = ["/TransactionHistory","/Logout","/WaterBillEnquiry","/ElectricityBillEnquiry"];
-    if (pathsToHideNavbar.includes(location.pathname)) {
-      setShowNavbar(false);
-    } else {
-      setShowNavbar(true);
-    }
+  useEffect(() => {
+    console.log("Current location:", location.pathname);
+
+    const pathsToHideFooter = [
+      "/transactionhistory",
+      "/logout",
+      "/waterbillenquiry",
+      "/electricitybillenquiry"
+    ];
+
+    // Normalize the current path to lowercase and remove leading/trailing slashes
+    const normalizedPath = location.pathname.toLowerCase().replace(/\/+$/, "").replace(/^\/+/, "");
+    
+    // Check if the normalized path is in the pathsToHideFooter array
+    const shouldHideFooter = pathsToHideFooter.some(path => path.replace(/^\/+/, "").toLowerCase() === normalizedPath);
+    
+    console.log("Normalized path:", normalizedPath);
+    console.log("Should hide footer:", shouldHideFooter);
+
+    setShowFooter(!shouldHideFooter);
   }, [location]);
 
-  return <div>{showNavbar && children}</div>;
+  return <div>{showFooter && children}</div>;
 }
 
 export default NoFooter;
