@@ -67,10 +67,10 @@ const ElectricityBillEnquiry = () => {
 
   return (
     <div
-      className="container"
+      className="container1"
       style={{ backgroundImage: `url(${back1})`, backgroundSize: "cover" }}
     >
-      <div className="card">
+      <div className="card1">
         <div className="card-header text-center text-teal-500">
           <img src={electricity} alt="Logo" className="logo-img1" />
           {console.log(form)}

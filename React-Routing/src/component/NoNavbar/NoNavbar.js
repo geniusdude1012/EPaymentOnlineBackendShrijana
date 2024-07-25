@@ -10,16 +10,19 @@ function NoNavbar({ children }) {
 
     const pathsToHideNavbar = [
       '/Dashboard',
-      '/ElectricityBillEnquiry',
+      
       '/Deposit',
-      '/WaterBillEnquiry',
-      '/Logout',
+     
       '/UserPage',
       '/AdminPage',
       '/Payment',
       '/TransactionHistory',
       '/PaymentReceipt',
       '/OTPVerification',
+      '/Admin',
+      '/ElectricityBillEnquiry',
+      '/WaterBillEnquiry',
+      '/Logout'
     ];
     if (pathsToHideNavbar.includes(location.pathname)) {
       setShowNavbar(false);

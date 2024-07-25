@@ -58,10 +58,10 @@ const WaterBillEnquiry = () => {
 
   return (
     <div
-      className="container mt-100"
+      className="container1 mt-100"
       style={{ backgroundImage: `url(${back1})`, backgroundSize: "cover" }}
     >
-      <div className="card">
+      <div className="card1">
         <div className="card-header text-center text-teal-500">
           <img src={water} alt="Logo" className="logo-img" />
           {/* <h2>Water-Bill-Enquiry</h2> */}
