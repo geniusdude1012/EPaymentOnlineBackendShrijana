@@ -1,37 +1,38 @@
-// import React from 'react';
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-//DISPLAYING NAVBAR FOR SOME CERTAIN PAGES  ONLY
-function NoNavbar({ children }) {
+
+function NoNavbar({ children, navbar }) {
   const location = useLocation();
-  const [showNavbar, setShowNavbar] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
+
   useEffect(() => {
-    console.log("this is location: ", location.pathname);
+    console.log("Current location:", location.pathname);
 
     const pathsToHideNavbar = [
-      '/Dashboard',
-      
-      '/Deposit',
-     
-      '/UserPage',
-      '/AdminPage',
-      '/Payment',
-      '/TransactionHistory',
-      '/PaymentReceipt',
-      '/OTPVerification',
-      '/Admin',
-      '/ElectricityBillEnquiry',
-      '/WaterBillEnquiry',
-      '/Logout'
+      '/dashboard',
+      '/deposit',
+      '/userpage',
+      '/adminpage',
+      '/payment',
+      '/transactionhistory',
+      '/paymentreceipt',
+      '/otpverification',
+      '/admin',
+      '/electricitybillenquiry',
+      '/waterbillenquiry',
+      '/logout'
     ];
-    if (pathsToHideNavbar.includes(location.pathname)) {
-      setShowNavbar(false);
-    } else {
-      setShowNavbar(true);
-    }
+
+    const path = location.pathname.toLowerCase();
+    setShowNavbar(!pathsToHideNavbar.includes(path));
   }, [location]);
 
-  return <div>{showNavbar && children}</div>;
+  return (
+    <div>
+      {showNavbar && navbar}
+      {children}
+    </div>
+  );
 }
 
 export default NoNavbar;

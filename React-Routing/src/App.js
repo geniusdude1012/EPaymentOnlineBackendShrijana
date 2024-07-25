@@ -32,9 +32,8 @@ import TransactionHistory from "./component/TransactionHistory";
 function App() {
   return (
     <>
-      <NoNavbar>
-        <Navbar />
-      </NoNavbar>
+      <NoNavbar navbar={<Navbar />}>
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Login" element={<Login />} />
@@ -64,6 +63,7 @@ function App() {
         <Route path="/TransactionHistory" element={<TransactionHistory />} />
         <Route path="/PaymentReceipt" element={<PaymentReceipt />} />
       </Routes>
+      </NoNavbar>
       <br />
       <NoFooter>
         <Footer />
