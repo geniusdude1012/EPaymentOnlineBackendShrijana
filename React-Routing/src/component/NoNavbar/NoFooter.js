@@ -9,7 +9,8 @@ function NoFooter({ children }) {
     console.log("this is location: ", location.pathname);
 
     const pathsToHideNavbar = ["/Logout",
-      '/TransactionHistory'
+      '/TransactionHistory',
+      '/PaymentReceipt'
     ];
     if (pathsToHideNavbar.includes(location.pathname)) {
       setShowNavbar(false);

@@ -23,6 +23,7 @@ import { ContactUs } from "./component/Footer/ContactUs";
 import Logout from "./component/LoginSign/Logout";
 
 import UserPage from "./component/UserPage";
+import PaymentReceipt from "./component/PaymentReceipt";
 import NoNavbar from "./component/NoNavbar/NoNavbar";
 import NoFooter from "./component/NoNavbar/NoFooter";
 import AdminPage from "./component/AdminPage";
@@ -62,6 +63,7 @@ function App() {
         <Route path="/UserPage" element={<UserPage />} />
         <Route path="/AdminPage" element={<AdminPage />} />
         <Route path="/TransactionHistory" element={<TransactionHistory />} />
+        <Route path="/PaymentReceipt" element={<PaymentReceipt />} />
         
 
       </Routes>

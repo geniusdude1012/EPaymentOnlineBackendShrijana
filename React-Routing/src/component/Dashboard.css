@@ -1,12 +1,13 @@
 
 .imageprofile{
-  height: 97px;
-  width: 140px;
+  height: 99px;
+  width: 97px;
 }
 
 .user{
   color: blue;
   font-size: xx-large;
+  margin-left: 41px;
 }
 
 /* src/Profile.css */

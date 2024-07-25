@@ -17,7 +17,9 @@ useEffect(() => {
       '/Logout',
       '/UserPage',
       '/AdminPage',
-      '/TransactionHistory'
+      '/Payment',
+      '/TransactionHistory',
+      '/PaymentReceipt'
     ];
     if (pathsToHideNavbar.includes(location.pathname)) {
       setShowNavbar(false);

@@ -18,7 +18,7 @@ const TransactionHistory = () => {
         <h1>e-pay</h1>
         <button className="menu-button">☰</button>
       </header>
-      <h2 className="title">Transaction History</h2>
+      <h2 className="title"> Your Transaction History</h2>
       <table className="transaction-table">
         <thead>
           <tr>
