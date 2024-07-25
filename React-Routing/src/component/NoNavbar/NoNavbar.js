@@ -19,7 +19,8 @@ useEffect(() => {
       '/AdminPage',
       '/Payment',
       '/TransactionHistory',
-      '/PaymentReceipt'
+      '/PaymentReceipt',
+      '/OTPVerification',
     ];
     if (pathsToHideNavbar.includes(location.pathname)) {
       setShowNavbar(false);

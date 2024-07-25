@@ -56,7 +56,6 @@ function App() {
         <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/Footer" element={<Footer />} />
         <Route path="/AboutLeadG2" element={<AboutLeadG2 />} />
-
         <Route path="/ContactUs" element={<ContactUs />} />
         <Route path="/Privacy" element={<Privacy />} />
         <Route path="/Logout" element={<Logout />} />
