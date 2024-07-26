@@ -48,8 +48,14 @@ const ElectricityBillEnquiry = () => {
         .post("http://localhost:8000/electricitybill", form)
         .then((response) => {
           if (response.data.status === "success") {
+            const total = response.data.total; // Access the total value from the response
+            const unit = response.data.unit; // Access the total value from the response
+            const customerId = response.data.customerId; // Access the total value from the response
+            const customerName = response.data.customerName; // Access the total value from the response
             alert("Enquiry successful");
-            navigate("/PaymentReceipt");
+            navigate("/PaymentReceipt", {
+              state: { total, unit, customerId, customerName, dateOfEnquiry },
+            }); // Pass the total value as a prop to the PaymentReceipt component
 
             // Example usage
           } else {
