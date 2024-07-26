@@ -424,10 +424,28 @@ app.post("/electricitypay", async (req, res) => {
         { email: email },
         { $set: { Balance: updatedBalancer } }
       );
-      res.status(200).json({ status: "success" });
+      res
+        .status(200)
+        .json({ status: "success", total: updatedBalancer.balance });
     } else {
       res.status(404).json({ status: "error", message: "User not found" });
     }
+  }
+});
+//setup transactionpin
+app.post("/setuppin", async (req, res) => {});
+
+//transaction authentication
+app.post("/transactionpin", async (req, res) => {
+  const { pin, email, total } = req.body;
+  const userR = await collection.findOne({
+    email: email,
+  });
+  if (userR.pin === pin) {
+    await collection.updateOne({ email: email }, { $set: { Balance: total } });
+    res.status(200).json({ status: "success", user: userR });
+  } else {
+    res.status(401).json({ status: "error", message: "Incorrect pin" });
   }
 });
 
