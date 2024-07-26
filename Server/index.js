@@ -256,7 +256,6 @@ app.post("/electricitybill", async (req, res) => {
     unit,
     total,
   });
-
   genPDFE(
     customerId,
     customerName,
@@ -266,7 +265,13 @@ app.post("/electricitybill", async (req, res) => {
     unit,
     total
   );
-  return res.json({ status: "success", data: req.body });
+  return res.json({
+    status: "success",
+    total: total,
+    customerId: customerId,
+    unit: unit,
+    customerName: customerName,
+  });
 });
 app.post("/waterbill", async (req, res) => {
   const { customerId, customerName, counterNo, totalMonths, dateOfEnquiry } =
@@ -398,6 +403,34 @@ app.post("/transaction", async (req, res) => {
     res.status(200).json({ status: "same account" });
   }
 });
+
+//electricity payment
+app.post("/electricitypay", async (req, res) => {
+  const { email, total } = req.body;
+  console.log(email);
+  const userR = await collection.findOne({
+    email: email,
+  });
+  if (userR.Balance < total) {
+    return res
+      .status(200)
+      .json({ status: "insufficient", message: "Insufficient balance" });
+  } else {
+    console.log(total);
+    const updatedBalancer = Number(userR.Balance) - Number(total);
+    console.log(updatedBalancer);
+    if (userR) {
+      await collection.updateOne(
+        { email: email },
+        { $set: { Balance: updatedBalancer } }
+      );
+      res.status(200).json({ status: "success" });
+    } else {
+      res.status(404).json({ status: "error", message: "User not found" });
+    }
+  }
+});
+
 //for syncing forked repo
 // git fetch upstream
 // git checkout main
