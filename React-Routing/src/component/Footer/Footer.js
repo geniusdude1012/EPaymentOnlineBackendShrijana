@@ -10,24 +10,24 @@ const Footer = () => {
       </div>
       <div className="footer-section">
         <h3>Contact</h3>
-        <p>Whatsapp: +977 9864463468</p>
-        <p>Viber:+977 9864463468</p>
-        <p>Phone:01-5581224</p>
-        <Link to="/ContactUs"><p>Email: epayment2423@gmail.com</p></Link>
+        <h3>Whatsapp: +977 9864463468</h3>
+        <h3>Viber:+977 9864463468</h3>
+        <h3>Phone:01-5581224</h3>
+        <Link to="/ContactUs"><h3>Email: epayment2423@gmail.com</h3></Link>
         
     
       </div>
       <div className="footer-section">
         <h3>Locations</h3>
-        <p>Location 1:  Siddhipur,Lalitpur</p>
-        <p>Location 2:  Balkumari,Lalitpur</p>
+        <h3>Location 1:  Siddhipur,Lalitpur</h3>
+        <h3>Location 2:  Balkumari,Lalitpur</h3>
       </div>
       <div className="footer-section">
         <h3>Policy</h3>
-        <Link to="/AboutLeadG2" ><p>About Us</p></Link>
+        <Link to="/AboutLeadG2" ><h3>About Us</h3></Link>
        
-        <Link to="/Privacy"><p>Privacy Policies</p></Link>
-         <Link to="/Home"><p>Terms and Security Policies</p></Link>
+        <Link to="/Privacy"><h3>Privacy Policies</h3></Link>
+         {/* <Link to="/Home"><p>Terms and Security Policies</p></Link> */}
       </div>
       <div className="footer-bottom">
         <h6>© 2024 E-Payment Private Limited. All Rights Reserved</h6>
