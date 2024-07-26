@@ -107,7 +107,7 @@ const ElectricityBillEnquiry = () => {
               />
             </div>
             <div className="form-group mt-3">
-              <label htmlFor="counterNo">Counter No.:</label>
+              <label htmlFor="counterNo">Counter Name:</label>
               <select
                 className="form-control"
                 id="counterNo"
@@ -128,7 +128,7 @@ const ElectricityBillEnquiry = () => {
             <div className="form-group mt-3">
               <label htmlFor="customerUnit">Total Units:</label>
               <input
-                type="number"
+                type="value"
                 className="form-control small-input"
                 id="customerUnit"
                 name="unit"

@@ -112,7 +112,7 @@ const WaterBillEnquiry = () => {
             <div className="form-group mt-3">
               <label htmlFor="customerUnit">Customer Unit:</label>
               <input
-                type="number"
+                type="value"
                 className="form-control small-input"
                 id="customerUnit"
                 name="customerUnit"

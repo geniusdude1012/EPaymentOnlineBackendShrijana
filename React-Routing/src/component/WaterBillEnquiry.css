@@ -3,7 +3,13 @@
  
   box-shadow: 0 0 10px rgba(217, 37, 37, 0.1);
 }
-
+input::-webkit-inner-spin-button,
+input ::-webkit-inner-spin-button{
+  -webkit-appearance:none;
+}
+/* input[type=number]{
+     -moz-appearance: textfield;
+} */
 
 .container1 {
     max-width: 500px;

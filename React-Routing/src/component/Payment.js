@@ -120,7 +120,7 @@ const Payment = () => {
           <div className="form-group">
             <label>Account Number</label>
             <input
-              type="number"
+              type="value"
               name="accountno"
               value={user.accountno}
               onChange={handleChange}
@@ -131,7 +131,7 @@ const Payment = () => {
           <div className="form-group">
             <label>Amount ₹(100-5000)</label>
             <input
-              type="number"
+              type="value"
               name="amount"
               value={user.amount}
               onChange={handleChange}
