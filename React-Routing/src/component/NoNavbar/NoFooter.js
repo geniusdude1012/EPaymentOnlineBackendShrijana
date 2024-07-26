@@ -9,6 +9,7 @@ function NoFooter({ children }) {
     console.log("Current location:", location.pathname);
 
     const pathsToHideFooter = [
+      "/PinSetPage",
       "/transactionhistory",
       "/logout",
       "/waterbillenquiry",

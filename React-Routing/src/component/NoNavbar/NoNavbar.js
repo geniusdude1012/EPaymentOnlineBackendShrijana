@@ -10,6 +10,7 @@ function NoNavbar({ children, navbar }) {
 
     const pathsToHideNavbar = [
       '/PinPage',
+      '/PinSetPage',
       '/dashboard',
       '/deposit',
       '/userpage',

@@ -1,0 +1,96 @@
+
+  .transaction-pin-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #007bff; /* Added border */
+    border-radius: 8px;
+    background-color: #fff;
+    text-align: center;
+    box-shadow: 20px 20px 20px 20px rgba(36, 190, 36, 0.1);
+  }
+  
+ 
+  
+  .lock-icon {
+    margin-bottom: 20px;
+    height: 68px;
+    /* margin: 0px auto; */
+    margin-left: 138px;
+  }
+ 
+  .transaction-pin-container h2{
+    font-weight: bold;
+    color: rgb(136, 44, 44);
+  }
+  
+  .lock-icon img {
+    width: 68px;
+    height: 62px;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  .input-group #newPin{
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .input-group #confirmPin{
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .rules {
+    margin-bottom: 20px;
+    background-color: #e7f3ff;
+    padding: 10px;
+    border-radius: 4px;
+    border: 2px solid rgb(15, 112, 196);
+    text-align: left;
+  }
+  
+  .rules h7 {
+    margin: 0;
+    color: #0056b3;;
+    font-weight: bold;;
+  }
+  
+ button {
+    width: 100%;
+    padding: 10px;
+    background-color:  rgb(136, 44, 44);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
