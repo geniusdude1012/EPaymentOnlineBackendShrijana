@@ -52,7 +52,7 @@ const PaymentReceipt = ({}) => {
       );
       if (response.data.status === "success") {
         alert("Payment successful");
-        navigate("/Dashboard");
+        navigate("/PinPage", { state: total });
       } else if (response.data.status === "insufficient") {
         alert("Insufficient Balance");
       } else {

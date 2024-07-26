@@ -29,14 +29,16 @@ const Register = () => {
       password &&
       contactno &&
       address &&
+      cpassword &&
       password === cpassword
     ) {
       const register = await axios
         .post("http://localhost:8000/Register", user)
         .then((response) => {
           if (response.data.status === "success") {
-            navigate("/OTPVerification");
-            alert("Please check your email for verification");
+            navigate("/PinSetPage", {
+              state: { name, email, password, contactno, address },
+            });
           } else {
             alert("User already registered");
           }

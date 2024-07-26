@@ -41,6 +41,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
+  Pin: {
+    type: Number,
+    default: 0,
+  },
 });
 const collection = new mongoose.model("collection1", userSchema);
 

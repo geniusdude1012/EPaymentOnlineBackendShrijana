@@ -7,7 +7,6 @@ const collection = require("./db");
 const PORT = 8000;
 const path = require("path");
 const bcrypt = require("bcryptjs");
-const { hashSync } = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const bodyParser = require("body-parser");
 const { genPDFE, genPDFW } = require("./genepdf");
@@ -109,7 +108,7 @@ async function generateUniqueAccountNumber(baseNumber, suffixLength) {
   return accountNumber;
 }
 //sending otp to mail
-const emailsender = async () => {
+const emailsender = async (email) => {
   const otp = generateotp();
   geneotp = otp;
   //sending email notification
@@ -135,32 +134,13 @@ function checkotp(a) {
 //acquire data from register
 app.post("/Register", async (req, res) => {
   const { name, email, password, contactno, address } = req.body;
-  const baseAccountNumber = 1600500000000000;
-  const suffixLength = 4;
-
-  const accountnum1 = await generateUniqueAccountNumber(
-    baseAccountNumber,
-    suffixLength
-  );
-  const hashpassword = await hashSync(req.body.password, 10);
-  data = {
-    name: name,
-    email: email,
-    password: hashpassword,
-    address: address,
-    contactno: contactno,
-    token: "token",
-    Balance: 0,
-    accountno: accountnum1,
-  };
 
   try {
     //request otp
-    const check = await collection.findOne({ email: data.email });
+    const check = await collection.findOne({ email: email });
     if (check) {
       res.json("User already exist");
     } else {
-      emailsender();
       // sendOTP(email, otp);
       // app.post("/otpverify, ");
       function generateaccno() {
@@ -433,7 +413,41 @@ app.post("/electricitypay", async (req, res) => {
   }
 });
 //setup transactionpin
-app.post("/setuppin", async (req, res) => {});
+app.post("/setuppin", async (req, res) => {
+  const { pin, name, email, contactno, address, password } = req.body;
+  const baseAccountNumber = 1600500000000000;
+  const suffixLength = 4;
+  console.log(password);
+
+  const accountnum1 = await generateUniqueAccountNumber(
+    baseAccountNumber,
+    suffixLength
+  );
+  const salt = bcrypt.genSaltSync(10);
+  const hashpassword = await bcrypt.hashSync(password, salt);
+  data = {
+    name: name,
+    email: email,
+    password: hashpassword,
+    address: address,
+    contactno: contactno,
+    token: "token",
+    Balance: 0,
+    accountno: accountnum1,
+    Pin: pin,
+  };
+  console.log(pin);
+  if (pin) {
+    function generateaccno() {
+      return randomstring.generate({ length: 6, charset: "numeric" });
+    }
+    emailsender(email);
+
+    res.status(200).json({ status: "success" });
+  } else {
+    res.status(400).json({ status: "error", message: "Missing pin" });
+  }
+});
 
 //transaction authentication
 app.post("/transactionpin", async (req, res) => {

@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import { React, useState } from "react";
 import back2 from "./../component/assets/back6.avif";
+import { useNavigate } from "react-router-dom";
 import "./../component/PinPage.css";
+import axios from "axios";
+import PinSetPage from "./PinSetPage";
 
 const PinPage = () => {
+  const navigate = useNavigate();
   const [pin, setPin] = useState(["", "", "", ""]);
 
   const handleChange = (e, index) => {
@@ -17,9 +21,31 @@ const PinPage = () => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     // Handle PIN submission
     console.log("Entered PIN:", pin.join(""));
+    if (parseFloat(pin) <= 0) {
+      alert("Amount must be a positive number.");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/transactionpin",
+        {}
+      );
+
+      if (response.data.status === "success") {
+        alert("Deposit successful");
+        navigate("/Dashboard"); // Navigate to the Dashboard after successful deposit
+      } else {
+        alert("Deposit failed");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("An error occurred during the deposit.");
+    }
   };
 
   return (
