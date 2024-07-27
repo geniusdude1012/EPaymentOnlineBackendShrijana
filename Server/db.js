@@ -48,4 +48,25 @@ const userSchema = new mongoose.Schema({
 });
 const collection = new mongoose.model("collection1", userSchema);
 
-module.exports = collection;
+//For admin
+const Adminschema = new mongoose.Schema({
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  token: {
+    type: String,
+    default: null,
+  },
+});
+const collection2 = new mongoose.model("collection2", userSchema);
+
+module.exports = {
+  collection,
+  collection2,
+};

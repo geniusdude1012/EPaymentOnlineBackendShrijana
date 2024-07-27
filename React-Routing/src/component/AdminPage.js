@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from "react";
 import "./../component/UserPage.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,29 +8,29 @@ import axios from "axios";
 const AdminPage = () => {
   const [userdata, setuserdata] = useState({});
   const navigate = useNavigate();
-  const callAboutPage = async () => {
-    try {
-      const response = await axios.get("http://localhost:8000/dashboard", {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      });
-      const data = await response.data;
-      console.log(data);
-      setuserdata(data);
-      if (response.status !== 200) {
-        throw new Error("Request failed");
-      }
-    } catch (error) {
-      console.error(error);
-      navigate("/Login");
-    }
-  };
-  useEffect(() => {
-    callAboutPage();
-  }, []);
+  // const callAboutPage = async () => {
+  //   try {
+  //     const response = await axios.get("http://localhost:8000/dashboard", {
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-Type": "application/json",
+  //       },
+  //       withCredentials: true,
+  //     });
+  //     const data = await response.data;
+  //     console.log(data);
+  //     setuserdata(data);
+  //     if (response.status !== 200) {
+  //       throw new Error("Request failed");
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //     navigate("/Login");
+  //   }
+  // };
+  // useEffect(() => {
+  //   callAboutPage();
+  // }, []);
   return (
     <div className="containerUser">
       <aside className="sidebar">
@@ -47,7 +45,6 @@ const AdminPage = () => {
             <Link to="/">
               <li>Home</li>
             </Link>
-            
           </ul>
         </nav>
       </aside>
@@ -74,7 +71,6 @@ const AdminPage = () => {
             </p>
           </div>
         </section>
-     
       </main>
     </div>
   );

@@ -51,8 +51,7 @@ const PaymentReceipt = ({}) => {
         }
       );
       if (response.data.status === "success") {
-        alert("Payment successful");
-        navigate("/PinPage", { state: total });
+        navigate("/PinPage", { state: { total, email } });
       } else if (response.data.status === "insufficient") {
         alert("Insufficient Balance");
       } else {
