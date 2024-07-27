@@ -143,6 +143,17 @@ const WaterBillEnquiry = () => {
                 <option value="Tokha">Tokha</option>
               </select>
             </div>
+            <div className="form-group mt-3">
+              <label htmlFor="customerUnit">Customer Unit:</label>
+              <input
+                type="value"
+                className="form-control small-input"
+                id="customerUnit"
+                name="customerUnit"
+                value={form.customerUnit}
+                onChange={handleChange}
+              />
+            </div>
             <div className="form-group mt-1">
               <label htmlFor="totalMonths">Total Months:</label>
               <select

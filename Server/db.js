@@ -64,9 +64,17 @@ const Adminschema = new mongoose.Schema({
     default: null,
   },
 });
-const collection2 = new mongoose.model("collection2", userSchema);
+const collection2 = new mongoose.model("collection2", Adminschema);
 
+const transactionschema = new mongoose.Schema({
+  log: {
+    type: [String],
+    required: true,
+  },
+});
+const transaction = new mongoose.model("transaction", transactionschema);
 module.exports = {
   collection,
   collection2,
+  transaction,
 };

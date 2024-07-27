@@ -1,15 +1,40 @@
 import React from "react";
 import "./../component/UpdateUserInfo.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import back1 from "./../component/assets/back1.avif";
+import Swal from "sweetalert2";
 
 const UpdateUserInfo = () => {
+  const [userdata, setuserdata] = useState({});
   const navigate = useNavigate();
+  const callAboutPage = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/dashboard", {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      });
+      const data = await response.data;
+      console.log(data);
+      setuserdata(data);
+      if (response.status !== 200) {
+        throw new Error("Request failed");
+      }
+    } catch (error) {
+      console.error(error);
+      navigate("/Login");
+    }
+  };
+
+  useEffect(() => {
+    callAboutPage();
+  }, []);
   const [user, setUser] = useState({
     name: "",
-    email: "",
     password: "",
     cpassword: "",
     token: "",
@@ -22,10 +47,10 @@ const UpdateUserInfo = () => {
   };
   const handlesubmit = async (e) => {
     e.preventDefault();
-    const { name, email, password, cpassword, contactno, address } = user;
+    const { name, password, cpassword, contactno, address } = user;
+    const email = userdata.email;
     if (
       name &&
-      email &&
       password &&
       contactno &&
       address &&
@@ -33,19 +58,32 @@ const UpdateUserInfo = () => {
       password === cpassword
     ) {
       const register = await axios
-        .post("http://localhost:8000/Register", user)
+        .post("http://localhost:8000/updateuser", {
+          name,
+          email,
+          contactno,
+          address,
+          cpassword,
+          password,
+          cpassword,
+        })
         .then((response) => {
           if (response.data.status === "success") {
-            navigate("/PinSetPage", {
-              state: { name, email, password, contactno, address },
+            Swal.fire({
+              title: "Update Alert",
+              text: "Update succesfull",
+              icon: "success",
+              confirmButtonText: "OK",
             });
+
+            navigate("/Dashboard");
           } else {
             alert("User already registered");
           }
         })
         .catch((error) => {
           console.log(error.message);
-          alert("Registration failed");
+          alert("Update failed");
         });
     } else {
       alert("Email has been registered already");
@@ -92,14 +130,6 @@ const UpdateUserInfo = () => {
               required
             />
             <input
-              type="email"
-              name="email"
-              value={user.email}
-              placeholder="Enter your Email"
-              onChange={handleChange}
-              required
-            />
-            <input
               type="password"
               name="password"
               value={user.password}
@@ -140,7 +170,6 @@ const UpdateUserInfo = () => {
 
             <button type="submit">Update</button>
           </form>
-          
         </div>
       </div>
     </div>
