@@ -526,6 +526,38 @@ app.post("/transactionpin", async (req, res) => {
   }
 });
 
+///update user
+app.post("/updateuser", async (req, res) => {
+  const { name, email, password, contactno, address } = req.body;
+  const salt = bcrypt.genSaltSync(10);
+  const hashpassword = await bcrypt.hashSync(password, salt);
+  try {
+    //request otp
+    const check = await collection.findOne({ email: email });
+    if (check) {
+      await collection.updateOne(
+        { email: email },
+        {
+          $set: {
+            name: name,
+            password: hashpassword,
+            contactno: contactno,
+            address: address,
+          },
+        }
+      );
+      return res.status(201).json({ status: "success" });
+    } else {
+      // sendOTP(email, otp);
+      // app.post("/otpverify, ");
+
+      return res.status(201).json({ status: "success" });
+    }
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+});
+
 //for syncing forked repo
 // git fetch upstream
 // git checkout main
