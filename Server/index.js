@@ -456,7 +456,7 @@ app.post("/electricitypay", async (req, res) => {
     if (userR) {
       res
         .status(200)
-        .json({ status: "success", total: updatedBalancer.balance });
+        .json({ status: "success", updatedBalancer: updatedBalancer });
     } else {
       res.status(404).json({ status: "error", message: "User not found" });
     }
@@ -482,7 +482,7 @@ app.post("/setuppin", async (req, res) => {
     address: address,
     contactno: contactno,
     token: "token",
-    Balance: 0,
+    Balance: 500,
     accountno: accountnum1,
     Pin: pin,
   };
@@ -501,12 +501,16 @@ app.post("/setuppin", async (req, res) => {
 
 //transaction authentication
 app.post("/transactionpin", async (req, res) => {
-  const { tpin, email, total } = req.body;
+  const { tpin, email, updatedBalancer } = req.body;
+  console.log(updatedBalancer);
   const userR = await collection.findOne({
     email: email,
   });
   if (Number(userR.Pin) === Number(tpin)) {
-    await collection.updateOne({ email: email }, { $set: { Balance: total } });
+    await collection.updateOne(
+      { email: email },
+      { $set: { Balance: updatedBalancer } }
+    );
     res.status(200).json({ status: "success", user: userR });
   } else {
     res.status(200).json({ status: "incorrect", message: "Incorrect pin" });

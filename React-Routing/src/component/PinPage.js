@@ -4,11 +4,12 @@ import { useNavigate, useLocation } from "react-router-dom";
 import "./../component/PinPage.css";
 import axios from "axios";
 import PinSetPage from "./PinSetPage";
+import Swal from "sweetalert2";
 
 const PinPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const total = location.state?.total;
+  const updatedBalancer = location.state?.updatedBalancer;
   const [userdata, setuserdata] = useState({});
   const [pin, setPin] = useState(["", "", "", ""]);
   const callAboutPage = async () => {
@@ -57,20 +58,31 @@ const PinPage = () => {
     }
     const tpin = pin.join("");
     const email = userdata.email;
+    console.log(updatedBalancer);
     try {
       const response = await axios.post(
         "http://localhost:8000/transactionpin",
         {
           tpin,
           email,
-          total,
+          updatedBalancer,
         }
       );
       if (response.data.status === "success") {
-        alert("Payment successful");
+        Swal.fire({
+          title: "Payment Alert",
+          text: "Payment succesfull",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
         navigate("/Dashboard"); // Navigate to the Dashboard after successful deposit
       } else if (response.data.status === "incorrect") {
-        alert("Incorrect pin");
+        Swal.fire({
+          title: "Payment Alert",
+          text: "Incorrect Pin",
+          icon: "info",
+          confirmButtonText: "OK",
+        });
       } else {
         alert("Payment failed");
       }
