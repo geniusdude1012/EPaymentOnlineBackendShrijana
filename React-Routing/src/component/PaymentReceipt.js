@@ -5,6 +5,8 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 
+
+
 const PaymentReceipt = ({}) => {
   const location = useLocation(); // Use the useLocation hook to access the location object
 
@@ -16,7 +18,7 @@ const PaymentReceipt = ({}) => {
   const [currentTime, setCurrentTime] = useState(new Date());
   console.log(dateOfEnquiry);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const callAboutPage = async () => {
     try {
       const response = await axios.get("http://localhost:8000/dashboard", {
@@ -76,6 +78,22 @@ const PaymentReceipt = ({}) => {
       alert("Payment failed");
     }
   };
+  //OPEN ELECTRICITY.PDF 
+  const navigate = useNavigate;
+
+  const navigateToPdf = async () => {
+    try {
+      const file = await FileReader.readAsDataURL("../Server/pdfs/electricity")
+      const pdfWindow = window.open;
+      pdfWindow.document.write('<iframe src="' + file + '" width="100%" height="1000"></iframe>');
+      // pdfWindow.document.close;
+      // pdfWindow.focus;
+    } catch (error) {
+      console.error(error.message);
+      alert("Failed to open the PDF file")
+    }
+  };
+
   return (
     <div
       className="receipt-container"
@@ -134,6 +152,9 @@ const PaymentReceipt = ({}) => {
       <div className="download-button-container">
         <button onClick={handleSubmit} className="download-button">
           Pay Now
+        </button>
+        <button onClick={navigateToPdf} className="download-button1">
+          Download Receipt
         </button>
       </div>
     </div>

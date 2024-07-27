@@ -237,7 +237,6 @@ app.post("/electricitybill", async (req, res) => {
     customerName,
     counterNo,
     totalMonths,
-    dateOfEnquiry,
     unit,
   } = req.body;
   function unitcalculate() {
@@ -267,7 +266,6 @@ app.post("/electricitybill", async (req, res) => {
     customerName,
     counterNo,
     totalMonths,
-    dateOfEnquiry,
     unit,
     total,
   });
@@ -276,7 +274,6 @@ app.post("/electricitybill", async (req, res) => {
     customerName,
     counterNo,
     totalMonths,
-    dateOfEnquiry,
     unit,
     total
   );
@@ -289,7 +286,7 @@ app.post("/electricitybill", async (req, res) => {
   });
 });
 app.post("/waterbill", async (req, res) => {
-  const { customerId, customerName, counterNo, totalMonths, dateOfEnquiry } =
+  const { customerId, customerName, counterNo, totalMonths } =
     req.body; // Replace with the actual meter reading
   let sum1 = 0;
   let tax1 = 0;
@@ -303,10 +300,9 @@ app.post("/waterbill", async (req, res) => {
     customerName,
     counterNo,
     totalMonths,
-    dateOfEnquiry,
   });
 
-  genPDFW(customerId, customerName, counterNo, totalMonths, dateOfEnquiry);
+  genPDFW(customerId, customerName, counterNo, totalMonths);
   return res.json({
     status: "success",
     total1: total1,
