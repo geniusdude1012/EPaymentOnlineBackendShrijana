@@ -30,6 +30,7 @@ import AdminPage from "./component/AdminPage";
 import TransactionHistory from "./component/TransactionHistory";
 import PinPage from "./component/PinPage";
 import PinSetPage from "./component/PinSetPage";
+import UpdateUserInfo from "./component/UpdateUserInfo";
 
 function App() {
   return (
@@ -66,6 +67,7 @@ function App() {
         <Route path="/PaymentReceipt" element={<PaymentReceipt />} />
         <Route path="/PinPage" element={<PinPage />} />
         <Route path="/PinSetPage" element={<PinSetPage />} />
+        <Route path="/UpdateUserInfo" element={<UpdateUserInfo />} />
       </Routes>
       </NoNavbar>
       <br />

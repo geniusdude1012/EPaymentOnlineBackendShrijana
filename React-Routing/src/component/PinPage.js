@@ -77,6 +77,7 @@ const PinPage = () => {
           icon: "success",
           confirmButtonText: "OK",
         });
+        // navigate("/PaymentReceipt")
         navigate("/Dashboard"); // Navigate to the Dashboard after successful deposit
       } else if (response.data.status === "incorrect") {
         Swal.fire({

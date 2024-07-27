@@ -195,6 +195,7 @@
   border-radius: 45px;
   display: flex;
   align-items: center;
+  width: 73px;
 }
 
 .toggle-button i {

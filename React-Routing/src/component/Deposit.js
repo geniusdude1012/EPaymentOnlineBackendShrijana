@@ -97,7 +97,7 @@ const Deposit = () => {
         <h2>Load Money</h2>
         <label htmlFor="amount">Enter amount to deposit:</label>
         <input
-          type="number"
+          type="value"
           id="amount"
           name="amount"
           value={user.amount}
