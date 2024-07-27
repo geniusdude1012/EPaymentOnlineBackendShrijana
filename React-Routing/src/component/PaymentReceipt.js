@@ -3,11 +3,14 @@ import "./../component/PaymentReceipt.css";
 import back2 from "./../component/assets/back6.avif";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const PaymentReceipt = ({}) => {
   const location = useLocation(); // Use the useLocation hook to access the location object
 
   const total = location.state?.total;
+  const customerId = location.state?.customerId;
+  const customerName = location.state?.customerName;
   const dateOfEnquiry = new Date();
   const [userdata, setuserdata] = useState({});
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -38,25 +41,35 @@ const PaymentReceipt = ({}) => {
   useEffect(() => {
     callAboutPage();
   }, []);
+  const name = userdata.name;
   const handleSubmit = async (e) => {
     e.preventDefault();
     const email = userdata.email;
-
     try {
-      const response = await axios.post(
-        "http://localhost:8000/electricitypay",
-        {
-          email,
-          total,
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "Do you want to proceed with the payment?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, proceed!",
+        cancelButtonText: "No, cancel!",
+      });
+      if (result.isConfirmed) {
+        const response = await axios.post(
+          "http://localhost:8000/electricitypay",
+          {
+            email,
+            total,
+          }
+        );
+        if (response.data.status === "success") {
+          const updatedBalancer = response.data.updatedBalancer;
+          navigate("/PinPage", { state: { updatedBalancer, email } });
+        } else if (response.data.status === "insufficient") {
+          alert("Insufficient Balance");
+        } else {
+          alert("Invalid entry");
         }
-      );
-      if (response.data.status === "success") {
-        alert("Payment successful");
-        navigate("/Dashboard");
-      } else if (response.data.status === "insufficient") {
-        alert("Insufficient Balance");
-      } else {
-        alert("Invalid entry");
       }
     } catch (error) {
       console.error(error.message);
@@ -74,7 +87,8 @@ const PaymentReceipt = ({}) => {
         
         </div> */}
         <div className="pay">
-          <span>Payment for: </span>NEPAL COLLEGE OF SCHOOL
+          <span>Payment through: </span>
+          {name}
         </div>
 
         <h2></h2>
@@ -83,26 +97,22 @@ const PaymentReceipt = ({}) => {
       <hr />
       <div className="receipt-details">
         <div className="detail">
-          <span className="label">Reference Code:</span>
-          <span className="value"></span>
-        </div>
-        <div className="detail">
           <span className="label">Date/Time:</span>
           <span className="value">{dateOfEnquiry.toISOString()}</span>
         </div>
         <div className="detail">
-          <span className="label">Channel:</span>
+          <span className="label">customerId:</span>
           <span className="value">
-            <span className="online">Online</span>
+            <span className="online">{customerId}</span>
           </span>
         </div>
         <div className="detail">
-          <span className="label">Payment Attribute:</span>
-          <span className="value"></span>
+          <span className="label">customerName:</span>
+          <span className="value">{customerName}</span>
         </div>
         <div className="detail">
           <span className="label">Service Name:</span>
-          <span className="value"></span>
+          <span className="value">BillPayment</span>
         </div>
         <div className="detail">
           <span className="label">Amount (NPR):</span>
@@ -112,10 +122,7 @@ const PaymentReceipt = ({}) => {
           <span className="label">Initiator:</span>
           <span className="value">9840375027</span>
         </div>
-        <div className="detail">
-          <span className="label">Qr Merchant Name:</span>
-          <span className="value"></span>
-        </div>
+
         <div className="detail">
           <span className="label">Status:</span>
           <span className="value">

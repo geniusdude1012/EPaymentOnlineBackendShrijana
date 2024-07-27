@@ -3,12 +3,12 @@ import "./../component/Deposit.css";
 import { useNavigate } from "react-router-dom";
 import back1 from "./assets/back1.avif";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const Deposit = () => {
   const [userdata, setuserdata] = useState({});
   const [user, setUser] = useState({
     amount: "",
-   
   });
   const navigate = useNavigate();
 
@@ -54,21 +54,37 @@ const Deposit = () => {
       return;
     }
 
-    try {
-      const response = await axios.post("http://localhost:8000/deposit", {
-        amount,
-        email,
-      });
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to proceed with the payment?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, proceed!",
+      cancelButtonText: "No, cancel!",
+    });
+    if (result.isConfirmed) {
+      // Proceed with the payment
+      try {
+        const response = await axios.post("http://localhost:8000/deposit", {
+          amount,
+          email,
+        });
 
-      if (response.data.status === "success") {
-        alert("Deposit successful");
-        navigate("/Dashboard");  // Navigate to the Dashboard after successful deposit
-      } else {
-        alert("Deposit failed");
+        if (response.data.status === "success") {
+          Swal.fire({
+            title: "Payment Alert",
+            text: "Payment succesfull",
+            icon: "success",
+            confirmButtonText: "OK",
+          });
+          navigate("/Dashboard"); // Navigate to the Dashboard after successful deposit
+        } else {
+          alert("Deposit failed");
+        }
+      } catch (error) {
+        console.error(error);
+        alert("An error occurred during the deposit.");
       }
-    } catch (error) {
-      console.error(error);
-      alert("An error occurred during the deposit.");
     }
   };
 
@@ -81,13 +97,13 @@ const Deposit = () => {
         <h2>Load Money</h2>
         <label htmlFor="amount">Enter amount to deposit:</label>
         <input
-          type="value"
+          type="number"
           id="amount"
           name="amount"
           value={user.amount}
           onChange={handleChange}
           placeholder="Amount"
-          min='0'
+          min="0"
         />
         <button type="submit" className="btn btn-info">
           Deposit

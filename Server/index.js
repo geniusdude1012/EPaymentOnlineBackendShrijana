@@ -2,12 +2,12 @@ const cors = require("cors");
 const express = require("express");
 const app = express();
 const hbs = require("hbs");
-const collection = require("./db");
+const { collection, collection2 } = require("./db");
+
 // const number = require("./db");
 const PORT = 8000;
 const path = require("path");
 const bcrypt = require("bcryptjs");
-const { hashSync } = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const bodyParser = require("body-parser");
 const { genPDFE, genPDFW } = require("./genepdf");
@@ -109,7 +109,7 @@ async function generateUniqueAccountNumber(baseNumber, suffixLength) {
   return accountNumber;
 }
 //sending otp to mail
-const emailsender = async () => {
+const emailsender = async (email) => {
   const otp = generateotp();
   geneotp = otp;
   //sending email notification
@@ -135,32 +135,13 @@ function checkotp(a) {
 //acquire data from register
 app.post("/Register", async (req, res) => {
   const { name, email, password, contactno, address } = req.body;
-  const baseAccountNumber = 1600500000000000;
-  const suffixLength = 4;
-
-  const accountnum1 = await generateUniqueAccountNumber(
-    baseAccountNumber,
-    suffixLength
-  );
-  const hashpassword = await hashSync(req.body.password, 10);
-  data = {
-    name: name,
-    email: email,
-    password: hashpassword,
-    address: address,
-    contactno: contactno,
-    token: "token",
-    Balance: 0,
-    accountno: accountnum1,
-  };
 
   try {
     //request otp
-    const check = await collection.findOne({ email: data.email });
+    const check = await collection.findOne({ email: email });
     if (check) {
       res.json("User already exist");
     } else {
-      emailsender();
       // sendOTP(email, otp);
       // app.post("/otpverify, ");
       function generateaccno() {
@@ -216,6 +197,40 @@ app.post("/Login", async (req, res) => {
     return res.json({ status: "invalid", user: false });
   }
 });
+
+//Admin login
+app.post("/adminlogin", async (req, res) => {
+  const user = await collection2.findOne({
+    email: req.body.email,
+  });
+  if (user) {
+    if (req.body.password === user.password) {
+      const token = await jwt.sign({ email: user.email }, secret, {
+        expiresIn: "3d",
+      });
+      console.log(token);
+      // user.password = undefined;
+      const result = await collection2.updateOne({ $set: { token: token } });
+
+      const options = {
+        expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+        httpOnly: true,
+        sameSite: "Lax",
+      };
+      res.cookie("jwtadmn", token);
+      return res.status(200).json({
+        status: "success",
+      });
+    } else {
+      console.log("Incorrect password");
+      return res.json({ status: "error", user: false });
+    }
+  } else {
+    console.log("User not found");
+    return res.json({ status: "invalid", user: false });
+  }
+});
+
 app.post("/electricitybill", async (req, res) => {
   const {
     customerId,
@@ -275,7 +290,14 @@ app.post("/electricitybill", async (req, res) => {
 });
 app.post("/waterbill", async (req, res) => {
   const { customerId, customerName, counterNo, totalMonths, dateOfEnquiry } =
-    req.body;
+    req.body; // Replace with the actual meter reading
+  let sum1 = 0;
+  let tax1 = 0;
+  let total1 = 0;
+
+  sum1 = totalMonths * 100;
+  tax1 = (sum1 * 10) / 100;
+  total1 = sum1 + tax1;
   console.log({
     customerId,
     customerName,
@@ -285,7 +307,13 @@ app.post("/waterbill", async (req, res) => {
   });
 
   genPDFW(customerId, customerName, counterNo, totalMonths, dateOfEnquiry);
-  return res.json({ status: "success", data: req.body });
+  return res.json({
+    status: "success",
+    total1: total1,
+    customerId: customerId,
+    totalMonths: totalMonths,
+    customerName: customerName,
+  });
 });
 
 app.post("/verifyotp", async (req, res) => {
@@ -394,7 +422,13 @@ app.post("/transaction", async (req, res) => {
           { email: email },
           { $set: { Balance: updatedBalances } }
         );
-        res.status(200).json({ status: "success" });
+        res.status(200).json({
+          status: "success",
+          totalR: updatedBalancer.Balance,
+          total: updatedBalances.Balance,
+          emailR: receiveremail,
+          emailS: email,
+        });
       } else {
         res.status(404).json({ status: "error", message: "User not found" });
       }
@@ -420,14 +454,66 @@ app.post("/electricitypay", async (req, res) => {
     const updatedBalancer = Number(userR.Balance) - Number(total);
     console.log(updatedBalancer);
     if (userR) {
-      await collection.updateOne(
-        { email: email },
-        { $set: { Balance: updatedBalancer } }
-      );
-      res.status(200).json({ status: "success" });
+      res
+        .status(200)
+        .json({ status: "success", updatedBalancer: updatedBalancer });
     } else {
       res.status(404).json({ status: "error", message: "User not found" });
     }
+  }
+});
+//setup transactionpin
+app.post("/setuppin", async (req, res) => {
+  const { pin, name, email, contactno, address, password } = req.body;
+  const baseAccountNumber = 1600500000000000;
+  const suffixLength = 4;
+  console.log(password);
+
+  const accountnum1 = await generateUniqueAccountNumber(
+    baseAccountNumber,
+    suffixLength
+  );
+  const salt = bcrypt.genSaltSync(10);
+  const hashpassword = await bcrypt.hashSync(password, salt);
+  data = {
+    name: name,
+    email: email,
+    password: hashpassword,
+    address: address,
+    contactno: contactno,
+    token: "token",
+    Balance: 500,
+    accountno: accountnum1,
+    Pin: pin,
+  };
+  console.log(pin);
+  if (pin) {
+    function generateaccno() {
+      return randomstring.generate({ length: 6, charset: "numeric" });
+    }
+    emailsender(email);
+
+    res.status(200).json({ status: "success" });
+  } else {
+    res.status(400).json({ status: "error", message: "Missing pin" });
+  }
+});
+
+//transaction authentication
+app.post("/transactionpin", async (req, res) => {
+  const { tpin, email, updatedBalancer } = req.body;
+  console.log(updatedBalancer);
+  const userR = await collection.findOne({
+    email: email,
+  });
+  if (Number(userR.Pin) === Number(tpin)) {
+    await collection.updateOne(
+      { email: email },
+      { $set: { Balance: updatedBalancer } }
+    );
+    res.status(200).json({ status: "success", user: userR });
+  } else {
+    res.status(200).json({ status: "incorrect", message: "Incorrect pin" });
   }
 });
 

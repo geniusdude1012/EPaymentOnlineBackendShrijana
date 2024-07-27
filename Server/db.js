@@ -35,13 +35,38 @@ const userSchema = new mongoose.Schema({
   },
   Balance: {
     type: Number,
+    default: 500,
+  },
+  token: {
+    type: String,
+    default: null,
+  },
+  Pin: {
+    type: Number,
     default: 0,
+  },
+});
+const collection = new mongoose.model("collection1", userSchema);
+
+//For admin
+const Adminschema = new mongoose.Schema({
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
   },
   token: {
     type: String,
     default: null,
   },
 });
-const collection = new mongoose.model("collection1", userSchema);
+const collection2 = new mongoose.model("collection2", userSchema);
 
-module.exports = collection;
+module.exports = {
+  collection,
+  collection2,
+};

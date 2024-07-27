@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./../component/WaterBillEnquiry.css";
 import water from "./../img/water.png";
@@ -6,7 +6,32 @@ import { Link, useNavigate } from "react-router-dom";
 import back1 from "./assets/back3.avif";
 import axios from "axios";
 const WaterBillEnquiry = () => {
+  const [userdata, setuserdata] = useState({});
   const navigate = useNavigate();
+  const callAboutPage = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/dashboard", {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      });
+      const data = await response.data;
+      console.log(data);
+      setuserdata(data);
+      if (response.status !== 200) {
+        throw new Error("Request failed");
+      }
+    } catch (error) {
+      console.error(error);
+      navigate("/Login");
+    }
+  };
+
+  useEffect(() => {
+    callAboutPage();
+  }, []);
   const [form, setForm] = useState({
     customerName: "",
     customerId: "",
@@ -37,10 +62,19 @@ const WaterBillEnquiry = () => {
       dateOfEnquiry
     ) {
       const submission = await axios
-        .post("http://localhost:8000/waterbill", form)
+        .post("http://localhost:8000/waterbill", {
+          customerId,
+          customerName,
+          counterNo,
+          totalMonths,
+          dateOfEnquiry,
+        })
         .then((response) => {
           if (response.data.status === "success") {
+            const total = response.data.total1; // Access the total value from the response
+
             alert("Enquiry successful");
+            navigate("/PaymentReceipt", { state: { total } });
           } else {
             alert("Enquiry failed");
           }
@@ -109,6 +143,7 @@ const WaterBillEnquiry = () => {
                 <option value="Tokha">Tokha</option>
               </select>
             </div>
+<<<<<<< HEAD
             <div className="form-group mt-3">
               <label htmlFor="customerUnit">Customer Unit:</label>
               <input
@@ -120,6 +155,9 @@ const WaterBillEnquiry = () => {
                 onChange={handleChange}
               />
             </div>
+=======
+
+>>>>>>> 0bcde3cd68690e853d98287758d2df06e1228857
             <div className="form-group mt-1">
               <label htmlFor="totalMonths">Total Months:</label>
               <select
@@ -129,18 +167,11 @@ const WaterBillEnquiry = () => {
                 value={form.totalMonths}
                 onChange={handleChange}
               >
-                <option value="1">Baisakh</option>
-                <option value="2">Jestha</option>
-                <option value="3">Ashar</option>
-                <option value="4">Shrawan</option>
-                <option value="5">Bhadra</option>
-                <option value="6">Ashoj</option>
-                <option value="2">Kartik</option>
-                <option value="3">Mangsir</option>
-                <option value="4">Poush</option>
-                <option value="5">Magh</option>
-                <option value="6">Falgun</option>
-                <option value="6">Chaitra</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="6">6</option>
+                <option value="12">12</option>
               </select>
             </div>
             <div className="form-group mt-3">

@@ -51,7 +51,6 @@ const Payment = () => {
     });
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { username, receiveremail, amount, accountno, purpose } = user;
@@ -69,8 +68,7 @@ const Payment = () => {
         });
 
         if (response.data.status === "success") {
-          alert("Transaction successful");
-          navigate("/Dashboard");
+          navigate("/PinPage");
         } else if (response.data.status === "same account") {
           alert("Enter another account");
         } else if (response.data.status === "insufficient") {
@@ -138,9 +136,7 @@ const Payment = () => {
               required
             />
           </div>
-          <div className="summary">
-            
-          </div>
+          <div className="summary"></div>
           <div className="form-group">
             <label>Remarks</label>
             <input
