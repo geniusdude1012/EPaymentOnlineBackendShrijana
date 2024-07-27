@@ -514,12 +514,12 @@ app.post("/transactionpin", async (req, res) => {
       { email: email },
       { $set: { Balance: updatedBalancer } }
     );
-    let billlog = `${email} Payed amount of ${total} for BillPayment`;
-    await transaction.updateOne(
-      {}, // If you want to match a specific document, add a proper filter here
-      { $push: { logs: billlog } },
-      { upsert: true }
-    );
+    // let billlog = `${email} Payed amount of ${total} for BillPayment`;
+    // await transaction.updateOne(
+    //   {}, // If you want to match a specific document, add a proper filter here
+    //   { $push: { logs: billlog } },
+    //   { upsert: true }
+    // );
     res.status(200).json({ status: "success", user: userR });
   } else {
     res.status(200).json({ status: "incorrect", message: "Incorrect pin" });

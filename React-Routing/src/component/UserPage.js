@@ -51,6 +51,9 @@ const UserPage = () => {
             <Link to="/TransactionHistory">
               <li>TransactionHistory</li>
             </Link>
+            <Link to="/UpdateUserInfo">
+              <li>Update UserInfo</li>
+            </Link>
           </ul>
         </nav>
       </aside>

@@ -31,6 +31,7 @@ import TransactionHistory from "./component/TransactionHistory";
 import PinPage from "./component/PinPage";
 import PinSetPage from "./component/PinSetPage";
 import UpdateUserInfo from "./component/UpdateUserInfo";
+import PaymentTransaction from "./component/PaymentTransaction";
 
 function App() {
   return (
@@ -68,6 +69,7 @@ function App() {
         <Route path="/PinPage" element={<PinPage />} />
         <Route path="/PinSetPage" element={<PinSetPage />} />
         <Route path="/UpdateUserInfo" element={<UpdateUserInfo />} />
+        <Route path="/PaymentTransaction" element={<PaymentTransaction />} />
       </Routes>
       </NoNavbar>
       <br />

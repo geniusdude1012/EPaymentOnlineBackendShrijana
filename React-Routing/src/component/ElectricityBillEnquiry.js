@@ -33,7 +33,6 @@ const ElectricityBillEnquiry = () => {
       customerName,
       counterNo,
       totalMonths,
-      dateOfEnquiry,
       unit,
     } = form;
     if (
@@ -41,7 +40,7 @@ const ElectricityBillEnquiry = () => {
       customerName &&
       counterNo &&
       totalMonths &&
-      dateOfEnquiry &&
+  
       unit
     ) {
       const submission = await axios
@@ -54,7 +53,7 @@ const ElectricityBillEnquiry = () => {
             const customerName = response.data.customerName; // Access the total value from the response
             alert("Enquiry successful");
             navigate("/PaymentReceipt", {
-              state: { total, unit, customerId, customerName, dateOfEnquiry },
+              state: { total, unit, customerId, customerName },
             }); // Pass the total value as a prop to the PaymentReceipt component
 
             // Example usage
@@ -160,17 +159,7 @@ const ElectricityBillEnquiry = () => {
                 <option value="6">Chaitra</option>
               </select>
             </div>
-            <div className="form-group mt-3">
-              <label htmlFor="dateOfEnquiry">Date Of Enquiry:</label>
-              <input
-                type="date"
-                className="form-control"
-                id="dateOfEnquiry"
-                name="dateOfEnquiry"
-                value={form.dateOfEnquiry}
-                onChange={handleChange}
-              />
-            </div>
+          
             <div className="d-flex justify-content-center">
               <button type="submit" className="btn btn-primary mt-4">
                 Submit

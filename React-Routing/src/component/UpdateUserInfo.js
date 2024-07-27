@@ -65,26 +65,23 @@ const UpdateUserInfo = () => {
           margin: "20px",
         }}
       >
-        <div className="max-w-xl mb-6">
-          {/* <h2 class="max-w-lg mb-2 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-2xl sm:leading-none">
-        Register US
-      </h2> */}
+        {/* <div className="max-w-xl mb-6">
           {console.log(user)}
           <p class="text-base text-gray-700 md:text-lg">
             <h1>Simple & Fast Payment.</h1>
           </p>
-        </div>
-        <div className="flex items-center">
+        </div> */}
+        {/* <div className="flex items-center">
           <div class="btn-group">
             <a href="/Register" class="btn btn-dark active" aria-current="page">
               Register Now
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="register-container">
         <div className="register-form">
-          <h2>CREATE ACCOUNT</h2>
+          <h2>Update Your Information</h2>
           <form onSubmit={handlesubmit}>
             <input
               type="text"
@@ -106,7 +103,7 @@ const UpdateUserInfo = () => {
               type="password"
               name="password"
               value={user.password}
-              placeholder="Password"
+              placeholder="Enter New Password"
               onChange={handleChange}
               required
             />
@@ -119,7 +116,7 @@ const UpdateUserInfo = () => {
               required
             />
             <input
-              type="number"
+              type="value"
               name="contactno"
               value={user.contactno}
               placeholder="Phone number"
@@ -134,18 +131,16 @@ const UpdateUserInfo = () => {
               onChange={handleChange}
               required
             />
-            <div className="terms">
+            {/* <div className="terms">
               <input type="checkbox" id="terms" required />
               <label htmlFor="terms">
                 I agree to all statements in <a href="#">Terms of Service</a>
               </label>
-            </div>
+            </div> */}
 
-            <button type="submit">SIGN UP</button>
+            <button type="submit">Update</button>
           </form>
-          <p>
-            Have already an account? <a href="/Login">Login here</a>
-          </p>
+          
         </div>
       </div>
     </div>
