@@ -2,7 +2,7 @@ const cors = require("cors");
 const express = require("express");
 const app = express();
 const hbs = require("hbs");
-const { collection, collection2 } = require("./db");
+const { collection, collection2, transaction } = require("./db");
 
 // const number = require("./db");
 const PORT = 8000;
@@ -369,12 +369,15 @@ app.post("/deposit", async (req, res) => {
         .json({ status: "error", message: "Missing amount or email" });
     }
     const updatedBalance = Number(user.Balance) + Number(amount);
-
     await collection.updateOne(
       { email: email },
       { $set: { Balance: updatedBalance } }
     );
-
+    let depositlog = `${email} deposited amount of ${amount}`;
+    await transaction.updateOne(
+      { $push: { logs: depositlog } },
+      { upsert: true, new: true } // Create a new document if none exists
+    );
     res.status(200).json({ status: "success", updatedBalance });
   } else {
     res.status(404).json({ status: "error", message: "User not found" });
@@ -497,7 +500,7 @@ app.post("/setuppin", async (req, res) => {
 
 //transaction authentication
 app.post("/transactionpin", async (req, res) => {
-  const { tpin, email, updatedBalancer } = req.body;
+  const { tpin, email, updatedBalancer, total } = req.body;
   console.log(updatedBalancer);
   const userR = await collection.findOne({
     email: email,
@@ -507,9 +510,47 @@ app.post("/transactionpin", async (req, res) => {
       { email: email },
       { $set: { Balance: updatedBalancer } }
     );
+    // let billlog = `${email} Payed amount of ${total} for BillPayment`;
+    // await transaction.updateOne(
+    //   {}, // If you want to match a specific document, add a proper filter here
+    //   { $push: { logs: billlog } },
+    //   { upsert: true }
+    // );
     res.status(200).json({ status: "success", user: userR });
   } else {
     res.status(200).json({ status: "incorrect", message: "Incorrect pin" });
+  }
+});
+
+///update user
+app.post("/updateuser", async (req, res) => {
+  const { name, email, password, contactno, address } = req.body;
+  const salt = bcrypt.genSaltSync(10);
+  const hashpassword = await bcrypt.hashSync(password, salt);
+  try {
+    //request otp
+    const check = await collection.findOne({ email: email });
+    if (check) {
+      await collection.updateOne(
+        { email: email },
+        {
+          $set: {
+            name: name,
+            password: hashpassword,
+            contactno: contactno,
+            address: address,
+          },
+        }
+      );
+      return res.status(201).json({ status: "success" });
+    } else {
+      // sendOTP(email, otp);
+      // app.post("/otpverify, ");
+
+      return res.status(201).json({ status: "success" });
+    }
+  } catch (err) {
+    res.status(500).json({ error: err });
   }
 });
 

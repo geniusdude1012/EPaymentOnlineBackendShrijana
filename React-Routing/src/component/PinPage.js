@@ -10,6 +10,7 @@ const PinPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const updatedBalancer = location.state?.updatedBalancer;
+  const total = location.state?.total;
   const [userdata, setuserdata] = useState({});
   const [pin, setPin] = useState(["", "", "", ""]);
   const callAboutPage = async () => {
@@ -66,6 +67,7 @@ const PinPage = () => {
           tpin,
           email,
           updatedBalancer,
+          total,
         }
       );
       if (response.data.status === "success") {

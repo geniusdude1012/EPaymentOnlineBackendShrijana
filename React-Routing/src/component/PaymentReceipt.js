@@ -66,7 +66,7 @@ const PaymentReceipt = ({}) => {
         );
         if (response.data.status === "success") {
           const updatedBalancer = response.data.updatedBalancer;
-          navigate("/PinPage", { state: { updatedBalancer, email } });
+          navigate("/PinPage", { state: { updatedBalancer, email, total } });
         } else if (response.data.status === "insufficient") {
           alert("Insufficient Balance");
         } else {
