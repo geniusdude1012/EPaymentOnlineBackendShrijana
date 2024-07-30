@@ -2,7 +2,7 @@ const cors = require("cors");
 const express = require("express");
 const app = express();
 const hbs = require("hbs");
-const { collection, collection2, transaction, billpays } = require("./db");
+const { collection, collection2, transactions, billpays } = require("./db");
 
 // const number = require("./db");
 const PORT = 8000;
@@ -392,10 +392,10 @@ app.post("/deposit", async (req, res) => {
       { $set: { Balance: updatedBalance } }
     );
     let depositlog = `${email} deposited amount of ${amount}`;
-    await transaction.updateOne(
-      { $push: { logs: depositlog } },
-      { upsert: true, new: true } // Create a new document if none exists
-    );
+    let log = {
+      log: depositlog,
+    };
+    await transactions.insertMany([log]);
     res.status(200).json({ status: "success", updatedBalance });
   } else {
     res.status(404).json({ status: "error", message: "User not found" });
