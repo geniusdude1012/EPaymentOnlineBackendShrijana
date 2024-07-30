@@ -73,8 +73,22 @@ const transactionschema = new mongoose.Schema({
   },
 });
 const transaction = new mongoose.model("transaction", transactionschema);
+
+//For billing
+const Billschema = new mongoose.Schema({
+  customerid: {
+    type: Number,
+    required: true,
+  },
+  customername: {
+    type: String,
+    required: true,
+  },
+});
+const billpays = new mongoose.model("billpays", Billschema);
 module.exports = {
   collection,
   collection2,
   transaction,
+  billpays,
 };

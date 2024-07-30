@@ -28,21 +28,8 @@ const ElectricityBillEnquiry = () => {
     e.preventDefault();
     console.log(form);
     // Add form submission logic here
-    const {
-      customerId,
-      customerName,
-      counterNo,
-      totalMonths,
-      unit,
-    } = form;
-    if (
-      customerId &&
-      customerName &&
-      counterNo &&
-      totalMonths &&
-  
-      unit
-    ) {
+    const { customerId, customerName, counterNo, totalMonths, unit } = form;
+    if (customerId && customerName && counterNo && totalMonths && unit) {
       const submission = await axios
         .post("http://localhost:8000/electricitybill", form)
         .then((response) => {
@@ -57,6 +44,8 @@ const ElectricityBillEnquiry = () => {
             }); // Pass the total value as a prop to the PaymentReceipt component
 
             // Example usage
+          } else if (response.data.status === "notexist") {
+            alert("customerid is not registered!!!");
           } else {
             alert("Enquiry failed");
           }
@@ -159,7 +148,7 @@ const ElectricityBillEnquiry = () => {
                 <option value="6">Chaitra</option>
               </select>
             </div>
-          
+
             <div className="d-flex justify-content-center">
               <button type="submit" className="btn btn-primary mt-4">
                 Submit

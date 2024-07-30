@@ -54,27 +54,25 @@ const WaterBillEnquiry = () => {
     // Add form submission logic here
     const { customerId, customerName, counterNo, totalMonths, dateOfEnquiry } =
       form;
-    if (
-      customerId &&
-      customerName &&
-      counterNo &&
-      totalMonths 
-      
-    ) {
+    if (customerId && customerName && counterNo && totalMonths) {
       const submission = await axios
         .post("http://localhost:8000/waterbill", {
           customerId,
           customerName,
           counterNo,
           totalMonths,
-          
         })
         .then((response) => {
           if (response.data.status === "success") {
-            const total = response.data.total1; // Access the total value from the response
-
+            const total = response.data.total; // Access the total value from the response // Access the total value from the response
+            const customerId = response.data.customerId; // Access the total value from the response
+            const customerName = response.data.customerName;
             alert("Enquiry successful");
-            navigate("/PaymentReceipt", { state: { total } });
+            navigate("/PaymentReceipt", {
+              state: { total, customerId, customerName },
+            });
+          } else if (response.data.status === "notexist") {
+            alert("customerid is not registered!!!");
           } else {
             alert("Enquiry failed");
           }
@@ -142,17 +140,6 @@ const WaterBillEnquiry = () => {
                 <option value="Budhanilkantha">Budhanilkantha</option>
                 <option value="Tokha">Tokha</option>
               </select>
-            </div>
-            <div className="form-group mt-3">
-              <label htmlFor="customerUnit">Customer Unit:</label>
-              <input
-                type="value"
-                className="form-control small-input"
-                id="customerUnit"
-                name="customerUnit"
-                value={form.customerUnit}
-                onChange={handleChange}
-              />
             </div>
             <div className="form-group mt-1">
               <label htmlFor="totalMonths">Total Months:</label>
