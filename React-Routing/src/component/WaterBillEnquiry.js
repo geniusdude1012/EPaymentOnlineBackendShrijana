@@ -71,7 +71,7 @@ const WaterBillEnquiry = () => {
             navigate("/PaymentReceipt", {
               state: { total, customerId, customerName },
             });
-          } else if (response.data.status === "notexist") {
+          } else if (response.data.status === "nocustomer") {
             alert("customerid is not registered!!!");
           } else {
             alert("Enquiry failed");

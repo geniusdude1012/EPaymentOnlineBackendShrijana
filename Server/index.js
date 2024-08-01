@@ -275,34 +275,43 @@ app.post("/electricitybill", async (req, res) => {
       unit: unit,
       customerName: customerName,
     });
+  } else {
+    return res.json({ status: "nocustomer" });
   }
 });
 app.post("/waterbill", async (req, res) => {
   const { customerId, customerName, counterNo, totalMonths, dateOfEnquiry } =
     req.body; // Replace with the actual meter reading
-  let sum1 = 0;
-  let tax1 = 0;
-  let total1 = 0;
-
-  sum1 = totalMonths * 100;
-  tax1 = (sum1 * 10) / 100;
-  total1 = sum1 + tax1;
-  console.log({
-    customerId,
-    customerName,
-    counterNo,
-    totalMonths,
-    dateOfEnquiry,
+  const customer1 = await billpays.findOne({
+    customerid: customerId,
   });
+  if (customer1) {
+    let sum1 = 0;
+    let tax1 = 0;
+    let total1 = 0;
 
-  genPDFW(customerId, customerName, counterNo, totalMonths, dateOfEnquiry);
-  return res.json({
-    status: "success",
-    total1: total1,
-    customerId: customerId,
-    totalMonths: totalMonths,
-    customerName: customerName,
-  });
+    sum1 = totalMonths * 100;
+    tax1 = (sum1 * 10) / 100;
+    total1 = sum1 + tax1;
+    console.log({
+      customerId,
+      customerName,
+      counterNo,
+      totalMonths,
+      dateOfEnquiry,
+    });
+
+    genPDFW(customerId, customerName, counterNo, totalMonths, dateOfEnquiry);
+    return res.json({
+      status: "success",
+      total1: total1,
+      customerId: customerId,
+      totalMonths: totalMonths,
+      customerName: customerName,
+    });
+  } else {
+    return res.json({ status: "nocustomer" });
+  }
 });
 
 app.post("/verifyotp", async (req, res) => {

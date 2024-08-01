@@ -44,7 +44,7 @@ const ElectricityBillEnquiry = () => {
             }); // Pass the total value as a prop to the PaymentReceipt component
 
             // Example usage
-          } else if (response.data.status === "notexist") {
+          } else if (response.data.status === "nocustomer") {
             alert("customerid is not registered!!!");
           } else {
             alert("Enquiry failed");
