@@ -232,14 +232,7 @@ app.post("/adminlogin", async (req, res) => {
 });
 
 app.post("/electricitybill", async (req, res) => {
-  const {
-    customerId,
-    customerName,
-    counterNo,
-    totalMonths,
-    dateOfEnquiry,
-    unit,
-  } = req.body;
+  const { customerId, customerName, counterNo, totalMonths, unit } = req.body;
   const customer1 = await billpays.findOne({
     customerid: customerId,
   });
@@ -271,63 +264,45 @@ app.post("/electricitybill", async (req, res) => {
       customerName,
       counterNo,
       totalMonths,
-      dateOfEnquiry,
       unit,
       total,
     });
-    genPDFE(
-      customerId,
-      customerName,
-      counterNo,
-      totalMonths,
-      dateOfEnquiry,
-      unit,
-      total
-    );
-    return res.status(200).json({
+    genPDFE(customerId, customerName, counterNo, totalMonths, unit, total);
+    return res.json({
       status: "success",
       total: total,
       customerId: customerId,
       unit: unit,
       customerName: customerName,
     });
-  } else {
-    return res.status(200).json({ status: "notexist" });
   }
 });
 app.post("/waterbill", async (req, res) => {
   const { customerId, customerName, counterNo, totalMonths, dateOfEnquiry } =
-    req.body;
-  const customer1 = await billpays.findOne({
-    customerid: customerId,
+    req.body; // Replace with the actual meter reading
+  let sum1 = 0;
+  let tax1 = 0;
+  let total1 = 0;
+
+  sum1 = totalMonths * 100;
+  tax1 = (sum1 * 10) / 100;
+  total1 = sum1 + tax1;
+  console.log({
+    customerId,
+    customerName,
+    counterNo,
+    totalMonths,
+    dateOfEnquiry,
   });
-  if (customer1) {
-    let sum1 = 0;
-    let tax1 = 0;
-    let total = 0;
 
-    sum1 = totalMonths * 100;
-    tax1 = (sum1 * 10) / 100;
-    total = sum1 + tax1;
-    console.log({
-      customerId,
-      customerName,
-      counterNo,
-      totalMonths,
-      dateOfEnquiry,
-    });
-
-    genPDFW(customerId, customerName, counterNo, totalMonths, dateOfEnquiry);
-    return res.json({
-      status: "success",
-      total: total,
-      customerId: customerId,
-      totalMonths: totalMonths,
-      customerName: customerName,
-    });
-  } else {
-    return res.status(200).json({ status: "notexist" });
-  }
+  genPDFW(customerId, customerName, counterNo, totalMonths, dateOfEnquiry);
+  return res.json({
+    status: "success",
+    total1: total1,
+    customerId: customerId,
+    totalMonths: totalMonths,
+    customerName: customerName,
+  });
 });
 
 app.post("/verifyotp", async (req, res) => {
@@ -419,10 +394,6 @@ app.post("/transaction", async (req, res) => {
     const userS = await collection.findOne({
       email: email,
     });
-    if (userR && userR.Balance == "null") {
-      userR.Balance = 0;
-    }
-    console.log(userR.Balance);
     if (userS.Balance <= 0) {
       return res
         .status(200)
@@ -431,20 +402,21 @@ app.post("/transaction", async (req, res) => {
       const updatedBalancer = Number(userR.Balance) + Number(amount);
       const updatedBalances = Number(userS.Balance) - Number(amount);
       if (userS) {
-        await collection.updateOne(
-          { email: receiveremail },
-          { $set: { Balance: updatedBalancer } }
-        );
-        await collection.updateOne(
-          { email: email },
-          { $set: { Balance: updatedBalances } }
-        );
+        // await collection.updateOne(
+        //   { email: receiveremail },
+        //   { $set: { Balance: updatedBalancer } }
+        // );
+        // await collection.updateOne(
+        //   { email: email },
+        //   { $set: { Balance: updatedBalances } }
+        // );
         res.status(200).json({
           status: "success",
-          totalR: updatedBalancer.Balance,
-          total: updatedBalances.Balance,
+          totalR: updatedBalancer,
+          totalS: updatedBalances,
           emailR: receiveremail,
           emailS: email,
+          total: amount,
         });
       } else {
         res.status(404).json({ status: "error", message: "User not found" });
@@ -452,6 +424,29 @@ app.post("/transaction", async (req, res) => {
     }
   } else {
     res.status(200).json({ status: "same account" });
+  }
+});
+
+//transfer pin
+app.post("/transferpin", async (req, res) => {
+  const { tpin, emailR, emailS, totalR, totalS } = req.body;
+  const userR = await collection.findOne({
+    email: emailS,
+  });
+  console.log(totalS);
+  console.log(totalR);
+  if (Number(userR.Pin) === Number(tpin)) {
+    await collection.updateOne(
+      { email: emailR },
+      { $set: { Balance: totalR } }
+    );
+    await collection.updateOne(
+      { email: emailS },
+      { $set: { Balance: totalS } }
+    );
+    res.status(200).json({ status: "success" });
+  } else {
+    res.status(200).json({ status: "incorrect", message: "Incorrect pin" });
   }
 });
 

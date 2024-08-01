@@ -32,45 +32,46 @@ import PinPage from "./component/PinPage";
 import PinSetPage from "./component/PinSetPage";
 import UpdateUserInfo from "./component/UpdateUserInfo";
 import PaymentTransaction from "./component/PaymentTransaction";
+// import TransferPin from "./component/TransferPin";
 
 function App() {
   return (
     <>
       <NoNavbar navbar={<Navbar />}>
-      
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/team" element={<Team />} />
-        <Route path="/Register" element={<Register />} />
-        <Route path="/Admin" element={<Admin />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/Deposit" element={<Deposit />} />
-        <Route path="/ForgetPassword" element={<ForgetPassword />} />
-        <Route path="/RecoveryPassword" element={<RecoveryPassword />} />
-        <Route path="/WaterBillEnquiry" element={<WaterBillEnquiry />} />
-        <Route
-          path="/ElectricityBillEnquiry"
-          element={<ElectricityBillEnquiry />}
-        />
-        <Route path="/Payment" element={<Payment />} />
-        <Route path="/FormComponent" element={<FormComponent />} />
-        <Route path="/OTPVerification" element={<OTPVerification />} />
-        <Route path="/Dashboard" element={<Dashboard />} />
-        <Route path="/Footer" element={<Footer />} />
-        <Route path="/AboutLeadG2" element={<AboutLeadG2 />} />
-        <Route path="/ContactUs" element={<ContactUs />} />
-        <Route path="/Privacy" element={<Privacy />} />
-        <Route path="/Logout" element={<Logout />} />
-        <Route path="/UserPage" element={<UserPage />} />
-        <Route path="/AdminPage" element={<AdminPage />} />
-        <Route path="/TransactionHistory" element={<TransactionHistory />} />
-        <Route path="/PaymentReceipt" element={<PaymentReceipt />} />
-        <Route path="/PinPage" element={<PinPage />} />
-        <Route path="/PinSetPage" element={<PinSetPage />} />
-        <Route path="/UpdateUserInfo" element={<UpdateUserInfo />} />
-        <Route path="/PaymentTransaction" element={<PaymentTransaction />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/Register" element={<Register />} />
+          <Route path="/Admin" element={<Admin />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/Deposit" element={<Deposit />} />
+          <Route path="/ForgetPassword" element={<ForgetPassword />} />
+          <Route path="/RecoveryPassword" element={<RecoveryPassword />} />
+          <Route path="/WaterBillEnquiry" element={<WaterBillEnquiry />} />
+          <Route
+            path="/ElectricityBillEnquiry"
+            element={<ElectricityBillEnquiry />}
+          />
+          <Route path="/Payment" element={<Payment />} />
+          <Route path="/FormComponent" element={<FormComponent />} />
+          <Route path="/OTPVerification" element={<OTPVerification />} />
+          <Route path="/Dashboard" element={<Dashboard />} />
+          <Route path="/Footer" element={<Footer />} />
+          <Route path="/AboutLeadG2" element={<AboutLeadG2 />} />
+          <Route path="/ContactUs" element={<ContactUs />} />
+          <Route path="/Privacy" element={<Privacy />} />
+          <Route path="/Logout" element={<Logout />} />
+          <Route path="/UserPage" element={<UserPage />} />
+          <Route path="/AdminPage" element={<AdminPage />} />
+          <Route path="/TransactionHistory" element={<TransactionHistory />} />
+          <Route path="/PaymentReceipt" element={<PaymentReceipt />} />
+          <Route path="/PinPage" element={<PinPage />} />
+          <Route path="/PinSetPage" element={<PinSetPage />} />
+          <Route path="/UpdateUserInfo" element={<UpdateUserInfo />} />
+          <Route path="/PaymentTransaction" element={<PaymentTransaction />} />
+          {/* <Route path="/TransferPin" element={<TransferPin />} /> */}
+        </Routes>
       </NoNavbar>
       <br />
       <NoFooter>

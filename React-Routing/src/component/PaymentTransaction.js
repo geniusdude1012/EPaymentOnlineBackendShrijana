@@ -5,16 +5,17 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const PaymentTransaction= ({}) => {
+const PaymentTransaction = ({}) => {
   const location = useLocation(); // Use the useLocation hook to access the location object
 
   const total = location.state?.total;
-  const customerId = location.state?.customerId;
-  const customerName = location.state?.customerName;
+  const totalS = location.state?.totalS;
+  const emailR = location.state?.emailR;
+  const emailS = location.state?.emailS;
+  const totalR = location.state?.totalR;
   const dateOfEnquiry = new Date();
   const [userdata, setuserdata] = useState({});
   const [currentTime, setCurrentTime] = useState(new Date());
-  console.log(dateOfEnquiry);
 
   const navigate = useNavigate();
   const callAboutPage = async () => {
@@ -42,6 +43,8 @@ const PaymentTransaction= ({}) => {
     callAboutPage();
   }, []);
   const name = userdata.name;
+  console.log(totalS);
+  console.log(totalR);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const email = userdata.email;
@@ -54,23 +57,9 @@ const PaymentTransaction= ({}) => {
         confirmButtonText: "Yes, proceed!",
         cancelButtonText: "No, cancel!",
       });
-      if (result.isConfirmed) {
-        const response = await axios.post(
-          "http://localhost:8000/electricitypay",
-          {
-            email,
-            total,
-          }
-        );
-        if (response.data.status === "success") {
-          const updatedBalancer = response.data.updatedBalancer;
-          navigate("/PinPage", { state: { updatedBalancer, email } });
-        } else if (response.data.status === "insufficient") {
-          alert("Insufficient Balance");
-        } else {
-          alert("Invalid entry");
-        }
-      }
+      navigate("/TransferPin", {
+        state: { totalR, totalS, emailR, emailS, total },
+      });
     } catch (error) {
       console.error(error.message);
       alert("Payment failed");
@@ -99,12 +88,12 @@ const PaymentTransaction= ({}) => {
         <div className="detail">
           <span className="label">Sender:</span>
           <span className="value">
-            <span className="value">{customerId}</span>
+            <span className="value">{emailS}</span>
           </span>
         </div>
         <div className="detail">
           <span className="label">Receiver:</span>
-          <span className="value">{customerName}</span>
+          <span className="value">{emailR}</span>
         </div>
         <div className="detail">
           <span className="label">Service Name:</span>

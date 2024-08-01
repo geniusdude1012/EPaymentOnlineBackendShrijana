@@ -68,7 +68,14 @@ const Payment = () => {
         });
 
         if (response.data.status === "success") {
-          navigate("/PinPage");
+          const total = response.data.total; // Access the total value from the response
+          const emailR = response.data.emailR; // Access the total value from the response
+          const emailS = response.data.emailS; // Access the total value from the response
+          const totalS = response.data.totalS;
+          const totalR = response.data.totalR;
+          navigate("/PaymentTransaction", {
+            state: { totalR, totalS, emailR, emailS, total },
+          });
         } else if (response.data.status === "same account") {
           alert("Enter another account");
         } else if (response.data.status === "insufficient") {
