@@ -68,7 +68,7 @@ const collection2 = new mongoose.model("collection2", Adminschema);
 
 const transactionschema = new mongoose.Schema({
   log: {
-    type: String,
+    type: [String],
     required: true,
   },
 });

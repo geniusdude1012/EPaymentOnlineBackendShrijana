@@ -80,6 +80,8 @@ const OTPVerification = () => {
           alert("User registered Successfully");
 
           navigate("/Login");
+        } else if (response.data.status === "error") {
+          alert("User already registered ");
         } else {
           alert("Incorrect OTP");
         }

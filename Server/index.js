@@ -326,6 +326,11 @@ app.post("/verifyotp", async (req, res) => {
     } else {
       console.log("User registered successfully");
       await collection.insertMany([data]);
+      let log = {
+        email: data.email,
+        log: "",
+      };
+      await transactions.insertMany([log]);
 
       //token generation
       const token = jwt.sign({ email: data.email }, secret);
@@ -377,6 +382,7 @@ app.post("/deposit", async (req, res) => {
     );
     let depositlog = `${email} deposited amount of ${amount}`;
     let log = {
+      email: email,
       log: depositlog,
     };
     await transactions.insertMany([log]);
